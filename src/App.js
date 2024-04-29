@@ -14,7 +14,7 @@ function App() {
   return (
     <>
       <div className={styles.container}> 
-      {/* Коллеги внимательно это общий контейнер с размером и отступом ТОЛЬКО для наших section и footer */}
+      {/* Коллеги внимательно это общий контейнер с размерами как и отступом по бокам  ТОЛЬКО для наших section и footer */}
       
         <Routes>
           <Route path="/" element={<MainPage />} />
