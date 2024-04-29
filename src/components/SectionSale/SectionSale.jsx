@@ -9,7 +9,11 @@ function SectionSale() {
   const saleProducts = useSelector(
     (state) => state.saleProducts.saleProductsData
   );
+
+  // хук useState мне понадобится для получения 4 рандомных продуктов со скидкой,
+  // что бы не трогать глобальное состояние в нашем store
   const [randomSaleProducts, setRandomSaleProducts] = useState([]);
+  
 
   useEffect(() => {
     dispatch(getSaleProducts());
