@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import styles from "./App.module.scss";
+import  "./App.scss";
 import MainPage from "./pages/MainPage/MainPage";
 import AllProductsPage from "./pages/AllProductsPage/AllProductsPage";
 import AllSalesPage from "./pages/AllSalesPage/AllSalesPage";
@@ -13,9 +13,9 @@ import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 function App() {
   return (
     <>
-      <div className={styles.container}> 
-      {/* Коллеги внимательно это общий контейнер с размерами как и отступом по бокам  ТОЛЬКО для наших section и footer */}
-      
+      <div className="container">
+        {/* Коллеги внимательно это общий контейнер с размерами как и отступом по бокам  ТОЛЬКО для наших section и footer */}
+
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/products" element={<AllProductsPage />} />
