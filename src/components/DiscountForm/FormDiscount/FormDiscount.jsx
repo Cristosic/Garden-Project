@@ -4,15 +4,15 @@ import styles from "./FormDiscount.module.css";
 
 export const FormDiscount = ({ openContentModal }) => {
   return (
-    <div className={styles.form}>
-      <div className="container">
-        <div className={styles.form_wrapper}>
+    <div className={styles.formContainer}>
+      <div className="maincontainer">
+        <div className={styles.formWrapperContainer}>
           <h3>5% off on the first order</h3>
-          <div className={styles.formBox}>
+          <div className={styles.formBoxContainer}>
             <img
               src={gardenSuppliesImage}
-              alt="garden supplies"
-              className={styles.hidden}
+              alt="garden tools"
+              className={styles.hiddenContainer}
             />
             <NewUserForm handleOpenModal={openContentModal} />
           </div>

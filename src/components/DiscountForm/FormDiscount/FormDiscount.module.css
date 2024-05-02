@@ -1,4 +1,4 @@
-.form_wrapper {
+.formWrapperContainer {
     display: flex;
     padding: 32px 32px 0px 32px;
     margin: 80px 0 40px 0;
@@ -10,7 +10,7 @@
 
 }
 
-.form h3 {
+.formContainer h3 {
     font-weight: 700;
     line-height: 110%;
     color: #ffffff;
@@ -19,7 +19,7 @@
     font-style: normal;
 }
 
-.formBox {
+.formBoxContainer {
     width: 100%;
     display: flex;
     align-items: center;
@@ -27,21 +27,21 @@
     gap: 32px;
 }
 
-.formBox img {
+.formBoxContainer img {
     width: 58%;
 }
 
 @media (max-width: 1440px) {
-    .form_wrapper {
+    .formWrapperContainer {
         padding: 32px 20px 0 0;
     }
 
-    .formBox {
+    .formBoxContainer {
         align-items: flex-start;
         overflow: hidden;
     }
 
-    .formBox img {
+    .formBoxContainer img {
         min-width: 65%;
         height: auto;
         object-fit: cover;
@@ -53,24 +53,24 @@
 }
 
 @media (max-width: 1000px) {
-    .formBox img {
+    .formBoxContainer img {
         min-width: 82%;
         margin-left: -34%;
     }
 }
 
 @media (max-width: 768px) {
-    .form_wrapper {
+    .formWrapperContainer {
         padding: 24px 20px 0 20px;
     }
 
-    .formBox {
+    .formBoxContainer {
         flex-direction: column-reverse;
         align-items: center;
         justify-content: center;
     }
 
-    .formBox img {
+    .formBoxContainer img {
         min-width: 100%;
     }
 }

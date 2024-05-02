@@ -1,4 +1,4 @@
-.dataForm {
+.data_Form {
     width: 40%;
     position: relative;
     padding-bottom: 40px;
@@ -90,7 +90,7 @@ input::placeholder {
 }
 
 @media (max-width: 1440px) {
-    .dataForm {
+    .data_Form {
         width: 50%;
         margin-top: 30px;
     }
@@ -101,7 +101,7 @@ input::placeholder {
 }
 
 @media (max-width: 768px) {
-    .dataForm {
+    .data_Form {
         width: 100%;
         padding: 20px;
     }

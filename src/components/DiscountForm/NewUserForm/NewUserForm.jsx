@@ -3,41 +3,42 @@ import { useForm } from "react-hook-form";
 import { v4 as uuidv4 } from "uuid";
 import styles from "./NewUserForm.module.css";
 
-export const NewUserForm = ({
-  inputStyles,
-  formStyles,
-  buttonStyles,
+export const NewUserForm = ({inputStyles, formStyles, buttonStyles,
   buttonText = "Get a discount",
   successText = "Submitt",
 }) => {
 
   const { handleSubmit, reset, formState: { errors }, } = useForm();
-  const [submittedSuccessful, setSubmittedSuccessful] = useState(false);
-  const handlePostUserData = (data) => {
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleUserData = (data) => {
    
     const userData = {
       ...data,
       id: uuidv4(),
     };
     
-    handleSubmit  (userData);
+    
+    handleSubmit(userData);
   
-    setSubmittedSuccessful(true);
+    setSubmitted(true);
     reset();
   };
-  // Функция для сброса состояния:
+ 
   const handleInputChange = () => {
-    setSubmittedSuccessful(false);
+    setSubmitted(false);
   };
 
   return (
-    <div className={`${styles.dataForm} ${formStyles}`}>
-      <form onSubmit={handleSubmit(handlePostUserData)}>
+    <div className={`${styles.data_Form} ${formStyles}`}>
+      
+      <form onSubmit={handleSubmit(handleUserData)}>
         <input
           onFocus={handleInputChange}
           type="text"
-          placeholder="Name"
+          placeholder="Your Name"
           className={`${styles.form_input} ${inputStyles}`}
+          
         />
         <p className={styles.name}>{`${errors.name?.message || ""}`}</p>
 
@@ -60,9 +61,9 @@ export const NewUserForm = ({
 
         <input
           type="submit"
-          value={submittedSuccessful ? successText : buttonText}
+          value={submitted ? successText : buttonText}
           className={`${styles.submit_button} ${
-            submittedSuccessful ? styles.successful_button : ""
+            submitted ? styles.successful_button : ""
           } ${buttonStyles}`}
         />
       </form>
