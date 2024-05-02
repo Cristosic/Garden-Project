@@ -1,0 +1,59 @@
+.container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  margin: 40px auto;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  margin-top: 40px;
+
+}
+
+span {
+  font-weight: bold;
+  color: #424436;
+  font-size: 64px;
+  line-height: 110%;
+}
+
+.line {
+  flex-grow: 1;
+  height: 1px;
+  background-color: #dddddd;
+}
+
+button {
+  border-radius: 6px;
+  border: 1px solid #dddddd;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 8px 16px;
+  color: #8b8b8b;
+  line-height: 126%;
+  cursor: pointer;
+}
+
+
+@media (max-width: 1000px) {
+  .container h4 {
+    padding-left: 10px;
+  }
+
+  span {
+    font-size: 44px;
+  }
+
+  .cardContent {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 25px;
+  }
+
+  .container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
