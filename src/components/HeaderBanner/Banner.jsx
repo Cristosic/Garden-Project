@@ -9,7 +9,7 @@ const Banner = () => {
       <banner className={styles}>
         <div className="text">
           <h1>
-            Amazing Discounts aaaaaaa
+            Amazing Discounts and
             <br />
             on Garden Products!
           </h1>
