@@ -17,21 +17,24 @@ export default function CategoriesContainer() {
   }, []);
 
   return (
-    <div>
-      <div className={styles.title}>
+    <div className={styles.categories_container}>
+      <div className={styles.categoriesTitle}>
         <span>Categories</span>
         <div className={styles.line}></div>
         <Link to={`/categories`}>
-          <button>All categories</button>
+          <button className={styles.btn_category_card}>All categories</button>
         </Link>
       </div>
 
-      <div className={styles.container}>
+      <div className={styles.containerImg}>
         {
         categoriesState.slice(0, 4).map((el) => (
           <CategoryCard key={el.id} {...el} />
         ))}
       </div>
+      <Link to={`/categories`}>
+          <button className={styles.btn2_category_card}>All categories</button>
+        </Link>
     </div>
   );
 }
