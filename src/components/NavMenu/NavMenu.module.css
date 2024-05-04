@@ -1,0 +1,73 @@
+.navMenu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100px;
+  font-size: 20px;
+  white-space: nowrap;
+  z-index: 2;
+  border: 1px solid #dddddd;
+  position: relative;
+}
+
+.navMenu a {
+  text-decoration: none;
+  color: #000000;
+  cursor: pointer;
+}
+
+.iconsLeft {
+  display: flex;
+  gap: 20px;
+  padding: 30px 0 30px 40px;
+}
+
+.iconsRight {
+  display: flex;
+  gap: 20px;
+  padding: 40px;
+}
+
+.plantLogo {
+  width: 70px;
+  height: 70px;
+}
+
+.themeIcon {
+  width: 60px;
+  height: 70px;
+  cursor: pointer;
+}
+
+.navMenuLinks {
+  display: flex;
+  gap: 32px;
+  padding: 74px 0 40px 0;
+}
+
+.buttonNavMenu {
+  background-color: #92a134;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 6px 16px;
+  border-radius: 6px;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.heartIcon {
+  width: 40px;
+  height: 35px;
+  margin-top: 8px;
+  cursor: pointer;
+}
+
+.cartIcon {
+  width: 40px;
+  height: 44px;
+  cursor: pointer;
+}
