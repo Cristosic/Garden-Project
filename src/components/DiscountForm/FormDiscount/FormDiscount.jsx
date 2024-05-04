@@ -1,24 +1,22 @@
-import gardenSuppliesImage from "../../../media/images/imgForm.svg";
-import { NewUserForm } from "../NewUserForm/NewUserForm";
-import styles from "./FormDiscount.module.css";
+import React from "react";
 
-export const FormDiscount = ({ openContentModal }) => {
+import s from "./FormDiscount.module.scss";
+import gardenImage from "../../../media/images/imgForm.svg";
+import NewUserForm from "../NewUserForm/NewUserForm";
+
+export default function FormDiscount() {
+  
   return (
-    <div className={styles.formContainer}>
-      <div className="maincontainer">
-        <div className={styles.formWrapperContainer}>
+    <div className={s.formContainer}>
+      <div className={s.formDiscount}>
           <h3>5% off on the first order</h3>
-          <div className={styles.formBoxContainer}>
-            <img
-              src={gardenSuppliesImage}
-              alt="garden tools"
-              className={styles.hiddenContainer}
-            />
-            <NewUserForm handleOpenModal={openContentModal} />
+          <div className={s.formWrapper}>
+            <img src={gardenImage} alt="garden tools" className={s.hidden} />
+            <NewUserForm />
           </div>
         </div>
-      </div>
+      
     </div>
   );
-};
+}
 

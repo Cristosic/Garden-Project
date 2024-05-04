@@ -30,9 +30,10 @@ const saleProductsSlice = createSlice({
       })
       .addCase(getSaleProducts.rejected, (state) => {
         state.status = "error";
-      });
+      });      
   },
 });
 
 export default saleProductsSlice.reducer;
+// eslint-disable-next-line no-empty-pattern
 export const {} = saleProductsSlice.actions;

@@ -1,72 +1,55 @@
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { v4 as uuidv4 } from "uuid";
-import styles from "./NewUserForm.module.css";
+import { useDispatch } from "react-redux";
+import { addNewUser } from "../../../store/slices/userSlice";
+import s from "./NewUserForm.module.scss";
 
-export const NewUserForm = ({inputStyles, formStyles, buttonStyles,
-  buttonText = "Get a discount",
-  successText = "Submitt",
-}) => {
+export default function NewUserForm() {
+  const dispatch = useDispatch();
 
-  const { handleSubmit, reset, formState: { errors }, } = useForm();
-  const [submitted, setSubmitted] = useState(false);
+  const submit = (e) => {
+    e.preventDefault();
 
-  const handleUserData = (data) => {
-   
-    const userData = {
-      ...data,
-      id: uuidv4(),
+    const { name, number, email } = e.target;
+
+    const newUser = {
+      id: Date.now(),
+      name: name.value,
+      number: number.value,
+      email: email.value,
     };
-    
-    
-    handleSubmit(userData);
-  
-    setSubmitted(true);
-    reset();
-  };
- 
-  const handleInputChange = () => {
-    setSubmitted(false);
+
+    console.log(newUser);
+
+    dispatch(addNewUser(newUser));
+    e.target.reset();
   };
 
   return (
-    <div className={`${styles.data_Form} ${formStyles}`}>
-      
-      <form onSubmit={handleSubmit(handleUserData)}>
+    <div className={s.newForm}>
+      <form className={s.form} onSubmit={submit}>
         <input
-          onFocus={handleInputChange}
+          className={s.inputForm}
           type="text"
-          placeholder="Your Name"
-          className={`${styles.form_input} ${inputStyles}`}
-          
+          placeholder="Name"
+          name="name"
         />
-        <p className={styles.name}>{`${errors.name?.message || ""}`}</p>
-
         <input
-          onFocus={handleInputChange}
-          type="tel"
+          className={s.inputForm}
+          type="text"
           placeholder="Phone number"
-          className={`${styles.form_input} ${inputStyles}`}
+          name="number"
         />
-        <p className={styles.phone}>{`${errors.phone?.message || ""}`}</p>
-        
         <input
-          onFocus={handleInputChange}
-          type="email"
+          className={s.inputForm}
+          type="text"
           placeholder="Email"
-          className={`${styles.form_input} ${inputStyles}`}
+          name="email"
         />
-
-        <p className={styles.email}> {`${errors.email?.message || ""}`}</p>
-
-        <input
-          type="submit"
-          value={submitted ? successText : buttonText}
-          className={`${styles.submit_button} ${
-            submitted ? styles.successful_button : ""
-          } ${buttonStyles}`}
-        />
+        <div className={s.buttonForm}>
+          <button className={s.submitButton} type="submit">
+            Get a discount
+          </button>
+        </div>
       </form>
     </div>
   );
-};
+}
