@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import styles from "./SectionSale.module.scss";
 import { getSaleProducts } from "../../store/slices/saleProductsSlice";
 import SaleProductsContainer from "./SaleProductsContainer/SaleProductsContainer";
-import { Link } from 'react-router-dom';
 
 function SectionSale() {
   const dispatch = useDispatch();
@@ -28,20 +27,13 @@ function SectionSale() {
   }, [saleProducts]);
 
   return (
-    <div className={styles.container}>
-
+    <div>
       <div className={styles.title}>
         <span>Sale</span>
-
         <div className={styles.line}></div>
-
-        <Link to={"/sales"}>
         <button>All sales</button>
-        </Link>
-        
       </div>
-
-      <SaleProductsContainer saleProducts={randomSaleProducts} className={styles.productsContainer}/>
+      <SaleProductsContainer saleProducts={randomSaleProducts} />
     </div>
   );
 }
