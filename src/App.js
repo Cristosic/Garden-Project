@@ -9,6 +9,7 @@ import FavoriteItemPage from "./pages/FavoriteItemPage/FavoriteItemPage";
 import SingleCategoryPage from "./pages/SingleCategoryPage/SingleCategoryPage";
 import SingleProductPage from "./pages/SingleProductPage/SingleProductPage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
+import Footer from './components/Footer/Footer';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path="/singleProduct" element={<SingleProductPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
+        <Footer />
       </div>
     </>
   );
