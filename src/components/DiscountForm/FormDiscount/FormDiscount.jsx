@@ -1,22 +1,20 @@
 import React from "react";
-
-import s from "./FormDiscount.module.scss";
-import gardenImage from "../../../media/images/imgForm.svg";
+import styles from "./FormDiscount.module.scss";
+import gardenImage from "../../../media/images/gardenImage.svg";
 import NewUserForm from "../NewUserForm/NewUserForm";
 
 export default function FormDiscount() {
   
   return (
-    <div className={s.formContainer}>
-      <div className={s.formDiscount}>
+    <div className={styles.formContainer}>
+      <div className={styles.formDiscount}>
           <h3>5% off on the first order</h3>
-          <div className={s.formWrapper}>
-            <img src={gardenImage} alt="garden tools" className={s.hidden} />
+          <div className={styles.formWrapper}>
+            <img src={gardenImage} alt="garden tools" className={styles.hidden} />
             <NewUserForm />
           </div>
         </div>
-      
-    </div>
+      </div>
   );
 }
 

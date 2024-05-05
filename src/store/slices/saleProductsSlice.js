@@ -35,5 +35,6 @@ const saleProductsSlice = createSlice({
 });
 
 export default saleProductsSlice.reducer;
-// eslint-disable-next-line no-empty-pattern
+
+
 export const {} = saleProductsSlice.actions;

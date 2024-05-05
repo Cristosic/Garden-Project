@@ -1,14 +1,14 @@
 import { useDispatch } from "react-redux";
 import { addNewUser } from "../../../store/slices/userSlice";
-import s from "./NewUserForm.module.scss";
+import styles from "./NewUserForm.module.scss";
 
 export default function NewUserForm() {
   const dispatch = useDispatch();
 
-  const submit = (e) => {
-    e.preventDefault();
+  const submit = (event) => {
+    event.preventDefault();
 
-    const { name, number, email } = e.target;
+    const { name, number, email } = event.target;
 
     const newUser = {
       id: Date.now(),
@@ -20,32 +20,32 @@ export default function NewUserForm() {
     console.log(newUser);
 
     dispatch(addNewUser(newUser));
-    e.target.reset();
+    event.target.reset();
   };
 
   return (
-    <div className={s.newForm}>
-      <form className={s.form} onSubmit={submit}>
+    <div className={styles.newForm}>
+      <form className={styles.form} onSubmit={submit}>
         <input
-          className={s.inputForm}
+          className={styles.inputForm}
           type="text"
           placeholder="Name"
           name="name"
         />
         <input
-          className={s.inputForm}
+          className={styles.inputForm}
           type="text"
           placeholder="Phone number"
           name="number"
         />
         <input
-          className={s.inputForm}
+          className={styles.inputForm}
           type="text"
           placeholder="Email"
           name="email"
         />
-        <div className={s.buttonForm}>
-          <button className={s.submitButton} type="submit">
+        <div className={styles.buttonForm}>
+          <button className={styles.submitButton} type="submit">
             Get a discount
           </button>
         </div>

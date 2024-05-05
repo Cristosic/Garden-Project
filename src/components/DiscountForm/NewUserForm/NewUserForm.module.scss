@@ -4,7 +4,6 @@
     .form {
         display: flex;
         width: 450px;
-        /* Lățime fixă */
         flex-direction: column;
         justify-content: center;
         gap: 16px;
@@ -18,11 +17,9 @@
             font-weight: 500;
             line-height: 130%;
             color: #ffffff;
-
         }
 
         .buttonForm {
-
             margin: 32px 0;
 
             .submitButton {
@@ -35,7 +32,6 @@
                 border-radius: 6px;
                 background: #fff;
                 border: none;
-
                 cursor: pointer;
             }
         }
