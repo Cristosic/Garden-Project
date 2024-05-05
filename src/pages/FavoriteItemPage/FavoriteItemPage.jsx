@@ -1,8 +1,5 @@
-import React from 'react'
-import styles from "./FavoriteItemPage.module.css";
+import React from "react";
 
 export default function FavoriteItemPage() {
-  return (
-    <div className={styles}>FavoriteItemPage</div>
-  )
+  return <div>FavoriteItemPage</div>;
 }
