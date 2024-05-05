@@ -9,10 +9,13 @@ import FavoriteItemPage from "./pages/FavoriteItemPage/FavoriteItemPage";
 import SingleCategoryPage from "./pages/SingleCategoryPage/SingleCategoryPage";
 import SingleProductPage from "./pages/SingleProductPage/SingleProductPage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
+import NavMenu from "./components/NavMenu/NavMenu";
 
 function App() {
   return (
     <>
+    <NavMenu/>
+    
       <div className="container">
         {/* Коллеги внимательно это общий контейнер с размерами как и отступом по бокам  ТОЛЬКО для наших section и footer */}
 
