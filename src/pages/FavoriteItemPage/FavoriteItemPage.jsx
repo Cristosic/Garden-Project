@@ -1,9 +1,5 @@
-import React from 'react'
-
-import FavoritesContainer from './FavoritesContainer/FavoritesContainer';
+import React from "react";
 
 export default function FavoriteItemPage() {
-  return (
-    <div><FavoritesContainer/></div>
-  )
+  return <div>FavoriteItemPage</div>;
 }
