@@ -22,7 +22,7 @@ function SaleProductsCard({ id,title,image,price,discont_price }) {
   return (
     <div className={styles.cardContent}>
       <div className={styles.cardImg}>
-        <img src={image} alt={title} />
+        <img src={`http://localhost:3333${image}`} alt={title} />
         <div className={styles.discountLabel}>
           -{Math.round(100 - (discont_price / price) * 100)}%
         </div>
