@@ -1,5 +1,6 @@
 .container{
   display: flex;
+  margin: 0 40px;
   flex-direction: column;
   padding-bottom: clamp(1.875rem, 0.982rem + 4.46vw, 5rem);
 
@@ -64,22 +65,24 @@
 .media_item svg {
   width: 44px;
   height: 44px;
-  color: #000000;
+  color: #424436;
   cursor: pointer;
   transition: color 0.3s ease;
 }
-.number{
+.number,
+.adresse,
+.hours{
   font-weight: 600;
   font-size: 40px;
   line-height: 110%;
-  color: var(--black);
   margin-top: 16px;
   display: block;
+  color:#424436 ;
 
  }
 .number>a{
   text-decoration: none;
-  color:#000000 ;
+  color:#424436 ;
 }
 
 .number :first-child:hover {
