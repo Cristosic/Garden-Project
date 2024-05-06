@@ -30,9 +30,11 @@ const saleProductsSlice = createSlice({
       })
       .addCase(getSaleProducts.rejected, (state) => {
         state.status = "error";
-      });
+      });      
   },
 });
 
 export default saleProductsSlice.reducer;
+
+
 export const {} = saleProductsSlice.actions;
