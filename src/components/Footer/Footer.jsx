@@ -49,15 +49,15 @@ function Footer() {
             </div>
 
             <div className={styles.adress}>
-              <span>Adress</span>
-              <p className={styles.number}>
+              <span>Address</span>
+              <p className={styles.adresse}>
                 Linkstraße 2, 8 OG, 10 785, Berlin, Deutschland
               </p>
             </div>
 
             <div className={styles.work}>
               <span>Working Hours</span>
-              <p className={styles.number}>24 hours a day</p>
+              <p className={styles.hours}>24 hours a day</p>
             </div>
           </div>
         </div>
