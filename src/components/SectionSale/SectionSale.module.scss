@@ -1,5 +1,6 @@
 .container {
   padding-top: 88px;
+  margin: 0 40px;
   .title {
     display: flex;
     align-items: center;
@@ -28,9 +29,8 @@
       cursor: pointer;
     }
   }
-  .buttonContainerNone{
-    
-    .buttonForIphone{
+  .buttonContainerNone {
+    .buttonForIphone {
       margin: 0 auto;
       display: none;
       border-radius: 6px;
@@ -43,7 +43,6 @@
       cursor: pointer;
     }
   }
-  
 
   @media (max-width: 1000px) {
     padding-top: 60px;
@@ -90,12 +89,13 @@
       .line {
         display: none;
       }
-   
     }
-    .buttonForIphone{
+    .buttonForIphone {
       display: block;
       margin-top: 24px;
     }
   }
+
  
 }
+
