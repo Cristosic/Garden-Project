@@ -67,6 +67,10 @@
     font-size: 56px;
     margin-right: 20px;
   }
+  .btn_category_card {
+   font-size: 14px;
+   padding: 8px 8px;
+  }
 }
 
 @media (max-width: 480px) {
