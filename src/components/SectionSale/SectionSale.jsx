@@ -43,11 +43,13 @@ function SectionSale() {
 
       <SaleProductsContainer saleProducts={randomSaleProducts} className={styles.productsContainer}/>
 
-      <div className={styles.buttonContainerNone}>
+      <div className={styles.contanerButtonNone}>
       <Link to={"/sales"}>
         <button className={styles.buttonForIphone}>All sales</button>
         </Link>
       </div>
+     
+      
       
     </div>
   );

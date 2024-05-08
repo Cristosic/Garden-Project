@@ -1,5 +1,6 @@
 .container {
   padding-top: 88px;
+  margin: 0 40px;
   .title {
     display: flex;
     align-items: center;
@@ -28,25 +29,22 @@
       cursor: pointer;
     }
   }
-  .buttonContainerNone{
-    
-    .buttonForIphone{
-      margin: 0 auto;
-      display: none;
-      border-radius: 6px;
-      border: 1px solid #dddddd;
-      background-color: rgba(255, 255, 255, 0.1);
-      padding: 12px, 24px, 12px, 24px;
-      color: #8b8b8b;
-      text-align: center;
-      font-size: 16px;
-      cursor: pointer;
-    }
+
+  .buttonForIphone {
+    display: none;
+    border-radius: 6px;
+    border: 1px solid #dddddd;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 12px, 24px, 12px, 24px;
+    color: #8b8b8b;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
   }
-  
 
   @media (max-width: 1000px) {
     padding-top: 60px;
+    margin: 0 20px;
     .title {
       padding-bottom: 32px;
     }
@@ -63,11 +61,13 @@
 
   @media (max-width: 480px) {
     padding-top: 56px;
+
     .title {
       padding-bottom: 24px;
       span {
         margin-right: 16px;
         font-size: 48px;
+        
       }
       button {
         font-size: 14px;
@@ -78,24 +78,30 @@
   @media (max-width: 360px) {
     display: flex;
     flex-direction: column;
+   
+
     button {
       display: none;
       font-size: 14px;
       padding: 12px 24px;
     }
     .title {
+     
       span {
+        margin-right: 0;
         font-size: 40px;
       }
       .line {
         display: none;
       }
-   
     }
-    .buttonForIphone{
-      display: block;
+    .contanerButtonNone{
       margin-top: 24px;
+      .buttonForIphone {
+        display: block;
+        margin: 0 auto;
+      }
     }
+   
   }
- 
 }
