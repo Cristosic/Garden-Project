@@ -17,16 +17,22 @@ export default function NavMenu() {
           alt="theme-icon"
         />
       </div>
-      <button className={styles.buttonNavMenu}>1 day discount!</button>
-      <div className={styles.navMenuLinks}>
-        <Link to={"/"}>Main Page</Link>
-        <Link to={"/categories"}>Categories</Link>
-        <Link to={"/products"}>All products</Link>
-        <Link to={"/sales"}>All sales</Link>
+      <div className={styles.navBarCenter}>
+        <button>1 day discount!</button>
+        <div className={styles.navMenuLinks}>
+          <Link to={"/"}>Main Page</Link>
+          <Link to={"/categories"}>Categories</Link>
+          <Link to={"/products"}>All products</Link>
+          <Link to={"/sales"}>All sales</Link>
+        </div>
       </div>
       <div className={styles.iconsRight}>
-        <img className={styles.heartIcon} src={heart} alt="heart-icon" />
-        <img className={styles.cartIcon} src={bag} alt="cart-icon" />
+        <Link to={"/favorites"}>
+          <img className={styles.heartIcon} src={heart} alt="heart-icon" />
+        </Link>
+        <Link to={"/cart"}>
+          <img className={styles.cartIcon} src={bag} alt="cart-icon" />
+        </Link>
       </div>
     </div>
   );
