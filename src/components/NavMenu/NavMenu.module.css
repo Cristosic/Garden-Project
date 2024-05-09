@@ -3,34 +3,25 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: 100px;
-  font-size: 20px;
+  height: 128px;
   white-space: nowrap;
-  z-index: 2;
   border: 1px solid #dddddd;
-  position: relative;
+  background-color: #fffff1;
 }
 
 .navMenu a {
   text-decoration: none;
-  color: #000000;
+  color: #424436;
+  font-size: 20px;
+  font-weight: 500;
   cursor: pointer;
-}
-
-.navMenu a:hover {
-    border-bottom: 1px solid #92a134;
+  padding-top: 12px;
 }
 
 .iconsLeft {
   display: flex;
   gap: 20px;
   padding: 30px 0 30px 40px;
-}
-
-.iconsRight {
-  display: flex;
-  gap: 20px;
-  padding: 40px;
 }
 
 .plantLogo {
@@ -40,39 +31,56 @@
 
 .themeIcon {
   width: 60px;
-  height: 70px;
   cursor: pointer;
+}
+
+.navBarCenter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .navMenuLinks {
   display: flex;
+  width: 518px;
   gap: 32px;
-  padding: 74px 0 40px 0;
+  padding-bottom: 28px;
 }
 
-.buttonNavMenu {
+.navMenuLinks a:hover {
+  border-bottom: 1px solid #92a134;
+}
+
+.navBarCenter > button {
   background-color: #92a134;
-  position: absolute;
-  top: 30%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   padding: 6px 16px;
   border-radius: 6px;
+  font-size: 16px;
+  font-weight: 500;
   border: none;
   color: white;
   cursor: pointer;
+  margin-top: 30px;
+}
+
+.iconsRight {
+  display: flex;
+  gap: 24px;
+  padding: 40px;
 }
 
 .heartIcon {
-  width: 40px;
-  height: 35px;
+  width: 44px;
+  height: 38px;
   margin-top: 8px;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .cartIcon {
-  width: 40px;
-  height: 44px;
+  width: 44px;
+  height: 48px;
   cursor: pointer;
+  text-decoration: none;
 }
 
