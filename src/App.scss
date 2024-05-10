@@ -3,24 +3,17 @@
   margin: 0;
   box-sizing: border-box;
   font-family: "Montserrat", sans-serif;
- 
 }
 
-body{
+body {
   background-color: #fffff1;
-  
 }
-a{
+a {
   text-decoration: none;
 }
 
 .container {
-  max-width: 1360px;
+  max-width: 1440px;
   margin: 0 auto;
-  padding: 0 40px;
-  
-  @media (max-width: 1000px) {
-    padding: 0 20px;
-  }
-}
 
+}

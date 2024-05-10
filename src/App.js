@@ -10,15 +10,14 @@ import SingleCategoryPage from "./pages/SingleCategoryPage/SingleCategoryPage";
 import SingleProductPage from "./pages/SingleProductPage/SingleProductPage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import NavMenu from "./components/NavMenu/NavMenu";
+import Footer from './components/Footer/Footer';
 
 function App() {
   return (
     <>
     <NavMenu/>
-    
       <div className="container">
         {/* Коллеги внимательно это общий контейнер с размерами как и отступом по бокам  ТОЛЬКО для наших section и footer */}
-
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/products" element={<AllProductsPage />} />
@@ -30,6 +29,7 @@ function App() {
           <Route path="/singleProduct" element={<SingleProductPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
+        <Footer />
       </div>
     </>
   );

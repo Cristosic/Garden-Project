@@ -42,6 +42,15 @@ function SectionSale() {
       </div>
 
       <SaleProductsContainer saleProducts={randomSaleProducts} className={styles.productsContainer}/>
+
+      <div className={styles.contanerButtonNone}>
+      <Link to={"/sales"}>
+        <button className={styles.buttonForIphone}>All sales</button>
+        </Link>
+      </div>
+     
+      
+      
     </div>
   );
 }

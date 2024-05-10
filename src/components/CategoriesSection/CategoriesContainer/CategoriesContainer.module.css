@@ -1,9 +1,14 @@
+.categories_container{
+  margin: 0 40px;
+}
+
 .containerImg {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 32px;
   margin-top: 40px;
 }
+
 
 .btn2_category_card {
   display: none;
@@ -14,7 +19,6 @@
   display: flex;
   align-items: center;
   margin-top: 80px;
-
 }
 
 .categoriesTitle>span {
@@ -43,10 +47,12 @@
 
 
 @media (max-width: 1000px) {
+  .categories_container{
+    margin: 0 20px;
+  }
   .containerImg {
     gap: 20px;
   }
-
 }
 
 @media (max-width: 768px) {
@@ -59,6 +65,10 @@
   .categoriesTitle>span {
     font-size: 56px;
     margin-right: 20px;
+  }
+  .btn_category_card {
+   font-size: 14px;
+   padding: 8px 8px;
   }
 }
 

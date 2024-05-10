@@ -1,6 +1,4 @@
 .cardContent {
-  width: 100%;
-  max-width: 312px;
   height: 422px;
   border-radius: 12px;
   overflow: hidden;
@@ -10,7 +8,6 @@
   .cardImg {
     position: relative;
     border-bottom: 1px solid #dddddd;
-
     img {
       display: block;
       width: 100%;
