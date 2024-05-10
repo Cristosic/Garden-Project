@@ -25,8 +25,8 @@
 }
 
 .plantLogo {
-  width: 70px;
-  height: 70px;
+  width: 60px;
+  height: 60px;
 }
 
 .themeIcon {
@@ -82,4 +82,133 @@
   height: 48px;
   cursor: pointer;
   text-decoration: none;
+}
+
+.burgerMenuIcon {
+  display: none;
+  cursor: pointer;
+}
+
+@media (max-width: 1000px) {
+  .iconsLeft {
+    gap: 18px;
+    padding: 30px 0 30px 15px;
+  }
+
+  .plantLogo {
+    width: 65px;
+    height: 65px;
+  }
+
+  .navMenuLinks {
+    width: 494px;
+    gap: 22px;
+  }
+
+  .iconsRight {
+    gap: 10px;
+    padding: 40px 20px;
+  }
+
+  .heartIcon {
+    width: 38px;
+    height: 32px;
+  }
+
+  .cartIcon {
+    width: 38px;
+    height: 42px;
+  }
+}
+
+@media (max-width: 768px) {
+  .iconsLeft {
+    gap: 14px;
+    padding: 30px 15px;
+  }
+
+  .plantLogo {
+    width: 65px;
+    height: 65px;
+  }
+
+  .themeIcon {
+    width: 50px;
+  }
+
+  .navMenuLinks {
+    width: 399px;
+    gap: 15px;
+    font-size: 14px;
+    padding-bottom: 30px;
+  }
+
+  .navBarCenter > button {
+    margin-top: 35px;
+  }
+
+  .iconsRight {
+    gap: 12px;
+    padding: 40px 15px 40px 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .navMenu {
+    height: 68px;
+  }
+
+  .iconsLeft {
+    gap: 14px;
+    padding: 12px 15px;
+  }
+
+  .plantLogo {
+    width: 44px;
+    height: 44px;
+  }
+
+  .themeIcon {
+    width: 50px;
+  }
+
+  .navMenuLinks {
+    display: none;
+  }
+
+  .navBarCenter > button {
+    display: none;
+  }
+
+  .iconsRight {
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+
+  .heartIcon {
+    width: 29px;
+    height: 25px;
+    margin-top: 6px;
+  }
+
+  .cartIcon {
+    width: 29px;
+    height: 32px;
+  }
+
+  .burgerMenuIcon {
+    display: flex;
+    width: 32px;
+    height: 32px;
+    margin-top: 15px;
+  }
+}
+
+@media (max-width: 360px) {
+  .burgerMenuIcon {
+    display: flex;
+    width: 32px;
+    height: 32px;
+    margin-bottom: 5px;
+  }
 }

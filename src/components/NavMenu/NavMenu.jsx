@@ -4,6 +4,7 @@ import styles from "./NavMenu.module.css";
 import heart from "../../media/icons/heart.svg";
 import bag from "../../media/icons/bag.svg";
 import lightThemeIcon from "../../media/icons/lightThemeIcon.svg";
+import burgerMenuIcon from "../../media/icons/burgerMenuIcon.svg";
 import { Link } from "react-router-dom";
 
 export default function NavMenu() {
@@ -33,6 +34,11 @@ export default function NavMenu() {
         <Link to={"/cart"}>
           <img className={styles.cartIcon} src={bag} alt="cart-icon" />
         </Link>
+        <img
+          className={styles.burgerMenuIcon}
+          src={burgerMenuIcon}
+          alt="burger-menu"
+        />
       </div>
     </div>
   );
