@@ -16,8 +16,8 @@ function App() {
   return (
     <>
     <NavMenu/>
-      <div className="container">
-        {/* Коллеги внимательно это общий контейнер с размерами как и отступом по бокам  ТОЛЬКО для наших section и footer */}
+      <div >
+    
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/products" element={<AllProductsPage />} />
