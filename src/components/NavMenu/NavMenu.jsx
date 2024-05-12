@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import plantLogo from "../../media/logos/plantLogo.svg";
 import styles from "./NavMenu.module.css";
 import heart from "../../media/icons/heart.svg";
 import bag from "../../media/icons/bag.svg";
 import lightThemeIcon from "../../media/icons/lightThemeIcon.svg";
 import burgerMenuIcon from "../../media/icons/burgerMenuIcon.svg";
+import crossIcon from "../../media/icons/crossIcon.svg";
 import { Link } from "react-router-dom";
 
 export default function NavMenu() {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <div className={styles.navMenu}>
       <div className={styles.iconsLeft}>
@@ -18,13 +21,23 @@ export default function NavMenu() {
           alt="theme-icon"
         />
       </div>
-      <div className={styles.navBarCenter}>
-        <button>1 day discount!</button>
+      <div
+        className={
+          isOpen
+            ? [styles.navBarCenter, styles.active].join(" ")
+            : [styles.navBarCenter]
+        }
+      >
         <div className={styles.navMenuLinks}>
-          <Link to={"/"}>Main Page</Link>
-          <Link to={"/categories"}>Categories</Link>
-          <Link to={"/products"}>All products</Link>
-          <Link to={"/sales"}>All sales</Link>
+          <Link to={"/"} onClick={() => setIsOpen()}>
+            Main Page
+          </Link>
+          <Link to={"/categories"}  onClick={() => setIsOpen()}>Categories</Link>
+          <Link to={"/products"}  onClick={() => setIsOpen()}>All products</Link>
+          <Link to={"/sales"}  onClick={() => setIsOpen()}>All sales</Link>
+        </div>
+        <div className={styles.buttonNavMenu}>
+          <button>1 day discount!</button>
         </div>
       </div>
       <div className={styles.iconsRight}>
@@ -34,11 +47,24 @@ export default function NavMenu() {
         <Link to={"/cart"}>
           <img className={styles.cartIcon} src={bag} alt="cart-icon" />
         </Link>
-        <img
+        <div
+          onClick={() => setIsOpen(!isOpen)}
           className={styles.burgerMenuIcon}
-          src={burgerMenuIcon}
-          alt="burger-menu"
-        />
+        >
+          {isOpen ? (
+            <img
+              className={styles.crossIcon}
+              src={crossIcon}
+              alt="cross-icon"
+            />
+          ) : (
+            <img
+              className={styles.burgerMenuIcon}
+              src={burgerMenuIcon}
+              alt="burger-icon"
+            />
+          )}
+        </div>
       </div>
     </div>
   );
