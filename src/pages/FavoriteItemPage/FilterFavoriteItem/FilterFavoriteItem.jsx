@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "../FilterFavoriteItem/FilterFavoriteItem.module.scss";
-
+import arrowDown from "../../../media/images/ArrowDown.svg" 
 
 function FilterFavoriteItem() {
   
@@ -14,8 +14,8 @@ function FilterFavoriteItem() {
 
       <div className={styles.sortContainer}>
         <label htmlFor="sortSelect">Sorted</label>
-        <select name="sortSelect"  style={{ width: '200px', display: 'block', padding:"8px 8px 8px 16px" }}>
-                <option value="default">By default</option>
+        <select name="sortSelect"  className={styles.select} style={{ backgroundImage: `url(${arrowDown})` }}>
+                <option value="default">by default</option>
                 <option value="newest">Newest</option>
                 <option value="price-high-low">Price: High-Low</option>
                 <option value="price-low-high">Price: Low-High</option>
