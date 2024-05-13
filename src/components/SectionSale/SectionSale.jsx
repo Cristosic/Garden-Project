@@ -4,26 +4,23 @@ import styles from "./SectionSale.module.scss";
 import { getAllProducts } from "../../store/slices/allProductsSlice";
 import SaleProductsContainer from "./SaleProductsContainer/SaleProductsContainer";
 import { Link } from "react-router-dom";
+import filterSaleProducts from "../../utils/filterSaleProducts";
 
 function SectionSale() {
   const dispatch = useDispatch();
-  const products = useSelector(
-    (state) => state.allProducts.allProductsData
-  );
+  const products = useSelector((state) => state.allProducts.allProductsData);
 
-  // хук useState мне понадобится для получения 4 рандомных продуктов со скидкой,
+  // хук useState мне понадобится для получения 4 рандомных продуктов,
   // что бы не трогать глобальное состояние в нашем store
   const [randomSaleProducts, setRandomSaleProducts] = useState([]);
 
-  const productsAllSale = products.filter((el) => el.discont_price != null);
+  const productsAllSale = filterSaleProducts(products);
 
-  console.log("Sale ", productsAllSale);
-
-  
+  console.log(productsAllSale);
 
   useEffect(() => {
     dispatch(getAllProducts());
-  }, [dispatch]);
+  }, []);
 
   useEffect(() => {
     if (products.length > 0) {

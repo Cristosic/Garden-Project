@@ -8,10 +8,12 @@ import { addCard, deleteCard } from "../../../store/slices/favoritesSlice";
 function SaleProductsCard({ id,title,image,price,discont_price }) {
 
   const dispatch = useDispatch();
-  const cardFavorites = useSelector(state => !!state.favorites.card[id]);
+  const cardFavorites = useSelector(state => state.favorites.card[id]);
 
   const styleHeart = cardFavorites ? favoritesHeart : heart
 
+  // сначала проверяю есть ли обьект с таким id, 
+  // если есть тогда удаляем - иначе добовляем его 
    const addFavoritesCard = () => {
     if (cardFavorites) {
       dispatch(deleteCard({ id }));
