@@ -22,7 +22,7 @@ export default function FavoriteItemPage() {
         </Link>
         <div className={styles.line}></div>
         <Link to={"/favorites"}>
-          <button>Liked products</button>
+          <button className={styles.buttonActive}>Liked products</button>
         </Link>
       </div>
 
@@ -36,9 +36,11 @@ export default function FavoriteItemPage() {
             <div key={el.id} className={styles.cardContent}>
               <div className={styles.cardImg}>
               <img src={`http://localhost:3333${el.image}`} alt={el.title} />
-              <div className={styles.discountLabel}>
-                -{Math.round(100 - (el.discont_price / el.price) * 100)}%
-              </div>
+              {el.discont_price && el.discont_price < el.price && (
+                  <div className={styles.discountLabel}>
+                    -{Math.round(100 - (el.discont_price / el.price) * 100)}%
+                  </div>
+                )}
               <div className={styles.iconCard}>
                 <img
                   src={favoritesHeart}
