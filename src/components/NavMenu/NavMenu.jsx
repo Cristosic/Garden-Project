@@ -9,12 +9,16 @@ import crossIcon from "../../media/icons/crossIcon.svg";
 import { Link } from "react-router-dom";
 
 export default function NavMenu() {
+
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div className={styles.navMenu}>
       <div className={styles.iconsLeft}>
-        <img className={styles.plantLogo} src={plantLogo} alt="plant-logo" />
+        <img 
+          className={styles.plantLogo} 
+          src={plantLogo} 
+          alt="plant-logo" />
         <img
           className={styles.themeIcon}
           src={lightThemeIcon}
@@ -24,20 +28,36 @@ export default function NavMenu() {
       <div
         className={
           isOpen
-            ? [styles.navBarCenter, styles.active].join(" ")
-            : [styles.navBarCenter]
+            ? [styles.modalNavMenu, styles.active].join(" ")
+            : [styles.modalNavMenu]
         }
+        onClick={() => setIsOpen(false)}
+        // при клике вне выпадающего меню, закрывается бургер-меню
       >
-        <div className={styles.navMenuLinks}>
-          <Link to={"/"} onClick={() => setIsOpen()}>
-            Main Page
-          </Link>
-          <Link to={"/categories"}  onClick={() => setIsOpen()}>Categories</Link>
-          <Link to={"/products"}  onClick={() => setIsOpen()}>All products</Link>
-          <Link to={"/sales"}  onClick={() => setIsOpen()}>All sales</Link>
-        </div>
-        <div className={styles.buttonNavMenu}>
-          <button>1 day discount!</button>
+        <div
+          className={
+            isOpen
+              ? [styles.navBarCenter, styles.active].join(" ")
+              : [styles.navBarCenter]
+          }
+        >
+          <div className={styles.navMenuLinks}>
+            <Link to={"/"} onClick={() => setIsOpen(false)}>
+              Main Page
+            </Link>
+            <Link to={"/categories"} onClick={() => setIsOpen(false)}>
+              Categories
+            </Link>
+            <Link to={"/products"} onClick={() => setIsOpen(false)}>
+              All products
+            </Link>
+            <Link to={"/sales"} onClick={() => setIsOpen(false)}>
+              All sales
+            </Link>
+          </div>
+          <div className={styles.buttonNavMenu}>
+            <button>1 day discount!</button>
+          </div>
         </div>
       </div>
       <div className={styles.iconsRight}>
