@@ -1,8 +1,8 @@
 import React from "react";
-import styles from "../FilterFavoriteItem/FilterFavoriteItem.module.scss";
+import styles from "../FilterProducts/FilterProducts.module.scss";
 import arrowDown from "../../../media/images/ArrowDown.svg" 
 
-function FilterFavoriteItem() {
+function FilterProducts() {
   
   return (
     <div className={styles.filterContainer}>
@@ -26,4 +26,4 @@ function FilterFavoriteItem() {
   );
 }
 
-export default FilterFavoriteItem;
+export default FilterProducts;

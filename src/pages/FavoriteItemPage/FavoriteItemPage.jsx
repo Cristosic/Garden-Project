@@ -5,7 +5,7 @@ import favoritesHeart from "../../media/icons/favoritesHeart.svg";
 import { deleteCard } from "../../store/slices/favoritesSlice";
 import styles from "../FavoriteItemPage/FavoriteItemPage.module.scss";
 import { Link } from "react-router-dom";
-import FilterFavoriteItem from "./FilterFavoriteItem/FilterFavoriteItem";
+import FilterFavoriteItem from "./FilterProducts/FilterProducts";
 
 
 export default function FavoriteItemPage() {
