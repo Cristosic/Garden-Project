@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styles from "./SectionSale.module.scss";
 import { getAllProducts } from "../../store/slices/allProductsSlice";
-import SaleProductsContainer from "./SaleProductsContainer/SaleProductsContainer";
+import ProductsContainer from "./ProductsContainer/ProductsContainer";
 import { Link } from "react-router-dom";
 import filterSaleProducts from "../../utils/filterSaleProducts";
 
@@ -41,7 +41,7 @@ function SectionSale() {
         </Link>
       </div>
 
-      <SaleProductsContainer
+      <ProductsContainer
         saleProducts={randomSaleProducts}
         className={styles.productsContainer}
       />
