@@ -19,7 +19,6 @@
   display: flex;
   align-items: center;
   margin-top: 80px;
-
 }
 
 .categoriesTitle>span {
@@ -66,6 +65,10 @@
   .categoriesTitle>span {
     font-size: 56px;
     margin-right: 20px;
+  }
+  .btn_category_card {
+   font-size: 14px;
+   padding: 8px 8px;
   }
 }
 
