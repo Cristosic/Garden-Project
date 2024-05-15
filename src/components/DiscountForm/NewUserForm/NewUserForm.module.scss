@@ -1,21 +1,26 @@
 .newForm {
-    margin-top: 56px;
+    width: 516px;
+    height: 296px;
+    position: relative;
+    margin: 32px 0 32px 32px;
+    
+    
 
     .form {
         display: flex;
-        width: 450px;
         flex-direction: column;
         justify-content: center;
         gap: 16px;
+        
 
         .inputForm {
+            
             font-size: 20px;
             padding: 16px 32px;
             border-radius: 6px;
             border: 1px solid #fffff1;
             background-color: transparent;
-            font-weight: 500;
-            line-height: 130%;
+            height: 58px;
             color: #ffffff;
         }
 
@@ -45,4 +50,18 @@
 
 input::placeholder {
     color: #ffffff;
+}
+
+@media (max-width: 480px) {
+    .form {
+        width: 100%;
+        padding: 20px;
+        align-items: center;
+    }
+
+    .inputForm {
+        padding: 16px 20px; 
+    }
+
+  
 }
