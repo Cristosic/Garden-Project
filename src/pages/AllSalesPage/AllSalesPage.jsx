@@ -3,7 +3,7 @@ import styles from "./AllSalesPage.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts } from "../../store/slices/allProductsSlice";
 import filterSaleProducts from "../../utils/filterSaleProducts";
-import SaleProductsCard from "../../components/SectionSale/SaleProductsCard/SaleProductsCard";
+import SaleProductsCard from "../../components/SectionSale/ProductsCard/ProductsCard";
 import { Link } from "react-router-dom";
 import FilterProducts from "../FavoriteItemPage/FilterProducts/FilterProducts";
 
