@@ -42,14 +42,14 @@
         width: 44px;
         height: 38px;
         &:hover {
-          content: url("../../../media/icons/hoverHeart.svg");
+          content: url("../../media/icons/hoverHeart.svg");
         }
       }
       .shoppingBag {
         width: 44px;
         height: 48px;
         &:hover {
-          content: url("../../../media/icons/hoverBag.svg");
+          content: url("../../media/icons/hoverBag.svg");
         }
       }
     }
@@ -75,6 +75,7 @@
       font-size: 40px;
       font-weight: 600;
       line-height: 70%;
+      color: #282828;
     }
 
     :last-child {

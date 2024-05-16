@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styles from "./SectionSale.module.scss";
 import { getAllProducts } from "../../store/slices/allProductsSlice";
-import ProductsContainer from "./ProductsContainer/ProductsContainer";
+import ProductsContainer from "../ProductsContainer/ProductsContainer";
 import { Link } from "react-router-dom";
 import filterSaleProducts from "../../utils/filterSaleProducts";
 

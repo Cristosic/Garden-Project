@@ -1,7 +1,7 @@
 .filterContainer {
   display: flex;
   gap: 40px;
-  
+
   .priceInputs {
     display: flex;
     align-items: center;
@@ -22,12 +22,15 @@
       font-weight: 500;
       color: #8b8b8b;
     }
+    .filterButton {
+      display: none;
+    }
   }
   .sortContainer {
     display: flex;
     align-items: center;
     gap: 16px;
-    
+
     label {
       font-weight: 600;
       font-size: 20px;
@@ -50,15 +53,15 @@
     }
   }
 
-  @media(max-width: 1000px){
+  @media (max-width: 1000px) {
     gap: 32px;
-}
+  }
 
-@media (max-width: 480px) {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 16px;
-    
+  @media (max-width: 480px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+
     .priceInputs {
       gap: 12px;
       label {
@@ -69,17 +72,9 @@
       }
     }
     .sortContainer {
-      
       label {
         font-size: 18px;
       }
     }
   }
-  
 }
-
-
-
-
-
-

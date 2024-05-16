@@ -1,18 +1,18 @@
 import styles from "./ProductsCard.module.scss";
-import heart from "../../../media/icons/heart.svg";
-import bag from "../../../media/icons/bag.svg";
-import favoritesHeart from "../../../media/icons/favoritesHeart.svg"
+import heart from "../../media/icons/heart.svg";
+import bag from "../../media/icons/bag.svg";
+import favoritesHeart from "../../media/icons/favoritesHeart.svg"
 import { useDispatch, useSelector } from "react-redux";
-import { addCard, deleteCard } from "../../../store/slices/favoritesSlice";
+import { addCard, deleteCard } from "../../store/slices/favoritesSlice";
 
 function ProductsCard({ id,title,image,price,discont_price }) {
 
   const dispatch = useDispatch();
-  const cardFavorites = useSelector(state => state.favorites.card[id]);
+  const cardFavorites = useSelector(state => state.favorites.cards.find(el=> el.id === id));
 
   const styleHeart = cardFavorites ? favoritesHeart : heart
 
-  // сначала проверяю есть ли обьект с таким id, 
+  // сначала проверяю есть ли в массиве обьект с таким id, 
   // если есть тогда удаляем - иначе добовляем его 
    const addFavoritesCard = () => {
     if (cardFavorites) {
@@ -40,7 +40,9 @@ function ProductsCard({ id,title,image,price,discont_price }) {
       <h4>{title}</h4>
       <div className={styles.priceContainer}>
         <p>${Math.round(price)}</p>
-        <p>${Math.round(discont_price)}</p>
+        {discont_price && discont_price < price && (
+          <p>${Math.round(discont_price)}</p> 
+        )}
       </div>
     </div>
   );
