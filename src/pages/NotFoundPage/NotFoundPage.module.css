@@ -1,0 +1,147 @@
+.notFoundPage {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.containerNotFound {
+  width: 100%;
+  display: flex;
+  margin-top: 80px;
+  justify-content: center;
+  gap: 16px;
+}
+
+.containerNotFound img {
+  border: none;
+}
+
+.messageContainer {
+  margin: auto;
+  text-align: center;
+}
+
+.messageContainer h4 {
+  display: flex;
+  margin: 32px auto 16px auto;
+  font-size: 64px;
+  font-weight: 700;
+  line-height: 70, 4px;
+  color: #424436;
+}
+
+.messageContainer p {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 130%;
+  color: #8B8B8B;
+}
+
+.messageContainer button {
+  margin-top: 32px;
+  padding: 16px 56px 16px 56px;
+  border: none;
+  border-radius: 6px;
+  background: #92A134;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 130%;
+  cursor: pointer;
+  transition: 50ms;
+}
+
+.messageContainer button:hover {
+  background: #282828;
+}
+
+@media (max-width: 1440px) {
+  .four {
+    width: 12.5%;
+  }
+
+  .zero {
+    width: 20.83%;
+  }
+
+
+}
+
+@media (max-width: 1000px) {
+
+
+  .four {
+    width: 12.15%;
+  }
+
+  .zero {
+    width: 20.55%;
+  }
+
+
+  .messageContainer h4 {
+    font-size: 64px;
+
+  }
+
+
+  .messageContainer button {
+    height: 58px;
+    padding: 16px 10%;
+  }
+
+}
+
+@media (max-width: 768px) {
+
+
+  .four {
+    width: 11.04%;
+  }
+
+  .zero {
+    width: 18.47%;
+  }
+
+  .messageContainer h4 {
+    font-size: 56px;
+  }
+
+
+  .messageContainer p {
+    font-size: 20px;
+  }
+
+  .messageContainer button {
+    height: 58px;
+    padding: 16px 10%;
+  }
+
+}
+
+@media (max-width: 480px) {
+
+  .four {
+    width: 7.5%;
+  }
+
+  .zero {
+    width: 12.57%;
+  }
+
+
+  .messageContainer h4 {
+    font-size: 48px;
+    margin-top: 24px;
+    margin-bottom: 12px;
+  }
+
+  .messageContainer p {
+    font-size: 18px;
+  }
+
+  .messageContainer button {
+    height: 47px;
+    padding: 12px 10%;
+  }
+}
