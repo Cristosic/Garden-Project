@@ -1,11 +1,12 @@
-import React, { useEffect } from "react";
-import styles from "./FilterProducts.module.scss";
+import React, { useState } from "react";
+import styles from "./AllFilterProducts.module.scss";
 import arrowDown from "../../media/images/ArrowDown.svg";
 import { useDispatch } from "react-redux";
 import { filterPriceAction, sortProductsAction } from "../../store/slices/allProductsSlice";
 
 function FilterProducts() {
   const dispatch = useDispatch();
+  const [showDiscounted, setShowDiscounted] = useState(false);
 
   const filter = (e) => {
     e.preventDefault();
@@ -13,12 +14,19 @@ function FilterProducts() {
     const { priceFrom, priceTo } = e.target;
 
     const priceFilter = {
-      min_price: priceFrom.value || 0,
-      max_price: priceTo.value || Infinity,
+      min_price: parseFloat(priceFrom.value) || 0,
+      max_price: parseFloat(priceTo.value) || Infinity,
     };
 
-   dispatch(filterPriceAction(priceFilter))
+    dispatch(filterPriceAction(priceFilter));
     e.target.reset();
+  };
+
+  const toggleDiscounted = () => {
+    setShowDiscounted(prevState => !prevState);
+  
+    //  фильтрую Виктора продукты по скидкам
+    // dispatch(filterDiscountedAction(!showDiscounted));
   };
 
   return (
@@ -34,6 +42,14 @@ function FilterProducts() {
         <input type="number" id="priceTo" name="priceTo" placeholder="to" />
         <button className={styles.filterButton} type="submit"></button>
       </form>
+
+      <div className={styles.discountToggle}>
+        <label>
+          Discounted items 
+          <input type="checkbox" checked={showDiscounted} onChange={toggleDiscounted} />
+        </label>
+      </div>
+
       <div className={styles.sortContainer}>
         <label htmlFor="sortSelect">Sorted</label>
         <select
@@ -53,3 +69,5 @@ function FilterProducts() {
 }
 
 export default FilterProducts;
+
+
