@@ -34,7 +34,6 @@ function FilterProducts() {
         <input type="number" id="priceTo" name="priceTo" placeholder="to" />
         <button className={styles.filterButton} type="submit"></button>
       </form>
-
       <div className={styles.sortContainer}>
         <label htmlFor="sortSelect">Sorted</label>
         <select
