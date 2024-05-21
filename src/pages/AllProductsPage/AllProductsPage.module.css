@@ -1,10 +1,3 @@
-/* .cardContainer {
-  padding-top: 40px;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 32px;
-} */
-
 .saleProductsContainer {
   padding: 40px 40px 0 40px;
 
@@ -50,8 +43,9 @@
   }
 
   .discountToggle {
-    
+
     margin: 20px 0;
+
     label {
       cursor: pointer;
       font-size: 16px;
@@ -67,7 +61,7 @@
 
   .discountToggle label {
     font-size: 50px;
-    
+
   }
 
   @media (max-width: 1000px) {
