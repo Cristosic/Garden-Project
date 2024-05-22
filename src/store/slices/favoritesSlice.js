@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  card: {} 
+  cards: JSON.parse(localStorage.getItem("favoritesCards")) || []
 };
 
 export const favoritesCardSlice = createSlice({
@@ -9,15 +9,15 @@ export const favoritesCardSlice = createSlice({
   initialState,
   reducers: {
     addCard: (state, action) => {
-      const { id } = action.payload;
-      if (!state.card[id]) {
-        state.card[id] = action.payload;
+      const card = state.cards.find(el => el.id === action.payload.id);
+      if (!card) {
+        state.cards.push(action.payload);
+        localStorage.setItem("favoritesCards", JSON.stringify(state.cards));
       }
     },
     deleteCard: (state, action) => {
-      const { id } = action.payload;
-      const { [id]: deleteElement, ...updatedCard } = state.card;
-      state.card = updatedCard;
+      state.cards = state.cards.filter(el => el.id !== action.payload.id);
+      localStorage.setItem("favoritesCards", JSON.stringify(state.cards));
     },
   }
 });

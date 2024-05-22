@@ -7,6 +7,9 @@
   white-space: nowrap;
   border: 1px solid #dddddd;
   background-color: #fffff1;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 .navMenu a {
@@ -25,8 +28,8 @@
 }
 
 .plantLogo {
-  width: 60px;
-  height: 60px;
+  width: 70px;
+  height: 70px;
 }
 
 .themeIcon {
@@ -36,13 +39,12 @@
 
 .navBarCenter {
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   align-items: center;
 }
 
 .navMenuLinks {
   display: flex;
-  width: 518px;
   gap: 32px;
   padding-bottom: 28px;
 }
@@ -51,16 +53,23 @@
   border-bottom: 1px solid #92a134;
 }
 
-.navBarCenter > button {
+.buttonNavMenu > button {
   background-color: #92a134;
   padding: 6px 16px;
   border-radius: 6px;
   font-size: 16px;
   font-weight: 500;
   border: none;
-  color: white;
+  color: #ffffff;
   cursor: pointer;
   margin-top: 30px;
+}
+
+.active button {
+  width: 211px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .iconsRight {
@@ -86,43 +95,15 @@
 
 .burgerMenuIcon {
   display: none;
-  cursor: pointer;
+}
+
+.crossIcon {
+  display: none;
 }
 
 @media (max-width: 1000px) {
-  .iconsLeft {
-    gap: 18px;
-    padding: 30px 0 30px 15px;
-  }
 
-  .plantLogo {
-    width: 65px;
-    height: 65px;
-  }
-
-  .navMenuLinks {
-    width: 494px;
-    gap: 22px;
-  }
-
-  .iconsRight {
-    gap: 10px;
-    padding: 40px 20px;
-  }
-
-  .heartIcon {
-    width: 38px;
-    height: 32px;
-  }
-
-  .cartIcon {
-    width: 38px;
-    height: 42px;
-  }
-}
-
-@media (max-width: 768px) {
-  .iconsLeft {
+   .iconsLeft {
     gap: 14px;
     padding: 30px 15px;
   }
@@ -137,23 +118,21 @@
   }
 
   .navMenuLinks {
-    width: 399px;
     gap: 15px;
     font-size: 14px;
     padding-bottom: 30px;
-  }
-
-  .navBarCenter > button {
-    margin-top: 35px;
   }
 
   .iconsRight {
     gap: 12px;
     padding: 40px 15px 40px 15px;
   }
+  
 }
 
-@media (max-width: 480px) {
+
+@media (max-width: 768px) {
+
   .navMenu {
     height: 68px;
   }
@@ -172,17 +151,58 @@
     width: 50px;
   }
 
-  .navMenuLinks {
-    display: none;
+  .navBarCenter {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: fixed;
+    right: -200%;
+    top: 0;
+    width: 282px;
+    background-color: #fffff1;
+    border: 1px solid #dddddd;
+    transition: right 0.5s;
+    padding: 100px 90px 1067px 32px;
+  }
+  
+  .buttonNavMenu {
+    display: flex;
   }
 
-  .navBarCenter > button {
-    display: none;
+  .buttonNavMenu > button {
+    margin-top: 0;
+    font-size: 24px;
+    gap: 16px;
+    margin-left: 55px;
+  }
+
+  .navMenuLinks {
+    flex-direction: column;
+    align-content: center;
+    flex-wrap: wrap;
+    width: 211px;
+  }
+
+  .navMenuLinks a {
+    font-size: 24px;
+  }
+
+  .active {
+    right: 0;
+  }
+
+  .burgerMenuIcon {
+    display: block;
+    cursor: pointer;
+    z-index: 10;
+    width: 32px;
+    margin-top: 8px;
   }
 
   .iconsRight {
     gap: 12px;
     margin-bottom: 10px;
+    padding: 16px 20px;
   }
 
   .heartIcon {
@@ -196,19 +216,38 @@
     height: 32px;
   }
 
-  .burgerMenuIcon {
-    display: flex;
-    width: 32px;
-    height: 32px;
-    margin-top: 15px;
+  .crossIcon {
+    display: block;
+    height: 40px;
+    padding-top: 8px;
   }
+
+  .modalNavMenu.active {
+  background-color: #0000001a;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: end;
+  }
+
 }
 
 @media (max-width: 360px) {
-  .burgerMenuIcon {
-    display: flex;
-    width: 32px;
-    height: 32px;
-    margin-bottom: 5px;
+
+  .navBarCenter {
+    width: 222px;
   }
+
+  .navMenuLinks a {
+    font-size: 18px;
+  }
+
+  .buttonNavMenu > button {
+    font-size: 18px;
+    width: 166px;
+  }
+
 }

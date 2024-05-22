@@ -1,4 +1,4 @@
-.favoritesContainer {
+.saleProductsContainer {
   padding: 40px 40px 0 40px;
 
   .navigationLink {
@@ -31,14 +31,12 @@
     font-size: 64px;
     color: #424436;
   }
-
   .cardContainer {
     padding-top: 40px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 32px;
   }
-
   @media (max-width: 1000px) {
     padding: 40px 20px 0 20px;
     .cardContainer {
@@ -97,4 +95,5 @@
       
     }
   }
+  
 }
