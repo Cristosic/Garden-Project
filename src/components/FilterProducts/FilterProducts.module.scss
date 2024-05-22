@@ -1,6 +1,8 @@
 .filterContainer {
   display: flex;
   gap: 40px;
+  align-items: center;
+  flex-wrap: wrap;
 
   .priceInputs {
     display: flex;
@@ -24,6 +26,35 @@
     }
     .filterButton {
       display: none;
+    }
+  }
+
+  .salesProducts {
+    label {
+      display: flex;
+      gap: 16px;
+      font-size: 20px;
+      font-weight: 600;
+      align-items: center;
+    }
+  
+    input[type="checkbox"] {
+      min-width: 36px;
+      height: 36px;
+      border: 1px solid #dddddd;
+      border-radius: 6px;
+      appearance: none;
+      -webkit-appearance: none; 
+      background-color: #ffffff; 
+    }
+  
+    input[type="checkbox"]:checked {
+      background-color: #92A134;
+      border-color: white; 
+      background-image: url("../../media/icons/checked.svg");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 24px ;
     }
   }
   .sortContainer {
@@ -69,6 +100,11 @@
       }
       input {
         font-size: 14px;
+      }
+    }
+    .salesProducts{
+      label{
+        font-size: 18px;
       }
     }
     .sortContainer {

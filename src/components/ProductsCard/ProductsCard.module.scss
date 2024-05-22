@@ -44,6 +44,9 @@
         &:hover {
           content: url("../../media/icons/hoverHeart.svg");
         }
+        &.hover:hover {
+          content: url("../../media/icons/favoritesHeart.svg");
+        }
       }
       .shoppingBag {
         width: 44px;
@@ -71,19 +74,24 @@
     gap: 16px;
     padding: 0 32px 32px 32px;
 
-    :first-child {
+    .discountPrice {
       font-size: 40px;
       font-weight: 600;
       line-height: 70%;
       color: #282828;
     }
 
-    :last-child {
+    .noDiscountPrice {
       font-size: 20px;
       font-weight: 500;
       color: #8b8b8b;
       text-decoration: line-through;
       line-height: 200%;
+    }
+    .originalPrice{
+      font-size: 40px;
+      font-weight: 600;
+      line-height: 70%;
     }
   }
   @media (max-width: 1000px) {

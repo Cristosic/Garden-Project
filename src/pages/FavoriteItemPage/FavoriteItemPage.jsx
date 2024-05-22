@@ -2,8 +2,9 @@ import React from "react";
 import { useSelector } from "react-redux";
 import styles from "../FavoriteItemPage/FavoriteItemPage.module.scss";
 import { Link } from "react-router-dom";
-import FilterFavoriteItem from "../../components/FilterProducts/FilterProducts";
-import SaleProductsCard from "../../components/ProductsCard/ProductsCard";
+
+import ProductsCard from "../../components/ProductsCard/ProductsCard";
+import FilterProducts from "../../components/FilterProducts/FilterProducts";
 
 export default function FavoriteItemPage() {
   const favorites = useSelector((state) => state.favorites.cards);
@@ -25,7 +26,7 @@ export default function FavoriteItemPage() {
 
       <h1 className={styles.titlePage}>Liked products</h1>
 
-      <FilterFavoriteItem />
+      <FilterProducts schowSaleFilter={true}/>
 
       {/* уже есть готовый camponents для карточек на странице MainPAge,
        поэтому я могу переиспользовать его тут */}
@@ -33,7 +34,7 @@ export default function FavoriteItemPage() {
       {favorites.length > 0 ? (
         <div className={styles.cardContainer}>
           {favorites.map((el) => (
-            <SaleProductsCard key={el.id} {...el} />
+            <ProductsCard key={el.id} {...el} />
           ))}
         </div>
       ) : (
