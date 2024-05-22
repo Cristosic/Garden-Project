@@ -3,12 +3,21 @@ import { Link } from "react-router-dom";
 import GoogleMap from "../../components/Footer/GoogleMap/GoogleMap";
 import instagramIcon from "../../media/icons/instagramIcon.svg";
 import whatsAppIcon from "../../media/icons/whatsAppIcon.svg";
+import darkInstagramIcon from "../../media/icons/darkInstagramIcon.svg";
+import darkWhatsappIcon from "../../media/icons/darkWhatsappIcon.svg";
+import { useContext } from "react";
+import { Context } from "../../context";
 
 function Footer() {
+
+    const { theme } = useContext(Context);
+
   return (
     <footer>
       <div className={styles.container}>
-        <div>
+        <div
+          className={theme === "light" ? styles.lightTheme : styles.darkTheme}
+        >
           <h3 className={styles.contact}>Contact</h3>
           <div className={styles.connect}>
             <div className={styles.phone}>
@@ -27,11 +36,19 @@ function Footer() {
                   to="https://www.instagram.com/startainstitute?igsh=MWR1azFwM3dhaHcxeQ=="
                   target="_blank"
                 >
-                  <img
-                    className={styles.instagramIcon}
-                    src={instagramIcon}
-                    alt="instagram-icon"
-                  />
+                  {theme === "light" ? (
+                    <img
+                      className={styles.instagramIcon}
+                      src={instagramIcon}
+                      alt="instagram-icon"
+                    />
+                  ) : (
+                    <img
+                      className={styles.darkInstagramIcon}
+                      src={darkInstagramIcon}
+                      alt="instagram-icon"
+                    />
+                  )}
                 </Link>
 
                 <Link
@@ -39,11 +56,19 @@ function Footer() {
                   to="https://wa.me/+499999999999"
                   target="_blank"
                 >
-                  <img
-                    className={styles.whatsAppIcon}
-                    src={whatsAppIcon}
-                    alt="whatsApp-icon"
-                  />
+                  {theme === "light" ? (
+                    <img
+                      className={styles.whatsAppIcon}
+                      src={whatsAppIcon}
+                      alt="whatsApp-icon"
+                    />
+                  ) : (
+                    <img
+                      className={styles.darkWhatsappIcon}
+                      src={darkWhatsappIcon}
+                      alt="whatsApp-icon"
+                    />
+                  )}
                 </Link>
               </div>
             </div>

@@ -1,3 +1,35 @@
+/* dark theme styles */
+
+.lightTheme .btn_links_categoriesPage + span,
+.lightTheme .btn_category_card.active {
+  color: #424436;
+}
+
+.lightTheme .line {
+  background-color: #dddddd;
+}
+
+.lightTheme .btn_category_card {
+  color: #8b8b8b;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.darkTheme .line {
+  background-color: #8B8B8B;
+}
+
+.darkTheme .btn_category_card {
+  color: #8b8b8b;
+  background-color: #424436;
+}
+
+.darkTheme .active,
+.darkTheme .btn_links_categoriesPage + span {
+  color: #FFFFFF;
+}
+
+/* */
+
 .containerImg {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -11,7 +43,6 @@
 
 .categories_container span {
   font-weight: bold;
-  color: #424436;
   font-size: 64px;
   line-height: 110%;
   margin-right: 32px;
@@ -20,18 +51,15 @@
 .line {
   width: 16px;
   height: 1px;
-  background-color: #dddddd;
 }
 
 .btn_category_card {
   border-radius: 6px;
   border: 1px solid #dddddd;
   padding: 8px 16px;
-  color: #8b8b8b;
   font-weight: 500;
   cursor: pointer;
   font-size: 16px;
-  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .btn_links_categoriesPage {
@@ -41,15 +69,11 @@
 }
 
 .active {
-  color: #424436;
   font-size: 16px;
   font-weight: 500;
   line-height: 20px;
   text-align: center;
-
 }
-
-
 
 @media (max-width: 1000px) {
   .containerImg {
@@ -61,7 +85,6 @@
   .categories_container {
     padding: 40px 20px 0 20px;
   }
-
 }
 
 @media (max-width: 768px) {
@@ -98,7 +121,6 @@
   .categories_container {
     padding: 32px 20px 56px 20px;
   }
-
 }
 
 @media (max-width: 360px) {
@@ -110,5 +132,4 @@
   .categories_container span {
     font-size: 44px;
   }
-
 }

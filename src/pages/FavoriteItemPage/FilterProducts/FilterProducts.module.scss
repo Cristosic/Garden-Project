@@ -1,3 +1,25 @@
+/* dark theme styles */
+
+.lightTheme .priceInputs,
+.lightTheme .sortContainer {
+  color: #424436;
+}
+
+.lightTheme .select  {
+  color: #8B8B8B;
+}
+
+.darkTheme .priceInputs,
+.darkTheme .sortContainer {
+  color: #fffff1;
+}
+
+.darkTheme .sortContainer > select {
+  color: #8B8B8B;
+}
+
+/* */
+
 .filterContainer {
   display: flex;
   gap: 40px;
@@ -9,7 +31,6 @@
     label {
       font-weight: 600;
       font-size: 20px;
-      color: #000000;
     }
     input {
       border-radius: 6px;
@@ -20,7 +41,7 @@
     ::placeholder {
       font-size: 16px;
       font-weight: 500;
-      color: #8b8b8b;
+      color: #8B8B8B;
     }
   }
   .sortContainer {
@@ -31,7 +52,6 @@
     label {
       font-weight: 600;
       font-size: 20px;
-      color: #000000;
     }
     .select {
       width: 200px;
@@ -39,7 +59,6 @@
       padding: 8px 8px 8px 16px;
       border: 1px solid #dddddd;
       border-radius: 6px;
-      color: #424436;
       font-weight: 500;
       font-size: 16px;
       background-repeat: no-repeat;

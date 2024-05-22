@@ -1,0 +1,25 @@
+.themeIcon {
+  width: 60px;
+  cursor: pointer;
+}
+
+/* dark theme styles */
+
+.darkTheme {
+  background-color: #424436;
+  color: #fffff1;
+}
+
+/* */
+
+@media (max-width: 1000px) {
+  .themeIcon {
+    width: 50px;
+  }
+}
+
+@media (max-width: 768px) {
+  .themeIcon {
+    width: 50px;
+  }
+}
