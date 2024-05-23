@@ -1,3 +1,34 @@
+/* dark theme styles */
+
+.lightTheme > h3,
+.lightTheme .number > a,
+.lightTheme .adresse,
+.lightTheme .hours {
+  color: #424436;
+}
+
+.lightTheme .connect > div {
+  background: #f2f6d3;
+}
+
+.lightTheme .connect > div span {
+  color: #8b8b8b;
+}
+
+.darkTheme > h3,
+.darkTheme .number > a,
+.darkTheme .adresse,
+.darkTheme .hours {
+  color: #fffff1;
+}
+
+.darkTheme .connect > div {
+  background-color: #383a2c;
+  color: #fffff1;
+}
+
+/* */
+
 .container {
   display: flex;
   margin: 0 40px;
@@ -12,7 +43,6 @@
   line-height: 110%;
   margin-bottom: clamp(1.5rem, 1.214rem + 1.43vw, 2.5rem);
   margin-top: 80px;
-  color: #424436;
 }
 
 .connect {
@@ -29,6 +59,7 @@
   grid-column: 1 / span 2;
 }
 
+
 .connect > div {
   display: flex;
   padding: 32px;
@@ -38,18 +69,15 @@
   flex: 1 0 0;
   align-self: stretch;
   border-radius: 12px;
-  background: #f2f6d3;
 }
 
 .connect > div span {
-  color: #8b8b8b;
   font-size: 20px;
   font-weight: 500;
   line-height: 130%;
 }
 
 .connect > div p {
-  color: #282828;
   font-size: 40px;
   font-weight: 600;
   line-height: 110%;
@@ -68,7 +96,6 @@
 .media_item svg {
   width: 44px;
   height: 44px;
-  color: #424436;
   cursor: pointer;
   transition: color 0.3s ease;
 }
@@ -80,11 +107,9 @@
   line-height: 110%;
   margin-top: 16px;
   display: block;
-  color: #424436;
 }
 .number > a {
   text-decoration: none;
-  color: #424436;
 }
 
 .number :first-child:hover {

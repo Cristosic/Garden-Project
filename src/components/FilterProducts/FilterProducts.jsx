@@ -1,10 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useContext } from "react";
 import styles from "./FilterProducts.module.scss";
-import arrowDown from "../../media/images/ArrowDown.svg";
+import arrowDown from "../../media/icons/arrowDown.svg";
 import { useDispatch } from "react-redux";
 import { filterPriceAction, sortProductsAction } from "../../store/slices/allProductsSlice";
+import { Context } from "../../context";
 
 function FilterProducts() {
+
+  const { theme } = useContext(Context);
+
   const dispatch = useDispatch();
 
   const filter = (e) => {
@@ -22,7 +26,11 @@ function FilterProducts() {
   };
 
   return (
-    <div className={styles.filterContainer}>
+    <div
+      className={`${styles.filterContainer} ${
+        theme === "light" ? styles.lightTheme : styles.darkTheme
+      }`}
+    >
       <form className={styles.priceInputs} onSubmit={filter}>
         <label htmlFor="priceFrom">Price</label>
         <input
@@ -40,7 +48,7 @@ function FilterProducts() {
           name="sortSelect"
           className={styles.select}
           style={{ backgroundImage: `url(${arrowDown})` }}
-          onChange={(e)=> dispatch(sortProductsAction(e.target.value))}
+          onChange={(e) => dispatch(sortProductsAction(e.target.value))}
         >
           <option value="default">by default</option>
           <option value="newest">Newest</option>

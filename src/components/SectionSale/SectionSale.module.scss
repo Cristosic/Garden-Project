@@ -1,6 +1,41 @@
+/* dark theme styles */
+
+.lightTheme .title > span {
+  color: #424436;
+}
+
+.lightTheme .title .line {
+  background-color: #dddddd;
+}
+
+.lightTheme .title button,
+.lightTheme .buttonForIphone {
+  border: 1px solid #dddddd;
+  background-color: #fffff1;
+  color: #8b8b8b;
+}
+
+.darkTheme .title > span {
+  color: #fffff1;
+}
+
+.darkTheme .title .line {
+  background-color: #8b8b8b;
+}
+
+.darkTheme .title button,
+.darkTheme .buttonForIphone  {
+  border: 1px solid #8b8b8b;
+  background-color: #424436;
+  color: #8b8b8b;
+}
+
+/* */
+
 .container {
   padding-top: 88px;
   margin: 0 40px;
+
   .title {
     display: flex;
     align-items: center;
@@ -9,22 +44,17 @@
     span {
       margin-right: 32px;
       font-weight: bold;
-      color: #424436;
       font-size: 64px;
     }
 
     .line {
       flex-grow: 1;
       height: 1px;
-      background-color: #dddddd;
     }
 
     button {
       border-radius: 6px;
-      border: 1px solid #dddddd;
-      background-color: rgba(255, 255, 255, 0.1);
       padding: 8px 16px;
-      color: #8b8b8b;
       font-size: 16px;
       cursor: pointer;
     }
@@ -33,10 +63,7 @@
   .buttonForIphone {
     display: none;
     border-radius: 6px;
-    border: 1px solid #dddddd;
-    background-color: rgba(255, 255, 255, 0.1);
     padding: 12px, 24px, 12px, 24px;
-    color: #8b8b8b;
     text-align: center;
     font-size: 16px;
     cursor: pointer;
@@ -67,7 +94,6 @@
       span {
         margin-right: 16px;
         font-size: 48px;
-        
       }
       button {
         font-size: 14px;
@@ -78,7 +104,6 @@
   @media (max-width: 360px) {
     display: flex;
     flex-direction: column;
-   
 
     button {
       display: none;
@@ -86,7 +111,6 @@
       padding: 12px 24px;
     }
     .title {
-     
       span {
         margin-right: 0;
         font-size: 40px;
@@ -95,13 +119,12 @@
         display: none;
       }
     }
-    .contanerButtonNone{
+    .contanerButtonNone {
       margin-top: 24px;
       .buttonForIphone {
         display: block;
         margin: 0 auto;
       }
     }
-   
   }
 }

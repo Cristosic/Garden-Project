@@ -1,3 +1,15 @@
+/* dark theme styles */ 
+
+.lightTheme > h4 {
+  color: #424436;
+}
+
+.darkTheme > h4 {
+  color: #fffff1;
+}
+
+/* */
+
 .cardContent {
   width: 100%;
   overflow: hidden;
@@ -20,7 +32,6 @@
   line-height: 26px;
   text-align: center;
   overflow: hidden;
-  color: #424436;
 }
 
 
