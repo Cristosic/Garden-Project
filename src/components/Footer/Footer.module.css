@@ -48,11 +48,17 @@
 .connect {
   width: 100%;
   display: grid;
-  grid-template-columns: 58% 40%;
-  grid-template-rows: auto auto;
+  grid-template-columns: 3fr 2fr;
   gap: 32px;
   margin-bottom: 32px;
 }
+.connect > div :first-child {
+  grid-column: 1 / span 2;
+}
+.connect > div :nth-child(3){
+  grid-column: 1 / span 2;
+}
+
 
 .connect > div {
   display: flex;
@@ -115,23 +121,24 @@
   height: 38px;
 }
 
-@media (max-width: 1440px) {
+@media (max-width: 1439px) {
   .connect {
     gap: 20px;
+    grid-template-columns: 3fr 2fr;
   }
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 999px) {
   .contact {
     margin-bottom: 32px;
   }
 
   .connect {
-    grid-template-columns: 67% 30%;
+    grid-template-columns: 2fr 2fr;
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .connect > div {
     padding: 24px 20px;
   }
@@ -145,16 +152,34 @@
   }
 
   .connect {
-    grid-template-columns: 100%;
+    grid-template-columns:2fr 1fr;
+    
+  }
+  .connect > div :first-child {
+    grid-column: 1 / span 1;
+  }
+  .connect > div :nth-child(3){
+    grid-column: 1 / span 1;
   }
 
   .socials {
     display: flex;
     flex-direction: row;
   }
+  .number,
+  .adresse {
+    font-size: 28px;
+  }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 479px) {
+  .number,
+  .adresse {
+    font-size: 28px;
+  }
+  .connect {
+    grid-template-columns: 1fr;
+  }
   .connect > div {
     padding: 24px 20px;
   }

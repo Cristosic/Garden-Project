@@ -1,11 +1,29 @@
 import React, { useContext } from "react";
-import styles from "../FilterProducts/FilterProducts.module.scss";
-import arrowDown from "../../../media/icons/arrowDown.svg";
-import { Context } from "../../../context";
+import styles from "./FilterProducts.module.scss";
+import arrowDown from "../../media/icons/arrowDown.svg";
+import { useDispatch } from "react-redux";
+import { filterPriceAction, sortProductsAction } from "../../store/slices/allProductsSlice";
+import { Context } from "../../context";
 
 function FilterProducts() {
-  
+
   const { theme } = useContext(Context);
+
+  const dispatch = useDispatch();
+
+  const filter = (e) => {
+    e.preventDefault();
+
+    const { priceFrom, priceTo } = e.target;
+
+    const priceFilter = {
+      min_price: priceFrom.value || 0,
+      max_price: priceTo.value || Infinity,
+    };
+
+   dispatch(filterPriceAction(priceFilter))
+    e.target.reset();
+  };
 
   return (
     <div
@@ -13,7 +31,7 @@ function FilterProducts() {
         theme === "light" ? styles.lightTheme : styles.darkTheme
       }`}
     >
-      <div className={styles.priceInputs}>
+      <form className={styles.priceInputs} onSubmit={filter}>
         <label htmlFor="priceFrom">Price</label>
         <input
           type="number"
@@ -22,14 +40,15 @@ function FilterProducts() {
           placeholder="from"
         />
         <input type="number" id="priceTo" name="priceTo" placeholder="to" />
-      </div>
-
+        <button className={styles.filterButton} type="submit"></button>
+      </form>
       <div className={styles.sortContainer}>
         <label htmlFor="sortSelect">Sorted</label>
         <select
           name="sortSelect"
           className={styles.select}
           style={{ backgroundImage: `url(${arrowDown})` }}
+          onChange={(e) => dispatch(sortProductsAction(e.target.value))}
         >
           <option value="default">by default</option>
           <option value="newest">Newest</option>

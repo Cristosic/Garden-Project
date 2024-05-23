@@ -1,28 +1,31 @@
 /* dark theme styles */
 
 .lightTheme {
-  color: #424436;
+  border: 1px solid #dddddd;
+  background-color: #FFFFFF;
 }
 
 .lightTheme .card {
   border-bottom: 1px solid #dddddd;
 }
 
+.lightTheme h4,
+.lightTheme .priceContainer > p {
+  color: #424436;
+}
+
 .darkTheme {
-  background-color: #383a2c;
-  color: #fffff1;
-}
-
-.darkTheme.cardContent {
-  border: 1px solid #8b8b8b;
-}
-
-.darkTheme.cardContent > h4 {
-  color: #fffff1;
+  border: 1px solid #8B8B8B;
+  background-color: #383A2C;
 }
 
 .darkTheme .card {
   border-bottom: 1px solid #8B8B8B;
+}
+
+.darkTheme h4,
+.darkTheme .priceContainer > p {
+  color: #FFFFFF;
 }
 
 /* */
@@ -31,7 +34,6 @@
   height: auto;
   border-radius: 12px;
   overflow: hidden;
-  border: 1px solid #dddddd;
 
   .card {
     position: relative;
@@ -53,7 +55,7 @@
       font-weight: 500;
       padding: 4px 8px 4px 8px;
       background-color: #f26d22;
-      color: white;
+      color: #FFFFFF;
     }
     .cardIcons {
       position: absolute;
@@ -65,9 +67,19 @@
       text-align: center;
       cursor: pointer;
 
-      img {
+      .heart {
         width: 44px;
         height: 38px;
+        &:hover {
+          content: url("../../media/icons/hoverHeart.svg");
+        }
+      }
+      .shoppingBag {
+        width: 44px;
+        height: 48px;
+        &:hover {
+          content: url("../../media/icons/hoverBag.svg");
+        }
       }
     }
   }
@@ -92,6 +104,7 @@
       font-weight: 600;
       line-height: 70%;
     }
+
 
     :last-child {
       font-size: 20px;
@@ -144,7 +157,6 @@
     }
     h4 {
       font-size: 20px;
-      padding: 20px 20px 12px 20px;
     }
     .priceContainer {
       :first-child {
@@ -155,14 +167,24 @@
         font-size: 18px;
       }
     }
+    .card {
+      .cardIcons {
+        .heart {
+          width: 37px;
+          height: 32px;
+        }
+        .shoppingBag {
+          width: 37px;
+          height: 40px;
+        }
+      }
+    }
   }
   @media (max-width: 360px) {
     width: 320px;
 
     h4 {
-      width: 280px;
       font-size: 18px;
-      padding: 20px 20px 12px 20px;
     }
     .priceContainer {
       :first-child {

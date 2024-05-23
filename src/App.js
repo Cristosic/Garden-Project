@@ -33,7 +33,7 @@ function App() {
           <Route path="/cart" element={<CartPage />} />
           <Route path="/categories" element={<CategoriesPage />} />
           <Route path="/favorites" element={<FavoriteItemPage />} />
-          <Route path="/singleCategory" element={<SingleCategoryPage />} />
+          <Route path="/categories/:categoryId" element={<SingleCategoryPage />} />
           <Route path="/singleProduct" element={<SingleProductPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>

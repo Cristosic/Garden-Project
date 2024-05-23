@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./ProductsContainer.module.scss";
-import SaleProductsCard from "../ProductsCard/ProductsCard";
+import SaleProductsCard from "../ProductsCard/ProductsCard"
 
 function ProductsContainer({ saleProducts }) {
   return (
