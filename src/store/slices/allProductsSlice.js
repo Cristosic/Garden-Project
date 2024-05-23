@@ -13,12 +13,12 @@ export const getAllProducts = createAsyncThunk(
     return data;
   }
 );
-     
+
 const allProductsSlice = createSlice({
   name: "allProducts",
   initialState,
   reducers: {
-    //Сортировка select 
+    //Сортировка select
     sortProductsAction: (state, action) => {
       const select = action.payload;
       if (select === "default") {
@@ -29,26 +29,26 @@ const allProductsSlice = createSlice({
           sortCard.sort((a, b) => b.price - a.price);
         } else if (select === "price-low-high") {
           sortCard.sort((a, b) => a.price - b.price);
-        }else if (select === "newest") {
+        } else if (select === "newest") {
           sortCard.sort((a, b) => a.title.localeCompare(b.title));
         }
         state.filterProductsData = sortCard;
       }
     },
-    //Фильтрация по цене from = to 
+    //Фильтрация по цене from = to
     filterPriceAction: (state, action) => {
       const { min_price, max_price } = action.payload;
       state.filterProductsData = state.allProductsData.filter(
         (el) =>
-          (!min_price || el.price >= min_price) &&
-          (!max_price || el.price <= max_price)
+          (min_price === 0 || el.price >= min_price) &&
+          (max_price === Infinity || el.price <= max_price)
       );
     },
-    //Фильтрация чекбокс 
+    //Фильтрация чекбокс
     filterSaleProductsAction: (state, action) => {
       if (action.payload) {
         state.filterProductsData = state.allProductsData.filter(
-          (product) => product.discount_price !== null
+          (product) => product.discont_price !== null
         );
       } else {
         state.filterProductsData = [...state.allProductsData];
@@ -73,5 +73,8 @@ const allProductsSlice = createSlice({
 
 export default allProductsSlice.reducer;
 
-export const { sortProductsAction, filterPriceAction, filterSaleProductsAction } =
-  allProductsSlice.actions;
+export const {
+  sortProductsAction,
+  filterPriceAction,
+  filterSaleProductsAction,
+} = allProductsSlice.actions;

@@ -19,7 +19,13 @@
       font-size: 16px;
       font-weight: 500;
       cursor: pointer;
+
+      &:hover {
+        background-color: #424436;
+        color: white;
+      }
     }
+
     .buttonActive {
       color: #424436;
     }
@@ -44,14 +50,12 @@
     .cardContainer {
       gap: 20px;
       padding-top: 32px;
-      
     }
   }
 
   @media (max-width: 768px) {
     .cardContainer {
       grid-template-columns: repeat(2, 1fr);
-     
     }
   }
   @media (max-width: 768px) {
@@ -62,7 +66,6 @@
 
     .cardContainer {
       grid-template-columns: repeat(2, 1fr);
-      
     }
   }
 
@@ -94,7 +97,6 @@
 
     .cardContainer {
       grid-template-columns: repeat(1, 1fr);
-      
     }
   }
 }

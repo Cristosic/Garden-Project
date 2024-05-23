@@ -8,7 +8,6 @@ import FilterProducts from "../../components/FilterProducts/FilterProducts";
 
 export default function FavoriteItemPage() {
   const favorites = useSelector((state) => state.favorites.cards);
-  
 
   console.log(favorites);
 
@@ -26,11 +25,11 @@ export default function FavoriteItemPage() {
 
       <h1 className={styles.titlePage}>Liked products</h1>
 
-      <FilterProducts schowSaleFilter={true}/>
+      <FilterProducts />
 
       {/* уже есть готовый camponents для карточек на странице MainPAge,
        поэтому я могу переиспользовать его тут */}
-       
+
       {favorites.length > 0 ? (
         <div className={styles.cardContainer}>
           {favorites.map((el) => (

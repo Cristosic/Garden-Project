@@ -16,8 +16,8 @@ function FilterProducts({ schowSaleFilter }) {
     const { priceFrom, priceTo } = e.target;
 
     const priceFilter = {
-      min_price: priceFrom.value || 0,
-      max_price: priceTo.value || Infinity,
+      min_price: priceFrom.value ? Math.max(0, parseFloat(priceFrom.value)) : 0,
+      max_price: priceTo.value ? Math.max(0, parseFloat(priceTo.value)) : Infinity,
     };
 
     dispatch(filterPriceAction(priceFilter));
@@ -28,8 +28,8 @@ function FilterProducts({ schowSaleFilter }) {
     <div className={styles.filterContainer}>
       <form className={styles.priceInputs} onSubmit={filter}>
         <label htmlFor="priceFrom">Price</label>
-        <input type="number" name="priceFrom" placeholder="from" />
-        <input type="number" name="priceTo" placeholder="to" />
+        <input type="number" name="priceFrom" placeholder="from" min={0}/>
+        <input type="number" name="priceTo" placeholder="to" min={0}/>
         <button className={styles.filterButton} type="submit"></button>
       </form>
 
