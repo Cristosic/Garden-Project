@@ -36,7 +36,7 @@ export default function AllProductsPage() {
       </div>
 
       <h1 className={styles.titlePage}>All products</h1>
-      <FilterProducts />
+      <FilterProducts schowSaleFilter={true}/>
 
       <div className={styles.cardContainer}>
         {products && products.map((el) => <ProductsCard key={el.id} {...el} />)}

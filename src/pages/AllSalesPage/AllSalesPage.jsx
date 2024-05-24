@@ -3,8 +3,9 @@ import styles from "./AllSalesPage.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts } from "../../store/slices/allProductsSlice";
 import filterSaleProducts from "../../utils/filterSaleProducts";
-import SaleProductsCard from "../../components/ProductsCard/ProductsCard";
 import { Link } from "react-router-dom";
+
+import ProductsCard from "../../components/ProductsCard/ProductsCard";
 import FilterProducts from "../../components/FilterProducts/FilterProducts";
 import { Context } from "../../context";
 
@@ -21,8 +22,6 @@ export default function AllSalesPage() {
 
 
   const saleProducts = filterSaleProducts(products);
-
-  console.log("filterSale", saleProducts);
 
   return (
     <div
@@ -47,7 +46,7 @@ export default function AllSalesPage() {
        поэтому я могу переиспользовать его тут */}
       <div className={styles.cardContainer}>
         {saleProducts &&
-          saleProducts.map((el) => <SaleProductsCard key={el.id} {...el} />)}
+          saleProducts.map((el) => <ProductsCard key={el.id} {...el} />)}
       </div>
     </div>
   );
