@@ -1,0 +1,185 @@
+.navigationLink {
+  display: flex;
+  align-items: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  margin-left: 50px;
+}
+
+.navigationLink .line {
+  width: 16px;
+  height: 1px;
+  background-color: #dddddd;
+}
+
+.navigationLink button {
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: 1px solid #dddddd;
+  color: #8b8b8b;
+  background-color: rgba(255, 255, 255, 0.1);
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.navigationLink .buttonActive {
+  color: #424436;
+}
+
+
+
+.singleProductPage {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.productWrapper {
+  width: 1360px;
+  height: 574px;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  opacity: 1;
+  margin-left: 50px;
+
+  top: 244px;
+  left: 40px;
+}
+
+.productImage {
+  width: 780px;
+  height: 574px;
+  border-radius: var(--radiusbig);
+}
+
+.productInfo {
+  width: 548px;
+  height: 574px;
+  display: flex;
+  flex-direction: column;
+}
+
+.productTitle {
+  font-family: Montserrat;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 44px;
+  letter-spacing: 0.03em;
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.priceSection {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.currentPrice {
+  font-family: Montserrat;
+  font-size: 64px;
+  font-weight: 700;
+  line-height: 70.4px;
+  text-align: left;
+}
+
+.oldPrice {
+  font-family: Montserrat;
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 52px;
+  text-align: left;
+  text-decoration: line-through;
+  color: grey;
+}
+
+.discount {
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: 500;
+  text-align: left;
+  color: green;
+  background-color: #f26d22;
+  color: white;
+  border-radius: 6px;
+  padding: 4px 8px;
+}
+
+.quantityContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.quantityButton {
+  font-size: 24px;
+  width: 58px;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  cursor: pointer;
+  border-radius: 4px; 
+
+}
+
+.quantity {
+  font-size: 24px;
+  width:  96px;
+  height:  58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  border-radius: 4px; 
+}
+
+
+.addToCartButton {
+  width: 316px;
+  height: 58px;
+  padding: 16px 32px;
+  gap: 10px;
+  border-radius: var(--radiussmall);
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 26px;
+  text-align: center;
+  background-color: green;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-left: 20px;
+}
+
+.productDescription {
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20.8px;
+  text-align: left;
+}
+
+.productDescription h2 {
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 26px;
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.productDescription a {
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+}
