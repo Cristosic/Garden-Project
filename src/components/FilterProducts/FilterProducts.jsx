@@ -1,13 +1,16 @@
+
+import React, { useContext } from "react";
 import styles from "./FilterProducts.module.scss";
-import arrowDown from "../../media/icons/ArrowDown.svg";
+import arrowDown from "../../media/icons/arrowDown.svg";
 import { useDispatch } from "react-redux";
-import {
-  filterPriceAction,
-  filterSaleProductsAction,
-  sortProductsAction,
-} from "../../store/slices/allProductsSlice";
+import { filterPriceAction, filterSaleProductsAction, sortProductsAction } from "../../store/slices/allProductsSlice";
+import { Context } from "../../context";
 
 function FilterProducts({ schowSaleFilter }) {
+
+  const { theme } = useContext(Context);
+
+
   const dispatch = useDispatch();
 
   const filter = (e) => {
@@ -25,7 +28,11 @@ function FilterProducts({ schowSaleFilter }) {
   };
 
   return (
-    <div className={styles.filterContainer}>
+    <div
+      className={`${styles.filterContainer} ${
+        theme === "light" ? styles.lightTheme : styles.darkTheme
+      }`}
+    >
       <form className={styles.priceInputs} onSubmit={filter}>
         <label htmlFor="priceFrom">Price</label>
         <input type="number" name="priceFrom" placeholder="from" min={0}/>

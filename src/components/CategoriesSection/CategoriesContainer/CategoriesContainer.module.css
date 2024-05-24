@@ -1,3 +1,38 @@
+/* dark theme styles */ 
+
+.lightTheme .line {
+  background-color: #dddddd;
+}
+
+.lightTheme .btn_category_card,
+.lightTheme .btn2_category_card  {
+  border: 1px solid #dddddd;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #8b8b8b;
+}
+
+.lightTheme .categoriesTitle > span {
+   color: #424436;
+}
+
+.darkTheme .categoriesTitle > span {
+  color: #fffff1;
+}
+
+ .darkTheme .categoriesTitle .line {
+  background-color: #8B8B8B;
+}
+
+.darkTheme .categoriesTitle button,
+.darkTheme .btn2_category_card {
+  border: 1px solid #8B8B8B;
+  background-color: #424436;
+  color: #8B8B8B;
+}  
+
+/*  */ 
+
+
 .categories_container{
   margin: 0 40px;
 }
@@ -21,9 +56,8 @@
   margin-top: 80px;
 }
 
-.categoriesTitle>span {
+.categoriesTitle > span {
   font-weight: bold;
-  color: #424436;
   font-size: 64px;
   line-height: 110%;
   margin-right: 32px;
@@ -32,19 +66,14 @@
 .line {
   flex-grow: 1;
   height: 1px;
-  background-color: #dddddd;
 }
 
 .btn_category_card {
   border-radius: 6px;
-  border: 1px solid #dddddd;
-  background-color: rgba(255, 255, 255, 0.1);
   padding: 8px 16px;
-  color: #8b8b8b;
   cursor: pointer;
   font-size: 16px;
 }
-
 
 @media (max-width: 1000px) {
   .categories_container{
@@ -73,6 +102,7 @@
 }
 
 @media (max-width: 480px) {
+
   .categoriesTitle>span {
     font-size: 48px;
     margin-right: 20px;
@@ -85,10 +115,7 @@
   .btn2_category_card {
     display: block;
     border-radius: 6px;
-    border: 1px solid #dddddd;
-    background-color: rgba(255, 255, 255, 0.1);
     padding: 12px 24px;
-    color: #8b8b8b;
     cursor: pointer;
     font-size: 14px;
     margin: auto;

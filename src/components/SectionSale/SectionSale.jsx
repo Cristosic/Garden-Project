@@ -1,12 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styles from "./SectionSale.module.scss";
 import { getAllProducts } from "../../store/slices/allProductsSlice";
 import ProductsContainer from "../ProductsContainer/ProductsContainer";
 import { Link } from "react-router-dom";
 import filterSaleProducts from "../../utils/filterSaleProducts";
+import { Context } from "../../context";
 
 function SectionSale() {
+
+  const { theme } = useContext(Context);
+
   const dispatch = useDispatch();
   const products = useSelector((state) => state.allProducts.allProductsData);
 
@@ -28,7 +32,11 @@ function SectionSale() {
   }, [products]);
 
   return (
-    <div className={styles.container}>
+    <div
+      className={`${styles.container} ${
+        theme === "light" ? styles.lightTheme : styles.darkTheme
+      }`}
+    >
       <div className={styles.title}>
         <span>Sale</span>
 

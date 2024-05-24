@@ -1,18 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useSelector } from "react-redux";
 import styles from "../FavoriteItemPage/FavoriteItemPage.module.scss";
 import { Link } from "react-router-dom";
-
 import ProductsCard from "../../components/ProductsCard/ProductsCard";
 import FilterProducts from "../../components/FilterProducts/FilterProducts";
+import { Context } from "../../context";
 
 export default function FavoriteItemPage() {
+  const { theme } = useContext(Context);
   const favorites = useSelector((state) => state.favorites.cards);
-
   console.log(favorites);
 
   return (
-    <div className={styles.favoritesContainer}>
+    <div
+      className={`${styles.favoritesContainer} ${
+        theme === "light" ? styles.lightTheme : styles.darkTheme
+      }`}
+    >
       <div className={styles.navigationLink}>
         <Link to={"/"}>
           <button>Main page</button>
@@ -37,7 +41,7 @@ export default function FavoriteItemPage() {
           ))}
         </div>
       ) : (
-        <p>Нет избранных товаров</p>
+        <p>Looks like you have no items in your favorites currently.</p>
       )}
     </div>
   );

@@ -1,3 +1,37 @@
+/* dark theme styles */
+
+.lightTheme .line {
+  background-color: #dddddd;
+}
+
+.lightTheme button {
+  border: 1px solid #dddddd;
+  color: #8b8b8b;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.lightTheme .buttonActive,
+.lightTheme .titlePage {
+  color: #424436;
+}
+
+.darkTheme .line {
+  background-color: #8b8b8b;
+}
+
+.darkTheme button {
+  border: 1px solid #8b8b8b;
+  background-color: #424436;
+  color: #8b8b8b;
+}
+
+.darkTheme .buttonActive,
+.darkTheme .titlePage {
+  color: #FFFFFF;
+}
+
+/* */
+
 .saleProductsContainer {
   padding: 40px 40px 0 40px;
 
@@ -8,15 +42,11 @@
     .line {
       width: 16px;
       height: 1px;
-      background-color: #dddddd;
     }
 
     button {
       padding: 8px 16px;
       border-radius: 6px;
-      border: 1px solid #dddddd;
-      color: #8b8b8b;
-      background-color: rgba(255, 255, 255, 0.1);
       font-size: 16px;
       font-weight: 500;
       cursor: pointer;
@@ -27,10 +57,6 @@
        
       }
     }
-
-    .buttonActive {
-      color: #424436;
-    }
   }
 
   .titlePage {
@@ -38,7 +64,6 @@
     padding: 40px 0;
     font-weight: 700;
     font-size: 64px;
-    color: #424436;
   }
 
   .cardContainer {
@@ -49,7 +74,6 @@
   }
 
   .discountToggle {
-
     margin: 20px 0;
 
     label {
@@ -67,7 +91,6 @@
 
   .discountToggle label {
     font-size: 50px;
-
   }
 
   @media (max-width: 1000px) {
