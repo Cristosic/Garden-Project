@@ -1,3 +1,33 @@
+/* dark theme styles */
+
+.lightTheme {
+  border-bottom: 1px solid #dddddd;
+  background-color: #fffff1;
+}
+
+.lightTheme .navMenuLinks a {
+  color: #424436;
+}
+
+.lightTheme .active {
+  background-color: #fffff1;
+}
+
+.darkTheme {
+  background-color: #424436;
+  border-bottom: 1px solid #8b8b8b;
+}
+
+.darkTheme .navMenuLinks a {
+  color: #fffff1;
+}
+
+.darkTheme .active {
+  background-color: #424436;
+}
+
+/* */
+
 .navMenu {
   display: flex;
   justify-content: space-between;
@@ -5,8 +35,6 @@
   width: 100%;
   height: 128px;
   white-space: nowrap;
-  border: 1px solid #dddddd;
-  background-color: #fffff1;
   position: sticky;
   top: 0;
   z-index: 100;
@@ -14,7 +42,6 @@
 
 .navMenu a {
   text-decoration: none;
-  color: #424436;
   font-size: 20px;
   font-weight: 500;
   cursor: pointer;
@@ -30,11 +57,6 @@
 .plantLogo {
   width: 70px;
   height: 70px;
-}
-
-.themeIcon {
-  width: 60px;
-  cursor: pointer;
 }
 
 .navBarCenter {
@@ -102,8 +124,7 @@
 }
 
 @media (max-width: 1000px) {
-
-   .iconsLeft {
+  .iconsLeft {
     gap: 14px;
     padding: 30px 15px;
   }
@@ -111,10 +132,6 @@
   .plantLogo {
     width: 65px;
     height: 65px;
-  }
-
-  .themeIcon {
-    width: 50px;
   }
 
   .navMenuLinks {
@@ -127,12 +144,9 @@
     gap: 12px;
     padding: 40px 15px 40px 15px;
   }
-  
 }
 
-
 @media (max-width: 768px) {
-
   .navMenu {
     height: 68px;
   }
@@ -159,12 +173,10 @@
     right: -200%;
     top: 0;
     width: 282px;
-    background-color: #fffff1;
-    border: 1px solid #dddddd;
     transition: right 0.5s;
     padding: 100px 90px 1067px 32px;
   }
-  
+
   .buttonNavMenu {
     display: flex;
   }
@@ -223,20 +235,18 @@
   }
 
   .modalNavMenu.active {
-  background-color: #0000001a;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: end;
+    background-color: #0000001a;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: end;
   }
-
 }
 
 @media (max-width: 360px) {
-
   .navBarCenter {
     width: 222px;
   }
@@ -249,5 +259,4 @@
     font-size: 18px;
     width: 166px;
   }
-
 }

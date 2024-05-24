@@ -1,3 +1,38 @@
+/* dark theme styles */
+
+.lightTheme .line {
+  background-color: #dddddd;
+}
+
+.lightTheme .navigationLink button {
+  border: 1px solid #dddddd;
+  color: #8b8b8b;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.lightTheme .navigationLink .buttonActive,
+.lightTheme .titlePage {
+  color: #424436;
+}
+
+.darkTheme .line {
+  background-color: #8B8B8B;
+}
+
+.darkTheme .navigationLink button {
+  border: 1px solid #8B8B8B;
+  background-color: #424436;
+  color: #8B8B8B;
+}
+
+.darkTheme .navigationLink .buttonActive,
+.darkTheme .titlePage,
+.darkTheme p {
+  color: #FFFFFF;
+}
+
+/* */
+
 .favoritesContainer {
   padding: 40px 40px 0 40px;
 
@@ -8,20 +43,13 @@
     .line {
       width: 16px;
       height: 1px;
-      background-color: #dddddd;
     }
     button {
       padding: 8px 16px;
       border-radius: 6px;
-      border: 1px solid #dddddd;
-      color: #8b8b8b;
-      background-color: rgba(255, 255, 255, 0.1);
       font-size: 16px;
       font-weight: 500;
       cursor: pointer;
-    }
-    .buttonActive {
-      color: #424436;
     }
   }
   .titlePage {
@@ -29,7 +57,6 @@
     padding: 40px 0;
     font-weight: 700;
     font-size: 64px;
-    color: #424436;
   }
 
   .cardContainer {
@@ -44,14 +71,12 @@
     .cardContainer {
       gap: 20px;
       padding-top: 32px;
-      
     }
   }
 
   @media (max-width: 768px) {
     .cardContainer {
       grid-template-columns: repeat(2, 1fr);
-     
     }
   }
   @media (max-width: 768px) {
@@ -62,7 +87,6 @@
 
     .cardContainer {
       grid-template-columns: repeat(2, 1fr);
-      
     }
   }
 
@@ -94,7 +118,6 @@
 
     .cardContainer {
       grid-template-columns: repeat(1, 1fr);
-      
     }
   }
 }

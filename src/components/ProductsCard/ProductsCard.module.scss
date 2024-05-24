@@ -1,13 +1,42 @@
+/* dark theme styles */
+
+.lightTheme {
+  border: 1px solid #dddddd;
+  background-color: #FFFFFF;
+}
+
+.lightTheme .card {
+  border-bottom: 1px solid #dddddd;
+}
+
+.lightTheme h4,
+.lightTheme .priceContainer > p {
+  color: #424436;
+}
+
+.darkTheme {
+  border: 1px solid #8B8B8B;
+  background-color: #383A2C;
+}
+
+.darkTheme .card {
+  border-bottom: 1px solid #8B8B8B;
+}
+
+.darkTheme h4,
+.darkTheme .priceContainer > p {
+  color: #FFFFFF;
+}
+
+/* */
+
 .cardContent {
   height: auto;
   border-radius: 12px;
   overflow: hidden;
-  border: 1px solid #dddddd;
-  background-color: white;
 
   .card {
     position: relative;
-    border-bottom: 1px solid #dddddd;
     .cardImg {
       display: block;
       width: 100%;
@@ -26,7 +55,7 @@
       font-weight: 500;
       padding: 4px 8px 4px 8px;
       background-color: #f26d22;
-      color: white;
+      color: #FFFFFF;
     }
     .cardIcons {
       position: absolute;
@@ -59,7 +88,6 @@
     padding: 20px 32px 16px 32px;
     font-size: 20px;
     font-weight: 500;
-    color: #424436;
 
     white-space: nowrap;
     overflow: hidden;
@@ -75,8 +103,8 @@
       font-size: 40px;
       font-weight: 600;
       line-height: 70%;
-      color: #282828;
     }
+
 
     :last-child {
       font-size: 20px;
