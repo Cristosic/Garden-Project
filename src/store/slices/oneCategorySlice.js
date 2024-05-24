@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 const initialState = {
-  oneCategoriesData: [],
+  oneCategoriesData: { category: {}, data: [] },
   filterProductsData: [],
   status: "",
   error: "",
@@ -10,16 +10,12 @@ const initialState = {
 export const getOneCategory = createAsyncThunk(
   "oneCategory/getOneCategory",
   async (categoryId) => {
-    try {
-      const res = await fetch(`http://localhost:3333/categories/${categoryId}`);
-      if (!res.ok) {
-        throw new Error("No data found");
-      }
-      const data = await res.json();
-      return data;
-    } catch (error) {
-      return { error: error.message };
+    const res = await fetch(`http://localhost:3333/categories/${categoryId}`);
+    if (!res.ok) {
+      throw new Error("No data found");
     }
+    const data = await res.json();
+    return data;
   }
 );
 
@@ -27,11 +23,10 @@ const oneCategorySlice = createSlice({
   name: "oneCategory",
   initialState,
   reducers: {
-    //Сортировка select
     sortOneCategoryAction: (state, action) => {
       const select = action.payload;
       if (select === "default") {
-        state.filterProductsData = [...state.oneCategoriesData];
+        state.filterProductsData = [...state.oneCategoriesData.data];
       } else {
         const sortCard = [...state.filterProductsData];
         if (select === "price-high-low") {
@@ -44,23 +39,21 @@ const oneCategorySlice = createSlice({
         state.filterProductsData = sortCard;
       }
     },
-    //Фильтрация по цене from = to
     filterOneCategoryPriceAction: (state, action) => {
       const { min_price, max_price } = action.payload;
-      state.filterProductsData = state.oneCategoriesData.filter(
+      state.filterProductsData = state.oneCategoriesData.data.filter(
         (el) =>
           (min_price === 0 || el.price >= min_price) &&
           (max_price === Infinity || el.price <= max_price)
       );
     },
-    //Фильтрация чекбокс
     filterOneCategorySaleAction: (state, action) => {
       if (action.payload) {
-        state.filterProductsData = state.oneCategoriesData.filter(
+        state.filterProductsData = state.oneCategoriesData.data.filter(
           (product) => product.discont_price !== null
         );
       } else {
-        state.filterProductsData = [...state.oneCategoriesData];
+        state.filterProductsData = [...state.oneCategoriesData.data];
       }
     },
   },
@@ -70,8 +63,9 @@ const oneCategorySlice = createSlice({
         state.status = "loading";
       })
       .addCase(getOneCategory.fulfilled, (state, action) => {
-        state.oneCategoriesData = action.payload;
-        state.filterProductsData = action.payload;
+        const data = action.payload;
+        state.oneCategoriesData = { category: data.category, data: data.data };
+        state.filterProductsData = data.data;
         state.status = "ready";
       })
       .addCase(getOneCategory.rejected, (state, action) => {
@@ -81,9 +75,10 @@ const oneCategorySlice = createSlice({
   },
 });
 
-export default oneCategorySlice.reducer;
 export const {
-  sortProductsAction,
-  filterPriceAction,
-  filterSaleProductsAction,
+  sortOneCategoryAction,
+  filterOneCategoryPriceAction,
+  filterOneCategorySaleAction,
 } = oneCategorySlice.actions;
+
+export default oneCategorySlice.reducer;
