@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getOneCategory } from "../../store/slices/oneCategorySlice";
 import ProductsCard from "../../components/ProductsCard/ProductsCard";
 import { Link } from "react-router-dom";
+import FilterProducts from './../../components/FilterProducts/FilterProducts';
 
 
 export default function SingleCategoryPage() {
@@ -60,6 +61,8 @@ export default function SingleCategoryPage() {
         </div>
 
         <span>{category.title}</span>
+        
+        <FilterProducts schowSaleFilter={true}/>
        
         <div className={styles.cardContainer}>
           {status === "loading" ? (

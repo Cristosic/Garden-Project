@@ -1,9 +1,12 @@
 import { useDispatch } from "react-redux";
 import { addNewUser } from "../../../store/slices/userSlice";
 import styles from "./NewUserForm.module.css";
+import { useState } from "react";
+import ModalWindow from "../../ModalWindow/ModalWindow";
 
 export default function NewUserForm() {
   const dispatch = useDispatch();
+
 
   const submit = (event) => {
     event.preventDefault();

@@ -17,6 +17,7 @@
   line-height: 110%;
   margin-right: 32px;
   margin-bottom: 40px;
+  display: block;
 }
 
 .line {
@@ -91,6 +92,7 @@
 
   .categories_container span {
     font-size: 44px;
+  
   }
 
 }
