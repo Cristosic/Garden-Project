@@ -1,3 +1,37 @@
+/* dark theme styles */
+
+.lightTheme .btn_links_categoriesPage + span,
+.lightTheme .btn_category_card.active {
+  color: #424436;
+}
+
+.lightTheme .line {
+  background-color: #dddddd;
+}
+
+.lightTheme .btn_category_card {
+  color: #8b8b8b;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid #dddddd; 
+}
+
+.darkTheme .line {
+  background-color: #8B8B8B;
+}
+
+.darkTheme .btn_category_card {
+  color: #8b8b8b;
+  background-color: #424436;
+  border: 1px solid #8B8B8B; 
+}
+
+.darkTheme .active,
+.darkTheme .btn_links_categoriesPage + span {
+  color: #FFFFFF;
+}
+
+/* */
+
 .cardContainer {
   padding-top: 40px;
   display: grid;
@@ -12,7 +46,6 @@
 
 .categories_container span {
   font-weight: bold;
-  color: #424436;
   font-size: 64px;
   line-height: 110%;
   margin-right: 32px;
@@ -23,18 +56,14 @@
 .line {
   width: 16px;
   height: 1px;
-  background-color: #dddddd;
 }
 
 .btn_category_card {
   border-radius: 6px;
-  border: 1px solid #dddddd;
   padding: 8px 16px;
-  color: #8b8b8b;
   font-weight: 500;
   cursor: pointer;
   font-size: 16px;
-  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .btn_links_categoriesPage {
@@ -44,7 +73,6 @@
 }
 
 .active {
-  color: #424436;
   font-size: 16px;
   font-weight: 500;
   line-height: 20px;
