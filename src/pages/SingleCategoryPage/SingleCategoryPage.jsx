@@ -1,13 +1,17 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import styles from "./SingleCategoryPage.module.css";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getOneCategory } from "../../store/slices/oneCategorySlice";
 import ProductsCard from "../../components/ProductsCard/ProductsCard";
 import { Link } from "react-router-dom";
+import { Context } from "../../context";
 
 
 export default function SingleCategoryPage() {
+
+  const { theme } = useContext(Context);
+
   const { categoryId } = useParams();
 
   const dispatch = useDispatch();
@@ -36,7 +40,11 @@ export default function SingleCategoryPage() {
 
   return (
     <>
-      <div className={styles.categories_container}>
+      <div
+        className={`${styles.categories_container} ${
+          theme === "light" ? styles.lightTheme : styles.darkTheme
+        }`}
+      >
         <div className={styles.btn_links_categoriesPage}>
           <Link to={`/`}>
             <button className={styles.btn_category_card}>MainPage</button>
@@ -60,7 +68,7 @@ export default function SingleCategoryPage() {
         </div>
 
         <span>{category.title}</span>
-       
+
         <div className={styles.cardContainer}>
           {status === "loading" ? (
             <p>Loading...</p>
