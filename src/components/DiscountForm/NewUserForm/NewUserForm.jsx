@@ -4,12 +4,13 @@ import { addNewUser } from "../../../store/slices/newuserSlice";
 import styles from "./NewUserForm.module.css";
 import { useForm } from "react-hook-form";
 import { BsXOctagon } from "react-icons/bs";
-import { useState } from "react";
 import ModalWindow from "../../ModalWindow/ModalWindow";
 
 export default function NewUserForm() {
 
   const dispatch = useDispatch();
+
+  const [modalActive, setModalActive] = useState(false);
 
   const [confirmationMessage, setConfirmationMessage] = useState("");
   const [buttonText, setButtonText] = useState("Get a discount");
@@ -56,6 +57,8 @@ export default function NewUserForm() {
     setConfirmationMessage("The discount has been successfully sent by email.");
     setButtonText("Request Submitted");
     setIsSubmitted(true);
+
+    setModalActive(true)
 
     setTimeout(() => {
       setConfirmationMessage("");
@@ -143,6 +146,11 @@ export default function NewUserForm() {
           {buttonText}
         </button>
       </div>
+      <ModalWindow isOpen={modalActive} isClosed={() => setModalActive(false)}>
+        <h3>Great!</h3>
+        <p>The discount has been successfully sent by email</p>
+      </ModalWindow>
+
     </form>
   );
 }
