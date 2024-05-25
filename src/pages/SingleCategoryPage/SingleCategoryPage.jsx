@@ -6,6 +6,7 @@ import { getOneCategory } from "../../store/slices/oneCategorySlice";
 import ProductsCard from "../../components/ProductsCard/ProductsCard";
 import { Link } from "react-router-dom";
 import { Context } from "../../context";
+import FilterProducts from './../../components/FilterProducts/FilterProducts';
 
 
 export default function SingleCategoryPage() {
@@ -68,7 +69,9 @@ export default function SingleCategoryPage() {
         </div>
 
         <span>{category.title}</span>
-
+        
+        <FilterProducts schowSaleFilter={true}/>
+       
         <div className={styles.cardContainer}>
           {status === "loading" ? (
             <p>Loading...</p>
