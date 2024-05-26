@@ -6,14 +6,13 @@ import { useDispatch } from "react-redux";
 import { toggleTheme } from "../../store/slices/themeSlice";
 import { Context } from "../../context";
 
-export default function ThemeToggle() {
-  
+export default function ThemeToggle({ className }) {
   const { theme } = useContext(Context);
 
   const dispatch = useDispatch();
 
   return (
-    <div>
+    <div className={className}>
       {theme === "dark" ? (
         <img
           className={styles.themeIcon}

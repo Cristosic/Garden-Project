@@ -48,6 +48,10 @@
   padding-top: 12px;
 }
 
+.themeToggle {
+  display: flex;
+}
+
 .iconsLeft {
   display: flex;
   gap: 20px;
@@ -159,10 +163,6 @@
   .plantLogo {
     width: 44px;
     height: 44px;
-  }
-
-  .themeIcon {
-    width: 50px;
   }
 
   .navBarCenter {

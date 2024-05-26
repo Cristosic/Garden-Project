@@ -50,7 +50,17 @@
       font-size: 16px;
       font-weight: 500;
       cursor: pointer;
+
+      &:hover {
+        background-color: #424436;
+        color: white;
+      }
     }
+
+    .buttonActive {
+      color: #424436;
+    }
+
   }
   .titlePage {
     white-space: nowrap;

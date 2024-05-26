@@ -27,7 +27,7 @@ export default function NavMenu() {
     >
       <div className={styles.iconsLeft}>
         <img className={styles.plantLogo} src={plantLogo} alt="plant-logo" />
-        <ThemeToggle />
+        <ThemeToggle className={styles.themeToggle} />
       </div>
       <div
         className={
