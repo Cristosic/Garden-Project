@@ -1,12 +1,24 @@
-import React, { useContext } from "react";
+import React, { useEffect } from "react";
 import styles from "./ModalWindow.module.css";
 import darkCrossIcon from "../../media/icons/darkCrossIcon.svg";
 
 export default function ModalWindow({ isOpen, isClosed, children }) {
-  
+
   const onWrapper = () => {
     isClosed();
   };
+
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.classList.add("no-scroll");
+    } else {
+      document.body.classList.remove("no-scroll");
+    }
+    return () => {
+      document.body.classList.remove("no-scroll");
+    };
+  }, [isOpen]);
 
   return (
     <>

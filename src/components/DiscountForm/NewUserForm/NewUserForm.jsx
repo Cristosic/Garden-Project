@@ -68,6 +68,7 @@ export default function NewUserForm({
     
     setIsSubmitted(true);
 
+
     setTimeout(() => {
       setConfirmationMessage("");
       setIsSubmitted(false);
@@ -153,6 +154,12 @@ export default function NewUserForm({
         <h3>Congratulations!</h3>
         <p>Your order has been successfully placed on the website.<br /><br />A manager will contact you shortly to confirm your order.</p>
       </ModalWindow>
+
+      <ModalWindow isOpen={modalActive} isClosed={() => setModalActive(false)}>
+        <h3>Great!</h3>
+        <p>The discount has been successfully sent by email</p>
+      </ModalWindow>
+
 
     </form>
   );
