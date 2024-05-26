@@ -18,8 +18,10 @@ export default function SingleCategoryPage() {
   const dispatch = useDispatch();
 
   const oneCategoryState = useSelector(
-    (state) => state.oneCategory.oneCategoriesData
+    (state) => state.oneCategory.filterProductsData
   );
+
+  console.log(oneCategoryState);
 
   const status = useSelector((state) => state.oneCategory.status);
 
@@ -70,7 +72,7 @@ export default function SingleCategoryPage() {
 
         <span>{category.title}</span>
         
-        <FilterProducts schowSaleFilter={true}/>
+        <FilterProducts oneCategoryFilter={true}/>
        
         <div className={styles.cardContainer}>
           {status === "loading" ? (
