@@ -6,9 +6,27 @@
 }
 
 body {
-  background-color: #fffff1;
+  // background-color: #fffff1;
+  // color: #282828;
+  height: 100%;
+  width: 100%;
 }
+
 a {
   text-decoration: none;
 }
+.no-scroll {
+  overflow: hidden;
+}
 
+/* dark theme styles */ 
+
+.app.darkTheme {
+  background-color: #424436;
+}
+
+.app.lightTheme {
+  background-color: #fffff1;
+}
+
+/* */
