@@ -7,24 +7,25 @@ import { addCard, deleteCard } from "../../store/slices/favoritesSlice";
 import { useContext } from "react";
 import { Context } from "../../context";
 
+
 function ProductsCard({ id,title,image,price,discont_price }) {
 
   const { theme } = useContext(Context);
 
   const dispatch = useDispatch();
-  const cardFavorites = useSelector(state => state.favorites.cards.find(el=> el.id === id));
+  const cardFavorites = useSelector(state => state.favorites.cards.find(el => el.id === id));
 
   const styleHeart = cardFavorites ? favoritesHeart : heartIcon;
 
   // сначала проверяю есть ли в массиве обьект с таким id, 
   // если есть тогда удаляем - иначе добовляем его 
-   const addFavoritesCard = () => {
+  const addFavoritesCard = () => {
     if (cardFavorites) {
       dispatch(deleteCard({ id }));
     } else {
       dispatch(addCard({ id, title, image, price, discont_price }));
     }
-   };
+  };
 
   return (
     <div
@@ -38,6 +39,7 @@ function ProductsCard({ id,title,image,price,discont_price }) {
           alt={title}
           className={styles.cardImg}
         />
+
         {discont_price && discont_price < price && (
           <div className={styles.discountLabel}>
             -{Math.round(100 - (discont_price / price) * 100)}%
@@ -55,9 +57,15 @@ function ProductsCard({ id,title,image,price,discont_price }) {
       </div>
       <h4>{title}</h4>
       <div className={styles.priceContainer}>
-        <p>${Math.round(price)}</p>
-        {discont_price && discont_price < price && (
-          <p>${Math.round(discont_price)}</p>
+
+        {discont_price && discont_price < price ? (
+          <>
+            <p className={styles.discountPrice}>${Math.round(discont_price)}</p>
+            <p className={styles.noDiscountPrice}>${Math.round(price)}</p>
+          </>
+        ) : (
+          <p className={styles.originalPrice}>${Math.round(price)}</p>
+
         )}
       </div>
     </div>
