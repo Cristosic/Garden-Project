@@ -62,6 +62,8 @@ import NavMenu from "./components/NavMenu/NavMenu";
 import Footer from "./components/Footer/Footer";
 import { useSelector } from "react-redux";
 import { Context } from "./context";
+import ModalWindow from "./components/ModalWindow/ModalWindow";
+
 
 function App() {
 
