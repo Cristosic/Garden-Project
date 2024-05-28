@@ -3,6 +3,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 const initialState = {
   allProductsData: [],
   filterProductsData: [],
+  status:"",
 };
 
 export const getAllProducts = createAsyncThunk(

@@ -1,43 +1,19 @@
 .skeleton-container {
-    width: 100%;
-    padding: 30px;
-    background-color: #fefdfd;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .skeleton-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 40px; 
-  }
-  
-  .skeleton-square {
-    width: 100%;
-    padding-top: 100%;
-    background-color: #f2f6d3;
-    border-radius: 8px;
-    animation: pulse 2s infinite alternate; 
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
- 
-  }
-  
-  @keyframes pulse {
-    0% {
-      transform: scale(1); 
-    }
-    50% {
-      transform: scale(1.1); 
-    }
-    100% {
-      transform: scale(1);
-    }
-  }
-  
-  .skeleton-container h1 {
-    font-size: 36px;
-    font-weight: bold;
-    color: #282828;
-    margin-bottom: 10%;
-    animation: fadeInOut
- }
+  width: 100%;
+  padding-top: 40px;
+  background-color: #fffff1;
+}
+
+.skeleton-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 32px;
+}
+
+.skeleton-square {
+  width: 100%;
+  padding-top: 100%;
+  background-color: #f2f6d3;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
