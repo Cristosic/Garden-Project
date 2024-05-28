@@ -1,13 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useParams, Link, useLocation } from 'react-router-dom';
 import styles from "./SingleProductPage.module.css";
 import { serverUrl } from '../../utils/Config';
 import Counter from '../../components/Counter/Counter';
+import heartIcon from "../../media/icons/heartIcon.svg";
+import favoritesHeart from "../../media/icons/favoritesHeart.svg";
+import { useDispatch, useSelector } from "react-redux";
+import { addCard, deleteCard } from "../../store/slices/favoritesSlice";
+import { Context } from "../../context";
 
 const SingleProductPage = () => {
   const { productId } = useParams();
   const [product, setProduct] = useState(null);
   const location = useLocation();
+  const { theme } = useContext(Context);
+  const dispatch = useDispatch();
+  const cardFavorites = useSelector(state => state.favorites.cards.find(el => el.id === productId));
+  const styleHeart = cardFavorites ? favoritesHeart : heartIcon;
 
   useEffect(() => {
     const fetchProductDetails = async () => {
@@ -34,6 +43,15 @@ const SingleProductPage = () => {
     alert('Product added to cart!');
   };
 
+  const addFavoritesCard = (event) => {
+    event.stopPropagation(); // Остановка всплытия события
+    if (cardFavorites) {
+      dispatch(deleteCard({ id: productId }));
+    } else {
+      dispatch(addCard({ id: productId, ...product }));
+    }
+  };
+
   if (!product) {
     return <p>Loading...</p>;
   }
@@ -57,6 +75,14 @@ const SingleProductPage = () => {
       <div className={styles.productWrapper}>
         <img className={styles.productImage} src={`${serverUrl}${product.image}`} alt={product.title} />
         <div className={styles.productInfo}>
+          {/*  добавление иконки сердечка */}
+          <img
+            src={styleHeart}
+            alt="heart"
+            className={styles.heart}
+            onClick={addFavoritesCard}
+          />
+        
           <h1 className={styles.productTitle}>{product.title}</h1>
           <div className={styles.priceSection}>
             {product.discont_price && product.discont_price < product.price ? (
@@ -87,4 +113,3 @@ const SingleProductPage = () => {
 };
 
 export default SingleProductPage;
-
