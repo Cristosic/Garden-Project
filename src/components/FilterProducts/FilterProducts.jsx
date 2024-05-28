@@ -1,7 +1,7 @@
 
 import React, { useContext } from "react";
 import styles from "./FilterProducts.module.scss";
-import arrowDown from "../../media/icons/arrowDown.svg";
+import arrowDown from "../../media/icons/ArrowDown.svg";
 import { useDispatch } from "react-redux";
 import { filterPriceAction, filterSaleProductsAction, sortProductsAction } from "../../store/slices/allProductsSlice";
 import { Context } from "../../context";

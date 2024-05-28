@@ -1,0 +1,238 @@
+.singleProductPage {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.navigationLink {
+  display: flex;
+  align-items: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  margin-left: 50px;
+}
+
+.navigationLink .line {
+  width: 16px;
+  height: 1px;
+  background-color: #dddddd;
+}
+
+.navigationLink button {
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: 1px solid #dddddd;
+  color: #8b8b8b;
+  background-color: rgba(255, 255, 255, 0.1);
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.navigationLink button:hover {
+  background-color: #443636;
+  color: white;
+  border-color: #dddddd;
+}
+
+.navigationLink .buttonActive {
+  color: #443736;
+  border: 1px solid #dddddd;
+}
+
+/* Дополнительные стили */
+
+.productWrapper {
+
+
+  width: 1360px;
+  height: 574px;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  margin-left: 50px;
+}
+
+.productImage {
+  width: 780px;
+  height: 572px;
+  border-radius: var(--radiusbig);
+}
+
+.productInfo {
+  width: 548px;
+  height: 574px;
+  display: flex;
+  flex-direction: column;
+}
+
+.productTitle {
+  font-family: Montserrat;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 44px;
+  letter-spacing: 0.03em;
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.priceSection {
+  width: 359px;
+  height: 70px;
+
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.currentPrice {
+  font-family: Montserrat;
+  font-size: 64px;
+  font-weight: 700;
+  line-height: 70.4px;
+  text-align: left;
+}
+
+.oldPrice {
+  font-family: Montserrat;
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 52px;
+  text-align: left;
+  text-decoration: line-through;
+  color: grey;
+}
+
+.discount {
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: 500;
+  text-align: left;
+  background-color: #f26d22;
+  color: white;
+  border-radius: 6px;
+  padding: 4px 8px;
+  margin-bottom: 10%;
+}
+
+
+
+.quantityContainer {
+  width: 100%;
+
+
+  gap: 0px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* по желанию для вертикального выравнивания */
+
+
+}
+
+.quantityButton {
+  font-size: 24px;
+  width: 58px;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  cursor: pointer;
+  border-radius: 6px;
+
+}
+
+.quantity {
+  font-size: 24px;
+  width: 96px;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  line-height: 32px;
+
+
+  border-radius: 6px;
+}
+
+.addToCartContainer {
+
+  width: 548px;
+  height: 58px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  /* пространство между счетчиком и кнопкой */
+}
+
+.addToCartButton {
+
+
+  padding: 16px 32px 16px 32px;
+  gap: 10px;
+  border-radius: var(--radiussmall);
+  opacity: 0px;
+
+
+  width: 316px;
+  height: 58px;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 26px;
+  text-align: center;
+  background-color: #92A134;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.addToCartButton:hover {
+  background-color: #005000;
+}
+
+.productDescription {
+  width: 548px;
+  height: 306px;
+  opacity: 0px;
+
+  margin-top: 30px;
+
+
+}
+
+.productDescription h2 {
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 26px;
+  text-align: left;
+  margin-bottom: 15px;
+
+}
+
+.productDescription p {
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20.8px;
+  text-align: left;
+  color: #424436;
+  padding-bottom: 15px;
+}
+
+
+.readMoreLink {
+  color: #424436;
+  margin-bottom: 20px;
+  text-decoration: underline;
+}
