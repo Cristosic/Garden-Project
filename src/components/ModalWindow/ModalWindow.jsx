@@ -3,9 +3,11 @@ import styles from "./ModalWindow.module.css";
 import darkCrossIcon from "../../media/icons/darkCrossIcon.svg";
 
 export default function ModalWindow({ isOpen, isClosed, children }) {
+
   const onWrapper = () => {
     isClosed();
   };
+
 
   useEffect(() => {
     if (isOpen) {
