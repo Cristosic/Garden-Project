@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 const initialState = {
-  oneCategoriesData: { category: {}, data: [] },
+  oneCategoriesData: [],
   filterProductsData: [],
   status: "",
   error: "",
@@ -26,7 +26,7 @@ const oneCategorySlice = createSlice({
     sortOneCategoryAction: (state, action) => {
       const select = action.payload;
       if (select === "default") {
-        state.filterProductsData = [...state.oneCategoriesData.data];
+        state.filterProductsData = [...state.oneCategoriesData];
       } else {
         const sortCard = [...state.filterProductsData];
         if (select === "price-high-low") {
@@ -41,7 +41,7 @@ const oneCategorySlice = createSlice({
     },
     filterOneCategoryPriceAction: (state, action) => {
       const { min_price, max_price } = action.payload;
-      state.filterProductsData = state.oneCategoriesData.data.filter(
+      state.filterProductsData = state.oneCategoriesData.filter(
         (el) =>
           (min_price === 0 || el.price >= min_price) &&
           (max_price === Infinity || el.price <= max_price)
@@ -49,11 +49,11 @@ const oneCategorySlice = createSlice({
     },
     filterOneCategorySaleAction: (state, action) => {
       if (action.payload) {
-        state.filterProductsData = state.oneCategoriesData.data.filter(
+        state.filterProductsData = state.oneCategoriesData.filter(
           (product) => product.discont_price !== null
         );
       } else {
-        state.filterProductsData = [...state.oneCategoriesData.data];
+        state.filterProductsData = [...state.oneCategoriesData];
       }
     },
   },
@@ -63,9 +63,8 @@ const oneCategorySlice = createSlice({
         state.status = "loading";
       })
       .addCase(getOneCategory.fulfilled, (state, action) => {
-        const data = action.payload;
-        state.oneCategoriesData = { category: data.category, data: data.data };
-        state.filterProductsData = data.data;
+        state.oneCategoriesData = action.payload.data;
+        state.filterProductsData = action.payload.data;
         state.status = "ready";
       })
       .addCase(getOneCategory.rejected, (state, action) => {

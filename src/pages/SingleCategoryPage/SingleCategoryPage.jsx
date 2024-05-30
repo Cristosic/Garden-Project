@@ -13,9 +13,11 @@ export default function SingleCategoryPage() {
   const { categoryId } = useParams();
   const dispatch = useDispatch();
 
-  const oneCategoryState = useSelector((state) => state.oneCategory.filterProductsData);
+  const oneCategoryState = useSelector(
+    (state) => state.oneCategory.filterProductsData
+  );
   const status = useSelector((state) => state.oneCategory.status);
-  const category = useSelector((state) => state.oneCategory.oneCategoriesData.category);
+  const category = useSelector((state) => state.oneCategory.oneCategoriesData);
 
   useEffect(() => {
     if (categoryId) {
@@ -36,7 +38,11 @@ export default function SingleCategoryPage() {
   }
 
   return (
-    <div className={`${styles.categories_container} ${theme === "light" ? styles.lightTheme : styles.darkTheme}`}>
+    <div
+      className={`${styles.categories_container} ${
+        theme === "light" ? styles.lightTheme : styles.darkTheme
+      }`}
+    >
       <div className={styles.btn_links_categoriesPage}>
         <Link to={`/`}>
           <button className={styles.btn_category_card}>MainPage</button>
