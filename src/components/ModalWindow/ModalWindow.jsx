@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import styles from "./ModalWindow.module.css";
 import darkCrossIcon from "../../media/icons/darkCrossIcon.svg";
 
-export default function ModalWindow({ isOpen, isClosed, children }) {
+export default function ModalWindow({ isOpen, isClosed, children, cardContentStyles }) {
   
   const onWrapper = () => {
     isClosed();
@@ -14,7 +14,7 @@ export default function ModalWindow({ isOpen, isClosed, children }) {
         <div className={styles.modal}>
           <div className={styles.modal_wrapper} onClick={onWrapper}>
             <div
-              className={styles.modal_content}
+              className={`${styles.modal_content} ${cardContentStyles}`}
               onClick={(event) => event.stopPropagation()}
             >
               <img

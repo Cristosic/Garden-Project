@@ -1,7 +1,8 @@
 /* dark theme styles */
 
 .lightTheme .priceInputs ,
-.lightTheme .sortContainer {
+.lightTheme .sortContainer,
+.lightTheme .salesProducts > label {
   color: #424436;
 }
 
@@ -10,7 +11,8 @@
 }
 
 .darkTheme .priceInputs,
-.darkTheme .sortContainer {
+.darkTheme .sortContainer,
+.salesProducts > label {
   color: #fffff1;
 }
 

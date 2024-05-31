@@ -1,24 +1,31 @@
 import styles from "./ProductsCard.module.scss";
 import heartIcon from "../../media/icons/heartIcon.svg";
 import cartIcon from "../../media/icons/cartIcon.svg";
-import favoritesHeart from "../../media/icons/favoritesHeart.svg"
+import favoritesHeart from "../../media/icons/favoritesHeart.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { addCard, deleteCard } from "../../store/slices/favoritesSlice";
 import { useContext } from "react";
 import { Context } from "../../context";
 
-
-function ProductsCard({ id,title,image,price,discont_price }) {
-
+function ProductsCard({
+  id,
+  title,
+  image,
+  price,
+  discont_price,
+  hideCartIcon,
+}) {
   const { theme } = useContext(Context);
 
   const dispatch = useDispatch();
-  const cardFavorites = useSelector(state => state.favorites.cards.find(el => el.id === id));
+  const cardFavorites = useSelector((state) =>
+    state.favorites.cards.find((el) => el.id === id)
+  );
 
   const styleHeart = cardFavorites ? favoritesHeart : heartIcon;
 
-  // сначала проверяю есть ли в массиве обьект с таким id, 
-  // если есть тогда удаляем - иначе добовляем его 
+  // сначала проверяю есть ли в массиве обьект с таким id,
+  // если есть тогда удаляем - иначе добовляем его
   const addFavoritesCard = () => {
     if (cardFavorites) {
       dispatch(deleteCard({ id }));
@@ -52,12 +59,13 @@ function ProductsCard({ id,title,image,price,discont_price }) {
             className={styles.heart}
             onClick={addFavoritesCard}
           />
-          <img src={cartIcon} alt="bag" className={styles.shoppingBag} />
+          {!hideCartIcon && (
+            <img src={cartIcon} alt="bag" className={styles.shoppingBag} />
+          )}
         </div>
       </div>
       <h4>{title}</h4>
       <div className={styles.priceContainer}>
-
         {discont_price && discont_price < price ? (
           <>
             <p className={styles.discountPrice}>${Math.round(discont_price)}</p>
@@ -65,7 +73,6 @@ function ProductsCard({ id,title,image,price,discont_price }) {
           </>
         ) : (
           <p className={styles.originalPrice}>${Math.round(price)}</p>
-
         )}
       </div>
     </div>
