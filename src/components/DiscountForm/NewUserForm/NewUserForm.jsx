@@ -6,22 +6,27 @@ import { useForm } from "react-hook-form";
 import { BsXOctagon } from "react-icons/bs";
 import ModalWindow from "../../ModalWindow/ModalWindow";
 
-export default function NewUserForm() {
-
+export default function NewUserForm({
+  orderStyles,
+  inputStyles,
+  order_msgStyles,
+  buttonStyles,
+  order_msg_errorStyles,
+  icon_containerStyles,
+  iconStyles,
+  conf_msgStyles,
+  buttonText = "Get a discount",
+  successText = "Request Submitted",
+  requestType = "discount",
+}) {
   const dispatch = useDispatch();
 
   const [modalActive, setModalActive] = useState(false);
 
   const [confirmationMessage, setConfirmationMessage] = useState("");
-  const [buttonText, setButtonText] = useState("Get a discount");
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-  } = useForm();
+  const { register, handleSubmit, formState: { errors }, reset, } = useForm();
 
   const nameRegister = register("name", {
     required: "*Name field is required",
@@ -54,67 +59,67 @@ export default function NewUserForm() {
     dispatch(addNewUser(newUser));
     reset();
 
-    setConfirmationMessage("The discount has been successfully sent by email.");
-    setButtonText("Request Submitted");
+    if (requestType === "discount") {
+      setConfirmationMessage("The discount has been successfully sent by email.");
+    } else if (requestType === "Order") {
+      setConfirmationMessage("The order has been successfully submitted.");
+      setModalActive(true)
+    }
+    
     setIsSubmitted(true);
 
-    setModalActive(true)
 
     setTimeout(() => {
       setConfirmationMessage("");
-      setButtonText("Get a discount");
       setIsSubmitted(false);
     }, 5000);
   };
 
   return (
-    <form
-      className={`${styles.newUser} `}
-      onSubmit={handleSubmit(getData)}
-    >
-      <div className={styles.error_imput}>
-        {" "}
+    <form className={`${styles.newUser} ${orderStyles}`} onSubmit={handleSubmit(getData)}>
+
+      <div className={`${styles.error_imput} ${order_msg_errorStyles}`}>
         {errors.name && (
-          <p className={`${styles.error_msg} `}>
+          <p className={`${styles.error_msg} ${order_msgStyles}`}>
             {errors.name.message}
           </p>
         )}
       </div>
 
       <input
-        className={`${styles.inputForm} `}
+        className={`${styles.inputForm} ${inputStyles}`}
         type="text"
         placeholder="Name"
         name="name"
         {...nameRegister}
       />
 
-      <div className={styles.error_imput}>
+      <div className={`${styles.error_imput} ${order_msg_errorStyles}`}>
         {errors.number && (
-          <p className={`${styles.error_msg} `}>
+          <p className={`${styles.error_msg} ${order_msgStyles}`}>
             {errors.number.message}
           </p>
-        )}{" "}
+        )}
       </div>
 
       <input
-        className={`${styles.inputForm} `}
+        className={`${styles.inputForm} ${inputStyles}`}
         type="text"
         placeholder="Phone number"
         name="number"
         {...numberRegister}
       />
 
-      <div className={styles.error_imput}>
+      <div className={`${styles.error_imput} ${order_msg_errorStyles}`}>
         {errors.email && (
-          <p className={`${styles.error_msg} `}>
+          <p className={`${styles.error_msg} ${order_msgStyles}`}>
             {errors.email.message}
           </p>
-        )}{" "}
+        )}
       </div>
 
       <input
-        className={`${styles.inputForm} `}
+        className={`${styles.inputForm} ${inputStyles}`}
         type="text"
         placeholder="Email"
         name="email"
@@ -122,34 +127,39 @@ export default function NewUserForm() {
       />
 
       {errors.name && (
-        <div className={styles.error_icon_container}>
-          <BsXOctagon className={styles.error_icon} />
-          <p className={`${styles.conf_msg}`}>
+        <div
+          className={`${styles.error_icon_container} ${icon_containerStyles}`}
+        >
+          <BsXOctagon className={`${styles.error_icon} ${iconStyles}`} />
+          <p className={`${styles.conf_msg} ${conf_msgStyles}`}>
             Wrong input. Try again
           </p>
         </div>
       )}
 
       {confirmationMessage && (
-        <div className={styles.conf_msg_container}> 
-          <p className={styles.conf_msg}>{confirmationMessage}</p>
+        <div className={`${styles.conf_msg_container} ${icon_containerStyles}`}>
+          <p className={`${styles.conf_msg} ${conf_msgStyles}`}>{confirmationMessage}</p>
         </div>
       )}
 
       <div className={styles.buttonContainer}>
         <button
-          className={`${styles.submitButton}  ${
-            isSubmitted ? styles.submittedButton : ""
-          }`}
-          type="submit"
-        >
-          {buttonText}
+          className={`${styles.submitButton} ${buttonStyles} ${
+            isSubmitted ? styles.submittedButton : "" }`} type="submit">
+          {isSubmitted && requestType === "Order" ? "Submit Order" : isSubmitted ? successText : buttonText}
         </button>
       </div>
+      <ModalWindow isOpen={modalActive} isClosed={() => setModalActive(false)}>
+        <h3>Congratulations!</h3>
+        <p>Your order has been successfully placed on the website.<br /><br />A manager will contact you shortly to confirm your order.</p>
+      </ModalWindow>
+
       <ModalWindow isOpen={modalActive} isClosed={() => setModalActive(false)}>
         <h3>Great!</h3>
         <p>The discount has been successfully sent by email</p>
       </ModalWindow>
+
 
     </form>
   );
