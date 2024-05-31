@@ -101,9 +101,12 @@ const SingleProductPage = () => {
               <span className={styles.currentPrice}>${product.price}</span>
             )}
           </div>
-          <div className={styles.addToCartContainer}>
+          <div  className={styles.addToCartContainer}>
             <Counter />
+            <div className={styles.containertButtonCart}  >
             <button className={styles.addToCartButton} onClick={handleAddToCart}>Add to cart</button>
+            </div>
+          
           </div>
           <div className={styles.productDescription}>
             <h2>Description</h2>
