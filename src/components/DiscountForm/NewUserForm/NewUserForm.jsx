@@ -63,11 +63,12 @@ export default function NewUserForm({
       setConfirmationMessage("The discount has been successfully sent by email.");
     } else if (requestType === "Order") {
       setConfirmationMessage("The order has been successfully submitted.");
+      setModalActive(true)
     }
+    
     setIsSubmitted(true);
 
-    setModalActive(true)
-    
+
     setTimeout(() => {
       setConfirmationMessage("");
       setIsSubmitted(false);
@@ -149,6 +150,10 @@ export default function NewUserForm({
           {isSubmitted && requestType === "Order" ? "Submit Order" : isSubmitted ? successText : buttonText}
         </button>
       </div>
+      <ModalWindow isOpen={modalActive} isClosed={() => setModalActive(false)}>
+        <h3>Congratulations!</h3>
+        <p>Your order has been successfully placed on the website.<br /><br />A manager will contact you shortly to confirm your order.</p>
+      </ModalWindow>
 
       <ModalWindow isOpen={modalActive} isClosed={() => setModalActive(false)}>
         <h3>Great!</h3>

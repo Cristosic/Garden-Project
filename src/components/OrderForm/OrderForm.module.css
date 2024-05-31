@@ -24,7 +24,7 @@ h2 {
   color: #424436;
 }
 
-p {
+.orderText p {
   font-size: 40px;
   font-weight: 500;
   line-height: 52px;
