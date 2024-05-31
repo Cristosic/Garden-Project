@@ -5,6 +5,7 @@ import { serverUrl } from '../../utils/Config';
 import Counter from '../../components/Counter/Counter';
 import heartIcon from "../../media/icons/heartIcon.svg";
 import favoritesHeart from "../../media/icons/favoritesHeart.svg";
+import hoverHeart from "../../media/icons/hoverHeart.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { addCard, deleteCard } from "../../store/slices/favoritesSlice";
 import { Context } from "../../context";
@@ -16,7 +17,7 @@ const SingleProductPage = () => {
   const { theme } = useContext(Context);
   const dispatch = useDispatch();
   const cardFavorites = useSelector(state => state.favorites.cards.find(el => el.id === productId));
-  const styleHeart = cardFavorites ? favoritesHeart : heartIcon;
+  const [isFavorite, setIsFavorite] = useState(!!cardFavorites);
 
   useEffect(() => {
     const fetchProductDetails = async () => {
@@ -44,12 +45,13 @@ const SingleProductPage = () => {
   };
 
   const addFavoritesCard = (event) => {
-    event.stopPropagation(); // Остановка всплытия события
-    if (cardFavorites) {
+    event.stopPropagation(); // Остановка 
+    if (isFavorite) {
       dispatch(deleteCard({ id: productId }));
     } else {
       dispatch(addCard({ id: productId, ...product }));
     }
+    setIsFavorite(!isFavorite); // Переключение состояния избранного
   };
 
   if (!product) {
@@ -75,12 +77,14 @@ const SingleProductPage = () => {
       <div className={styles.productWrapper}>
         <img className={styles.productImage} src={`${serverUrl}${product.image}`} alt={product.title} />
         <div className={styles.productInfo}>
-          {/*  добавление иконки сердечка */}
+          {/*  добавление сердцаааааа */}
           <img
-            src={styleHeart}
+            src={isFavorite ? favoritesHeart : heartIcon}
             alt="heart"
-            className={styles.heart}
+            className={`${styles.heart} ${isFavorite ? styles.favorite : ''}`}
             onClick={addFavoritesCard}
+            onMouseOver={e => e.currentTarget.src = hoverHeart}
+            onMouseOut={e => e.currentTarget.src = isFavorite ? favoritesHeart : heartIcon}
           />
         
           <h1 className={styles.productTitle}>{product.title}</h1>

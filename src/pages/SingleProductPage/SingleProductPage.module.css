@@ -1,5 +1,5 @@
 .singleProductPage {
-  padding: 20px;
+  margin: 0 40px;
   display: flex;
   flex-direction: column;
 }
@@ -7,9 +7,7 @@
 .navigationLink {
   display: flex;
   align-items: center;
-  margin-top: 50px;
-  margin-bottom: 50px;
-  margin-left: 50px;
+  padding: 40px 0;
 }
 
 .navigationLink .line {
@@ -30,7 +28,7 @@
 }
 
 .navigationLink button:hover {
-  background-color: #443636;
+  background-color: #424436;
   color: white;
   border-color: #dddddd;
 }
@@ -43,23 +41,24 @@
 /*Мои Дополнительные стили */
 
 .productWrapper {
-  width: 1360px;
-  height: 574px;
+  width: 100%;
+  height: 650px;
   display: flex;
   align-items: center;
   gap: 32px;
-  margin-left: 50px;
 }
 
 .productImage {
-  width: 780px;
-  height: 572px;
+width: 80%;
+  /* width: 780px; */
+  height: 100%;
   border-radius: var(--radiusbig);
 }
 
 .productInfo {
-  width: 548px;
-  height: 574px;
+  width: 100%;
+  /* width: 548px; */
+  height: 100%;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -75,22 +74,33 @@
   cursor: pointer;
   width: 44px;
   height: 38px;
+  color: white; /* начальный цвет */
 }
 
+/* стиль для сердечка в избранном */
+.productInfo .heart.favorite {
+  color: #424436; /* цвет, когда добавлено в избранное */
+}
+
+/* стиль при наведении */
+.productInfo .heart:hover {
+  color: #424436; /* цвет сердечка при наведении */
+}
 
 .productTitle {
-  font-family: Montserrat;
   font-size: 40px;
   font-weight: 700;
   line-height: 44px;
   letter-spacing: 0.03em;
   text-align: left;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
 }
 
 .priceSection {
   width: 359px;
-  height: 70px;
+   /* height: 70px;  */
+  position: relative;
+  padding: 32px 0;
   display: flex;
   align-items: center;
   gap: 16px;
@@ -116,24 +126,24 @@
 }
 
 .discount {
-  font-family: Montserrat;
   font-size: 20px;
   font-weight: 500;
   text-align: left;
   background-color: #f26d22;
-  color: white;
+  color: #FFFFFF;
   border-radius: 6px;
   padding: 4px 8px;
-  margin-bottom: 10%;
+  /* margin-bottom: 5%; */
+  position: absolute;
+  top: 0;
+  right: 0  ;
 }
 
 .quantityContainer {
   width: 100%;
-  gap: 0px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* по желанию для вертикального выравнивания */
 }
 
 .quantityButton {
@@ -144,7 +154,7 @@
   align-items: center;
   justify-content: center;
   border: 1px solid #ddd;
-  background-color: #fff;
+  background-color: #FFFFFF;
   cursor: pointer;
   border-radius: 6px;
 }
@@ -157,53 +167,52 @@
   align-items: center;
   justify-content: center;
   border: 1px solid #ddd;
-  background-color: #fff;
+  background-color: #FFFFFF;
   line-height: 32px;
   border-radius: 6px;
 }
 
 .addToCartContainer {
-  width: 548px;
-  height: 58px;
+
+  /* width: 548px;
+  height: 58px; */
   display: flex;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   gap: 16px;
-  /* пространство между счетчиком и кнопкой */
+
 }
 
 .addToCartButton {
-  padding: 16px 32px 16px 32px;
+  padding: 16px 32px;
   gap: 10px;
   border-radius: var(--radiussmall);
   opacity: 0px;
   width: 316px;
-  height: 58px;
-  font-family: Montserrat;
   font-size: 20px;
   font-weight: 600;
   line-height: 26px;
   text-align: center;
   background-color: #92A134;
-  color: white;
+  color: #FFFFFF;
   border: none;
   border-radius: 6px;
   cursor: pointer;
 }
 
 .addToCartButton:hover {
-  background-color: #005000;
+  background-color: #424436;
 }
 
 .productDescription {
-  width: 548px;
+  width: 100%;
+  /* width: 548px; */
   height: 306px;
   opacity: 0px;
   margin-top: 30px;
 }
 
 .productDescription h2 {
-  font-family: Montserrat;
   font-size: 20px;
   font-weight: 600;
   line-height: 26px;
