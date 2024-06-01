@@ -13,7 +13,6 @@ import NavMenu from "./components/NavMenu/NavMenu";
 import Footer from "./components/Footer/Footer";
 import { useSelector } from "react-redux";
 import { Context } from "./context";
-import ModalWindow from "./components/ModalWindow/ModalWindow";
 
 
 function App() {
@@ -36,7 +35,7 @@ function App() {
           <Route path="/categories" element={<CategoriesPage />} />
           <Route path="/favorites" element={<FavoriteItemPage />} />
           <Route path="/categories/:categoryId" element={<SingleCategoryPage />} />
-          <Route path="/singleProduct" element={<SingleProductPage />} />
+          <Route path="/product/:productId" element={<SingleProductPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
         <Footer />

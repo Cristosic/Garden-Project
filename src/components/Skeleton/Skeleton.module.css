@@ -1,0 +1,19 @@
+.skeleton-container {
+  width: 100%;
+  padding-top: 40px;
+  background-color: #fffff1;
+}
+
+.skeleton-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 32px;
+}
+
+.skeleton-square {
+  width: 100%;
+  padding-top: 100%;
+  background-color: #f2f6d3;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

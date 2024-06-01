@@ -1,38 +1,36 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 const initialState = {
-  categoriesData: []
-}
+  categoriesData: [],
+};
 
-export const getCategories = createAsyncThunk('categories/getCategories', async () =>
-{
-  const res = await fetch('http://localhost:3333/categories/all');
-  const data = res.json();
-  return data
-})
-
+export const getCategories = createAsyncThunk(
+  "categories/getCategories",
+  async () => {
+    const res = await fetch("http://localhost:3333/categories/all");
+    const data = res.json();
+    return data;
+  }
+);
 
 const categoriesSlice = createSlice({
-  name: 'categories',
+  name: "categories",
   initialState,
-  reducers: {
-    
-  },
+  reducers: {},
 
   extraReducers: (builder) => {
     builder
-    .addCase(getCategories.pending, (state) => {
-      state.status = 'loading'
-    })
-    .addCase(getCategories.fulfilled, (state, action) => {
-      state.categoriesData = action.payload
-      state.status = 'ready'
-    })
-    .addCase(getCategories.rejected, (state) => {
-      state.status = 'error'
-    })
-  }
-})
+      .addCase(getCategories.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(getCategories.fulfilled, (state, action) => {
+        state.categoriesData = action.payload;
+        state.status = "ready";
+      })
+      .addCase(getCategories.rejected, (state) => {
+        state.status = "error";
+      });
+  },
+});
 
 export default categoriesSlice.reducer;
-export const {} = categoriesSlice.actions;

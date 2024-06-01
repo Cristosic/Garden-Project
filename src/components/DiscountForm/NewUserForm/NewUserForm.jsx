@@ -74,6 +74,7 @@ export default function NewUserForm({
     }
     setIsSubmitted(true);
 
+
     setTimeout(() => {
       setConfirmationMessage("");
       setIsSubmitted(false);
@@ -175,6 +176,7 @@ export default function NewUserForm({
           A manager will contact you shortly to confirm your order.
         </p>
       </ModalWindow>
+
     </form>
   );
 }
