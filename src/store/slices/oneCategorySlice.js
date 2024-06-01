@@ -7,6 +7,7 @@ const initialState = {
   error: "",
 };
 
+
 export const getOneCategory = createAsyncThunk(
   "oneCategory/getOneCategory",
   async (categoryId) => {
@@ -83,7 +84,7 @@ const oneCategorySlice = createSlice({
 
 export default oneCategorySlice.reducer;
 export const {
-  sortProductsAction,
-  filterPriceAction,
-  filterSaleProductsAction,
+  sortOneCategoryAction,
+  filterOneCategoryPriceAction,
+  filterOneCategorySaleAction,
 } = oneCategorySlice.actions;

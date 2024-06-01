@@ -1,7 +1,7 @@
 /* dark theme styles */
 
 .lightTheme .btn_links_categoriesPage + span,
-.lightTheme .btn_category_card.active {
+.lightTheme {
   color: #424436;
 }
 
@@ -60,7 +60,12 @@
   font-weight: 500;
   cursor: pointer;
   font-size: 16px;
-}
+  &:hover{
+    background-color: #424436;
+    color: white;
+   
+  }
+  }
 
 .btn_links_categoriesPage {
   display: flex;

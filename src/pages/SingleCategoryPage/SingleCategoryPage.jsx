@@ -6,20 +6,15 @@ import { getOneCategory } from "../../store/slices/oneCategorySlice";
 import ProductsCard from "../../components/ProductsCard/ProductsCard";
 import { Link } from "react-router-dom";
 import { Context } from "../../context";
-import FilterProducts from './../../components/FilterProducts/FilterProducts';
-
+import FilterProducts from "./../../components/FilterProducts/FilterProducts";
+import Skeleton from "../../components/Skeleton/Skeleton";
 
 export default function SingleCategoryPage() {
-
   const { theme } = useContext(Context);
-
   const { categoryId } = useParams();
-
   const dispatch = useDispatch();
-
   const oneCategoryState = useSelector(
-    (state) => state.oneCategory.filterProductsData
-  );
+    (state) => state.oneCategory.filterProductsData);
 
   console.log(oneCategoryState);
 
@@ -71,12 +66,12 @@ export default function SingleCategoryPage() {
         </div>
 
         <span>{category.title}</span>
-        
-        <FilterProducts oneCategoryFilter={true}/>
-       
+
+        <FilterProducts oneCategoryFilter={true} />
+
         <div className={styles.cardContainer}>
           {status === "loading" ? (
-            <p>Loading...</p>
+            <Skeleton />
           ) : (
             oneCategoryState.data.map((el) => (
               <ProductsCard key={el.id} {...el} />
