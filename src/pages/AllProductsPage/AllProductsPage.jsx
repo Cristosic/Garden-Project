@@ -36,7 +36,7 @@ export default function AllProductsPage() {
       </div>
 
       <h1 className={styles.titlePage}>All products</h1>
-      <FilterProducts schowSaleFilter={true} />
+      <FilterProducts showSaleFilter={true} />
       {status ? (
         <Skeleton />
       ) : (
