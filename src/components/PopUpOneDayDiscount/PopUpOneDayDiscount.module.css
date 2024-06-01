@@ -1,0 +1,31 @@
+.cardContentStyles {
+  white-space: wrap;
+  padding: 32px;
+}
+
+.modalWindowContent > h3 {
+  font-size: 40px;
+  font-weight: 600px;
+  line-height: 44px;
+  margin-bottom: 16px;
+}
+
+.addToCartButton {
+  padding: 16px 32px;
+  color: #424436;
+  background-color: #fffff1;
+  border: 1px solid #dddddd;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 16px;
+  font-size: 20px;
+  line-height: 26px;
+  font-weight: 600;
+}
+
+.addToCartButton:hover {
+  background-color: #424436;
+  color: #ffffff;
+  border: none;
+}

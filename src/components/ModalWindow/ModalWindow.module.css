@@ -29,9 +29,8 @@
   font-size: 20px;
   width: 100%;
   position: relative;
-  padding: 32px 92px 16px 32px;
+  padding: 32px;
 }
-
 
 .modalCross {
   cursor: pointer;
@@ -39,8 +38,7 @@
   top: 32px;
   right: 32px;
   font-size: 30px;
-  width: 30px;
-  height: 30px;
+  height: 44px;
 }
 
 .modal_content>h3 {
