@@ -10,16 +10,12 @@ const initialState = {
 export const getOneCategory = createAsyncThunk(
   "oneCategory/getOneCategory",
   async (categoryId) => {
-    try {
-      const res = await fetch(`http://localhost:3333/categories/${categoryId}`);
-      if (!res.ok) {
-        throw new Error("No data found");
-      }
-      const data = await res.json();
-      return data;
-    } catch (error) {
-      return { error: error.message };
+    const res = await fetch(`http://localhost:3333/categories/${categoryId}`);
+    if (!res.ok) {
+      throw new Error("No data found");
     }
+    const data = await res.json();
+    return data;
   }
 );
 
@@ -27,7 +23,6 @@ const oneCategorySlice = createSlice({
   name: "oneCategory",
   initialState,
   reducers: {
-    //Сортировка select
     sortOneCategoryAction: (state, action) => {
       const select = action.payload;
       if (select === "default") {
@@ -44,7 +39,6 @@ const oneCategorySlice = createSlice({
         state.filterProductsData = sortCard;
       }
     },
-    //Фильтрация по цене from = to
     filterOneCategoryPriceAction: (state, action) => {
       const { min_price, max_price } = action.payload;
       state.filterProductsData = state.oneCategoriesData.filter(
@@ -53,7 +47,6 @@ const oneCategorySlice = createSlice({
           (max_price === Infinity || el.price <= max_price)
       );
     },
-    //Фильтрация чекбокс
     filterOneCategorySaleAction: (state, action) => {
       if (action.payload) {
         state.filterProductsData = state.oneCategoriesData.filter(
@@ -70,8 +63,8 @@ const oneCategorySlice = createSlice({
         state.status = "loading";
       })
       .addCase(getOneCategory.fulfilled, (state, action) => {
-        state.oneCategoriesData = action.payload;
-        state.filterProductsData = action.payload;
+        state.oneCategoriesData = action.payload.data;
+        state.filterProductsData = action.payload.data;
         state.status = "ready";
       })
       .addCase(getOneCategory.rejected, (state, action) => {
@@ -81,9 +74,10 @@ const oneCategorySlice = createSlice({
   },
 });
 
-export default oneCategorySlice.reducer;
 export const {
-  sortProductsAction,
-  filterPriceAction,
-  filterSaleProductsAction,
+  sortOneCategoryAction,
+  filterOneCategoryPriceAction,
+  filterOneCategorySaleAction,
 } = oneCategorySlice.actions;
+
+export default oneCategorySlice.reducer;
