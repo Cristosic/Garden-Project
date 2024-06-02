@@ -6,13 +6,13 @@ import ProductsCard from "../../components/ProductsCard/ProductsCard";
 import { Link } from "react-router-dom";
 import FilterProducts from "../../components/FilterProducts/FilterProducts";
 import { Context } from "../../context";
+import Skeleton from "./../../components/Skeleton/Skeleton";
 
 export default function AllProductsPage() {
-
   const { theme } = useContext(Context);
   const dispatch = useDispatch();
   const products = useSelector((state) => state.allProducts.filterProductsData);
-
+  const status = useSelector((state) => state.allProducts.status === "loading");
   useEffect(() => {
     dispatch(getAllProducts());
   }, [dispatch]);
@@ -36,11 +36,15 @@ export default function AllProductsPage() {
       </div>
 
       <h1 className={styles.titlePage}>All products</h1>
-      <FilterProducts />
-
-      <div className={styles.cardContainer}>
-        {products && products.map((el) => <ProductsCard key={el.id} {...el} />)}
-      </div>
+      <FilterProducts showSaleFilter={true} />
+      {status ? (
+        <Skeleton />
+      ) : (
+        <div className={styles.cardContainer}>
+          {products &&
+            products.map((el) => <ProductsCard key={el.id} {...el} />)}
+        </div>
+      )}
     </div>
   );
 }

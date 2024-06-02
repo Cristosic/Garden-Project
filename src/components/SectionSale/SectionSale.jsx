@@ -20,8 +20,6 @@ function SectionSale() {
 
   const productsAllSale = filterSaleProducts(products);
 
-  console.log(productsAllSale);
-
   useEffect(() => {
     dispatch(getAllProducts());
   }, []);

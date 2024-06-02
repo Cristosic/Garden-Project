@@ -15,7 +15,9 @@ export default function NotFoundPage() {
        theme === "light" ? styles.lightTheme : styles.darkTheme
      }`}
    >
-     <div className={styles.containerNotFound}>
+
+    
+     <div className={styles.containerImg}>
        <img className={styles.four} src={four} alt="4" />
        <img className={styles.zero} src={zero} alt="0" />
        <img className={styles.four} src={four} alt="4" />
