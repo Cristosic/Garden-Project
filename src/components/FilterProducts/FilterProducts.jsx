@@ -56,7 +56,8 @@ function FilterProducts({ showSaleFilter, oneCategoryFilter, favoritesPage }) {
         <button className={styles.filterButton} type="submit">Filter</button>
       </form>
 
-      {showSaleFilter && (
+
+      {schowSaleFilter || oneCategoryFilter && (
         <div className={styles.salesProducts}>
           <label>
             Discounted items
@@ -71,6 +72,7 @@ function FilterProducts({ showSaleFilter, oneCategoryFilter, favoritesPage }) {
           </label>
         </div>
       )}
+      
 
       <div className={styles.sortContainer}>
         <label htmlFor="sortSelect">Sort</label>
