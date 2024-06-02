@@ -7,7 +7,7 @@ import ProductsCard from "../../components/ProductsCard/ProductsCard";
 import { Link } from "react-router-dom";
 import { Context } from "../../context";
 import FilterProducts from "./../../components/FilterProducts/FilterProducts";
-import Skeleton from "../../components/Skeleton/Skeleton";
+
 
 
 export default function SingleCategoryPage() {
@@ -17,6 +17,8 @@ export default function SingleCategoryPage() {
   const oneCategoryState = useSelector(
     (state) => state.oneCategory.filterProductsData
   );
+
+  console.log(oneCategoryState);
 
   const status = useSelector((state) => state.oneCategory.status);
   const category = useSelector((state) => state.oneCategory.oneCategoriesData);
@@ -70,16 +72,14 @@ export default function SingleCategoryPage() {
       <FilterProducts showSaleFilter={true} oneCategoryFilter={true} />
 
         <div className={styles.cardContainer}>
-          {status === "loading" ? (
-            <Skeleton />
-          ) : (
-            oneCategoryState.data.map((el) => (
+
+          {
+            oneCategoryState.map((el) => (
               <ProductsCard key={el.id} {...el} />
             ))
-          )}
+          }
         </div>
 
       </div>
-    </div>
   );
 }

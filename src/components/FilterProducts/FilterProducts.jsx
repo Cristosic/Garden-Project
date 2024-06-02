@@ -57,7 +57,7 @@ function FilterProducts({ showSaleFilter, oneCategoryFilter, favoritesPage }) {
       </form>
 
 
-      {schowSaleFilter || oneCategoryFilter && (
+      {showSaleFilter && (
         <div className={styles.salesProducts}>
           <label>
             Discounted items
