@@ -24,7 +24,7 @@ export default function PopUpOneDayDiscount({
   }, [products]);
 
   return (
-    <div>
+    <div className={styles.popUpContainer}>
       <ModalWindow
         cardContentStyles={styles.cardContentStyles}
         isOpen={oneDayDiscountIsOpen}
