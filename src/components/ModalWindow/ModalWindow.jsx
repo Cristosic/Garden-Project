@@ -8,7 +8,6 @@ export default function ModalWindow({ isOpen, isClosed, children, cardContentSty
     isClosed();
   };
 
-
   useEffect(() => {
     if (isOpen) {
       document.body.classList.add("no-scroll");
