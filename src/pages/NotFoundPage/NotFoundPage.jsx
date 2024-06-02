@@ -8,7 +8,7 @@ export default function NotFoundPage() {
 
  return (
     <div className={styles.notFoundPage}>
-      <div className={styles.containerNotFound}>
+      <div className={styles.containerImg}>
         <img className={styles.four} src={four} alt="4" />
         <img className={styles.zero} src={zero} alt="0" />
         <img className={styles.four} src={four} alt="4" />

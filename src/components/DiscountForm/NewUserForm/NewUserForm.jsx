@@ -26,7 +26,12 @@ export default function NewUserForm({
   const [confirmationMessage, setConfirmationMessage] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const { register, handleSubmit, formState: { errors }, reset, } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm();
 
   const nameRegister = register("name", {
     required: "*Name field is required",
@@ -60,12 +65,13 @@ export default function NewUserForm({
     reset();
 
     if (requestType === "discount") {
-      setConfirmationMessage("The discount has been successfully sent by email.");
+      setConfirmationMessage(
+        "The discount has been successfully sent by email."
+      );
     } else if (requestType === "Order") {
       setConfirmationMessage("The order has been successfully submitted.");
-      setModalActive(true)
+      setModalActive(true);
     }
-    
     setIsSubmitted(true);
 
 
@@ -76,8 +82,10 @@ export default function NewUserForm({
   };
 
   return (
-    <form className={`${styles.newUser} ${orderStyles}`} onSubmit={handleSubmit(getData)}>
-
+    <form
+      className={`${styles.newUser} ${orderStyles}`}
+      onSubmit={handleSubmit(getData)}
+    >
       <div className={`${styles.error_imput} ${order_msg_errorStyles}`}>
         {errors.name && (
           <p className={`${styles.error_msg} ${order_msgStyles}`}>
@@ -139,27 +147,35 @@ export default function NewUserForm({
 
       {confirmationMessage && (
         <div className={`${styles.conf_msg_container} ${icon_containerStyles}`}>
-          <p className={`${styles.conf_msg} ${conf_msgStyles}`}>{confirmationMessage}</p>
+          <p className={`${styles.conf_msg} ${conf_msgStyles}`}>
+            {confirmationMessage}
+          </p>
         </div>
       )}
 
       <div className={styles.buttonContainer}>
         <button
           className={`${styles.submitButton} ${buttonStyles} ${
-            isSubmitted ? styles.submittedButton : "" }`} type="submit">
-          {isSubmitted && requestType === "Order" ? "Submit Order" : isSubmitted ? successText : buttonText}
+            isSubmitted ? styles.submittedButton : ""
+          }`}
+          type="submit"
+        >
+          {isSubmitted && requestType === "Order"
+            ? "Submit Order"
+            : isSubmitted
+            ? successText
+            : buttonText}
         </button>
       </div>
       <ModalWindow isOpen={modalActive} isClosed={() => setModalActive(false)}>
         <h3>Congratulations!</h3>
-        <p>Your order has been successfully placed on the website.<br /><br />A manager will contact you shortly to confirm your order.</p>
+        <p>
+          Your order has been successfully placed on the website.
+          <br />
+          <br />
+          A manager will contact you shortly to confirm your order.
+        </p>
       </ModalWindow>
-
-      <ModalWindow isOpen={modalActive} isClosed={() => setModalActive(false)}>
-        <h3>Great!</h3>
-        <p>The discount has been successfully sent by email</p>
-      </ModalWindow>
-
 
     </form>
   );

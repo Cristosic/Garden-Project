@@ -7,6 +7,7 @@ const initialState = {
   error: "",
 };
 
+
 export const getOneCategory = createAsyncThunk(
   "oneCategory/getOneCategory",
   async (categoryId) => {
