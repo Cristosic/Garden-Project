@@ -1,8 +1,27 @@
+/* dark theme styles */
+
+.lightTheme {
+  color: #424436;
+}
+
+.lightTheme .messageContainer p {
+  color: #8b8b8b;
+}
+
+.darkTheme {
+  color: #ffffff;
+}
+
+.darkTheme .messageContainer p{
+  color: #DDDDDD;
+}
+
+/* */
+
 .notFoundPage {
   display: flex;
   flex-direction: column;
 }
-
 
 .containerNotFound {
   width: 100%;
@@ -27,14 +46,12 @@
   font-size: 64px;
   font-weight: 700;
   line-height: 70, 4px;
-  color: #424436;
 }
 
 .messageContainer p {
   font-weight: 500;
   font-size: 20px;
   line-height: 130%;
-  color: #8B8B8B;
 }
 
 .messageContainer button {
@@ -42,7 +59,7 @@
   padding: 16px 56px 16px 56px;
   border: none;
   border-radius: 6px;
-  background: #92A134;
+  background: #92a134;
   color: #fff;
   font-size: 20px;
   font-weight: 600;
@@ -63,13 +80,9 @@
   .zero {
     width: 20.83%;
   }
-
-
 }
 
 @media (max-width: 1000px) {
-
-
   .four {
     width: 12.15%;
   }
@@ -78,23 +91,17 @@
     width: 20.55%;
   }
 
-
   .messageContainer h4 {
     font-size: 64px;
-
   }
-
 
   .messageContainer button {
     height: 58px;
     padding: 16px 10%;
   }
-
 }
 
 @media (max-width: 768px) {
-
-
   .four {
     width: 11.04%;
   }
@@ -107,7 +114,6 @@
     font-size: 56px;
   }
 
-
   .messageContainer p {
     font-size: 20px;
   }
@@ -116,11 +122,9 @@
     height: 58px;
     padding: 16px 10%;
   }
-
 }
 
 @media (max-width: 480px) {
-
   .four {
     width: 7.5%;
   }
@@ -128,7 +132,6 @@
   .zero {
     width: 12.57%;
   }
-
 
   .messageContainer h4 {
     font-size: 48px;
