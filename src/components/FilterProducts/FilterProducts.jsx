@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import styles from "./FilterProducts.module.scss";
-import arrowDown from "../../media/icons/ArrowDown.svg";
+import arrowDown from "../../media/icons/arrowDown.svg";
 import { useDispatch } from "react-redux";
 import { Context } from "../../context";
 import { 
@@ -56,6 +56,7 @@ function FilterProducts({ showSaleFilter, oneCategoryFilter, favoritesPage }) {
         <button className={styles.filterButton} type="submit">Filter</button>
       </form>
 
+
       {showSaleFilter && (
         <div className={styles.salesProducts}>
           <label>
@@ -71,6 +72,7 @@ function FilterProducts({ showSaleFilter, oneCategoryFilter, favoritesPage }) {
           </label>
         </div>
       )}
+      
 
       <div className={styles.sortContainer}>
         <label htmlFor="sortSelect">Sort</label>

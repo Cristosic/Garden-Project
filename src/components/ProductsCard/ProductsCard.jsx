@@ -25,8 +25,9 @@ function ProductsCard({ id, title, image, price, discont_price, hideCartIcon }) 
 
   const styleHeart = cardFavorites ? favoritesHeart : heartIcon;
 
-  // сначала проверяю есть ли в массиве обьект с таким id, 
-  // если есть тогда удаляем - иначе добовляем его 
+
+  // сначала проверяю есть ли в массиве обьект с таким id,
+  // если есть тогда удаляем - иначе добовляем его
 
   // Начало Вадим: добавление event.stopPropagation для избежания конфликта кликов
   const addFavoritesCard = (event) => {
@@ -39,9 +40,9 @@ function ProductsCard({ id, title, image, price, discont_price, hideCartIcon }) 
   };
 
   const handleAddToCart = (event) => {
-    event.stopPropagation(); // Остановка 
+    event.stopPropagation(); // Остановка
     // Лог добавления в корзину
-    console.log('Added to cart');
+    console.log("Added to cart");
   };
   // Конец Вадим
 
@@ -56,7 +57,11 @@ function ProductsCard({ id, title, image, price, discont_price, hideCartIcon }) 
   // Конец Вадим
 
   return (
-    <div className={`${styles.cardContent} ${theme === "light" ? styles.lightTheme : styles.darkTheme}`}>
+    <div
+      className={`${styles.cardContent} ${
+        theme === "light" ? styles.lightTheme : styles.darkTheme
+      }`}
+    >
       <div className={styles.card}>
         {/* Полностью измененяю структуры Link */}
         <Link
