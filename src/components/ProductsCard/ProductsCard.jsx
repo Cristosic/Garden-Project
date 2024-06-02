@@ -25,6 +25,7 @@ function ProductsCard({ id, title, image, price, discont_price, hideCartIcon }) 
 
   const styleHeart = cardFavorites ? favoritesHeart : heartIcon;
 
+
   // сначала проверяю есть ли в массиве обьект с таким id,
   // если есть тогда удаляем - иначе добовляем его
 
@@ -102,7 +103,6 @@ function ProductsCard({ id, title, image, price, discont_price, hideCartIcon }) 
           </>
         ) : (
           <p className={styles.originalPrice}>${Math.round(price)}</p>
-          
         )}
       </div>
     </div>
@@ -110,11 +110,3 @@ function ProductsCard({ id, title, image, price, discont_price, hideCartIcon }) 
 }
 
 export default ProductsCard;
-
-
-
-
-
-
-
-
