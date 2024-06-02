@@ -1,7 +1,34 @@
-.ProductCounterContainer {
+/* dark theme styles */
+
+.lightTheme .quantityButton {
+  border: 1px solid #dddddd;
+  background-color: #ffffff;
+  color: #8b8b8b;
+}
+
+.lightTheme .quantity {
+  border: 1px solid #dddddd;
+  background-color: #ffffff;
+  color: #424436;
+}
+
+.darkTheme .quantityButton {
+  border: 1px solid #8b8b8b;
+  background-color: #424436;
+  color: #8b8b8b;
+}
+
+.darkTheme .quantity {
+  border: 1px solid #8b8b8b;
+  background-color: #424436;
+  color: #ffffff;
+}
+
+/* */
+
+.productCounterContainer {
   display: flex;
   align-items: center;
-  
 }
 
 .quantityButton {
@@ -11,8 +38,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid #ddd;
-  background-color: #fff;
   cursor: pointer;
   border-radius: 6px;
 }
@@ -24,8 +49,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid #ddd;
-  background-color: #fff;
   line-height: 32px;
   text-align: center;
   border-radius: 6px;
