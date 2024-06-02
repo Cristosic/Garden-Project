@@ -8,7 +8,7 @@ import { Context } from "../../context";
 
 export default function FavoriteItemPage() {
   const { theme } = useContext(Context);
-  const favorites = useSelector((state) => state.favorites.cards);
+  const favorites = useSelector((state) => state.favorites.filterFavoritesData);
   console.log(favorites);
 
   return (
@@ -29,7 +29,7 @@ export default function FavoriteItemPage() {
 
       <h1 className={styles.titlePage}>Liked products</h1>
 
-      <FilterProducts />
+      <FilterProducts favoritesPage={true}/>
 
       {/* уже есть готовый camponents для карточек на странице MainPAge,
        поэтому я могу переиспользовать его тут */}

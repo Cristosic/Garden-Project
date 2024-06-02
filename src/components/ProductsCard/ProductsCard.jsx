@@ -1,17 +1,16 @@
 import styles from "./ProductsCard.module.scss";
 import heartIcon from "../../media/icons/heartIcon.svg";
 import cartIcon from "../../media/icons/cartIcon.svg";
-import favoritesHeart from "../../media/icons/favoritesHeart.svg"
+import favoritesHeart from "../../media/icons/favoritesHeart.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { addCard, deleteCard } from "../../store/slices/favoritesSlice";
 import { useContext } from "react";
 import { Context } from "../../context";
-
 // Начало Вадим
 import { Link, useLocation } from "react-router-dom";
 // Конец Вадим
 
-function ProductsCard({ id, title, image, price, discont_price }) {
+function ProductsCard({ id, title, image, price, discont_price, hideCartIcon }) {
 
   const { theme } = useContext(Context);
 
@@ -20,15 +19,14 @@ function ProductsCard({ id, title, image, price, discont_price }) {
   // Конец Вадим
 
   const dispatch = useDispatch();
-  const cardFavorites = useSelector(state => state.favorites.cards.find(el => el.id === id));
+  const cardFavorites = useSelector((state) =>
+    state.favorites.cards.find((el) => el.id === id)
+  );
 
   const styleHeart = cardFavorites ? favoritesHeart : heartIcon;
 
-  // сначала проверяю есть ли в массиве обьект с таким id, 
-  // если есть тогда удаляем - иначе добовляем его 
-
-
-
+  // сначала проверяю есть ли в массиве обьект с таким id,
+  // если есть тогда удаляем - иначе добовляем его
 
   // Начало Вадим: добавление event.stopPropagation для избежания конфликта кликов
   const addFavoritesCard = (event) => {
@@ -41,9 +39,9 @@ function ProductsCard({ id, title, image, price, discont_price }) {
   };
 
   const handleAddToCart = (event) => {
-    event.stopPropagation(); // Остановка 
+    event.stopPropagation(); // Остановка
     // Лог добавления в корзину
-    console.log('Added to cart');
+    console.log("Added to cart");
   };
   // Конец Вадим
 
@@ -58,7 +56,11 @@ function ProductsCard({ id, title, image, price, discont_price }) {
   // Конец Вадим
 
   return (
-    <div className={`${styles.cardContent} ${theme === "light" ? styles.lightTheme : styles.darkTheme}`}>
+    <div
+      className={`${styles.cardContent} ${
+        theme === "light" ? styles.lightTheme : styles.darkTheme
+      }`}
+    >
       <div className={styles.card}>
         {/* Полностью измененяю структуры Link */}
         <Link
@@ -85,25 +87,20 @@ function ProductsCard({ id, title, image, price, discont_price }) {
             className={styles.heart}
             onClick={addFavoritesCard}
           />
-          <img
-            src={cartIcon}
-            alt="bag"
-            className={styles.shoppingBag}
-            onClick={handleAddToCart}
-          />
+          {!hideCartIcon && (
+            <img src={cartIcon} alt="bag" className={styles.shoppingBag} onClick={handleAddToCart}/>
+          )}
         </div>
       </div>
 
       <h4>{title}</h4>
       <div className={styles.priceContainer}>
-
         {discont_price && discont_price < price ? (
           <>
             <p className={styles.discountPrice}>${Math.round(discont_price)}</p>
             <p className={styles.noDiscountPrice}>${Math.round(price)}</p>
           </>
         ) : (
-
           <p className={styles.originalPrice}>${Math.round(price)}</p>
           
         )}
