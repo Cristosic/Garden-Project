@@ -2,7 +2,7 @@
 
 .lightTheme {
   border: 1px solid #dddddd;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
 }
 
 .lightTheme .card {
@@ -15,17 +15,17 @@
 }
 
 .darkTheme {
-  border: 1px solid #8B8B8B;
-  background-color: #383A2C;
+  border: 1px solid #8b8b8b;
+  background-color: #383a2c;
 }
 
 .darkTheme .card {
-  border-bottom: 1px solid #8B8B8B;
+  border-bottom: 1px solid #8b8b8b;
 }
 
 .darkTheme h4,
 .darkTheme .priceContainer > p {
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 /* */
@@ -52,10 +52,10 @@
       border-radius: 6px;
       text-align: center;
       font-size: 20px;
-      font-weight: 500;
+      font-weight: 600;
       padding: 4px 8px 4px 8px;
       background-color: #f26d22;
-      color: #FFFFFF;
+      color: #ffffff;
     }
     .cardIcons {
       position: absolute;
@@ -108,7 +108,6 @@
       line-height: 70%;
     }
 
-
     .noDiscountPrice {
       font-size: 20px;
       font-weight: 500;
@@ -123,7 +122,6 @@
     }
   }
   @media (max-width: 1000px) {
-    max-width: 225px;
 
     .cardImg {
       img {
@@ -141,7 +139,6 @@
   }
 
   @media (max-width: 768px) {
-    max-width: 354px;
 
     .cardImg {
       img {
@@ -155,7 +152,6 @@
     }
   }
   @media (max-width: 480px) {
-    width: 210px;
 
     .cardImg {
       img {
@@ -176,6 +172,12 @@
       }
     }
     .card {
+      .discountLabel {
+        width: 58px;
+        height: 31px;
+        font-size: 18px;
+        line-height: 23px;
+      }
       .cardIcons {
         .heart {
           width: 37px;
@@ -189,7 +191,6 @@
     }
   }
   @media (max-width: 360px) {
-    width: 320px;
 
     h4 {
       font-size: 18px;
