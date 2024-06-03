@@ -4,8 +4,7 @@
   width: 100%;
   margin-top: 80px;
   margin-bottom: 80px;
-  align-items: center;
-}
+  }
 
 
 .containerImg {
@@ -79,6 +78,7 @@
 }
 
 @media (max-width: 1000px) {
+
   .four {
     width: calc(179px * 0.6)
   }
@@ -94,6 +94,12 @@
 }
 
 @media (max-width: 768px) {
+
+  .notFoundPage {
+    padding: 0 20px;
+    
+  }
+
   .four {
     width: calc(179px * 0.5)
   }
@@ -114,6 +120,7 @@
 }
 
 @media (max-width: 480px) {
+
   .four {
     width: calc(179px * 0.4)
   }
@@ -139,6 +146,7 @@
 }
 
 @media (max-width: 360px) {
+ 
   .four {
     width: calc(179px * 0.35)
   }

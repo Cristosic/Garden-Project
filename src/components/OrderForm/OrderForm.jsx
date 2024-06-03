@@ -1,15 +1,28 @@
 import React from "react";
 import styles from "./OrderForm.module.css";
 import NewUserForm from "../DiscountForm/NewUserForm/NewUserForm";
+// import { useDispatch, useSelector } from "react-redux";
+// import { deleteAllProductsAction } from "../../store/slices/cartSlice";
 
 export default function OrderForm() {
+
+  // const cartState = useSelector((state) => state.cart);
+
+  // const dispatch = useDispatch();
+
+  // const totalItems = cartState.reduce((acc, item) => acc + item.count, 0);
+  // const totalPrice = cartState.reduce((acc, item) => acc + item.price * item.count, 0).toFixed(2);
+
+  // const handleDeleteAllProducts = () => {
+  //   dispatch(deleteAllProductsAction());
+  // };
+
   return (
     <div className={styles.orderContainer}>
       <div className={styles.orderText}>
         <h2>Order details</h2>
-        <p>items</p>
-        <p>Total:</p>
-        <p>$</p>
+        <p>{0} items </p>
+        <p>Total: ${0} </p>
       </div>
 
       <NewUserForm
@@ -24,6 +37,7 @@ export default function OrderForm() {
         buttonText="Order"
         successText="Submitted Order"
         requestType="Order"
+        // onDeleteAllProducts={handleDeleteAllProducts}
       />
     </div>
   );

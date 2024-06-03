@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import plantLogo from "../../media/logos/plantLogo.svg";
 import styles from "./NavMenu.module.css";
 import heartIcon from "../../media/icons/heartIcon.svg";
@@ -12,12 +12,23 @@ import darkCrossIcon from "../../media/icons/darkCrossIcon.svg";
 import { Link } from "react-router-dom";
 import ThemeToggle from "../ThemeToggle/ThemeToggle";
 import { Context } from "../../context";
+import { getAllProducts } from "../../store/slices/allProductsSlice";
+import { useDispatch } from "react-redux";
+import PopUpOneDayDiscount from "../PopUpOneDayDiscount/PopUpOneDayDiscount";
 
 export default function NavMenu() {
-
-  const { theme } = useContext(Context)
+  
+  const { theme } = useContext(Context);
 
   const [isOpen, setIsOpen] = useState(false);
+
+  const [oneDayDiscountIsOpen, setOneDayDiscountIsOpen] = useState(false);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAllProducts());
+  }, []);
 
   return (
     <div
@@ -60,7 +71,13 @@ export default function NavMenu() {
             </Link>
           </div>
           <div className={styles.buttonNavMenu}>
-            <button>1 day discount!</button>
+            <button onClick={() => setOneDayDiscountIsOpen(true)}>
+              1 day discount!
+            </button>
+            <PopUpOneDayDiscount
+              oneDayDiscountIsOpen={oneDayDiscountIsOpen}
+              setOneDayDiscountIsOpen={setOneDayDiscountIsOpen}
+            />
           </div>
         </div>
       </div>

@@ -63,6 +63,7 @@ export default function NewUserForm({
 
     dispatch(addNewUser(newUser));
     reset();
+    
 
     if (requestType === "discount") {
       setConfirmationMessage(
@@ -73,6 +74,7 @@ export default function NewUserForm({
       setModalActive(true);
     }
     setIsSubmitted(true);
+
 
     setTimeout(() => {
       setConfirmationMessage("");
