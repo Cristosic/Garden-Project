@@ -1,3 +1,23 @@
+/* dark theme styles */
+
+.lightTheme {
+  color: #424436;
+}
+
+.lightTheme .messageContainer p {
+  color: #8b8b8b;
+}
+
+.darkTheme {
+  color: #ffffff;
+}
+
+.darkTheme .messageContainer p{
+  color: #DDDDDD;
+}
+
+/* */
+
 .notFoundPage {
   display: flex;
   flex-direction: column;
@@ -55,7 +75,7 @@
   padding: 16px 56px;
   border: none;
   border-radius: 6px;
-  background: #92A134;
+  background: #92a134;
   color: #fff;
   font-size: 20px;
   font-weight: 600;
