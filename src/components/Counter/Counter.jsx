@@ -1,20 +1,19 @@
-import React from 'react';
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { increment, decrement } from "../../store/slices/counterSlice";
 import styles from './Counter.module.css';
-import { decrement, increment } from '../../store/slices/cartProductsSlice';
 
 const Counter = ({ productId }) => {
   const dispatch = useDispatch();
-  const counter = useSelector((state) => state.cart.products.find(el => el.id === productId)?.amount || 1);
+  const counter = useSelector((state) => state.counter[productId] || 1);
 
   const countIncrement = () => {
-    dispatch(increment(productId));
+    dispatch(increment({ productId }));
   };
-console.log(countIncrement)
 
   const countDecrement = () => {
     if (counter > 1) {
-      dispatch(decrement(productId));
+      dispatch(decrement({ productId }));
     }
   };
 
