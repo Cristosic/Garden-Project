@@ -8,18 +8,18 @@ import { Link } from "react-router-dom";
 import ProductsCard from "../../components/ProductsCard/ProductsCard";
 import FilterProducts from "../../components/FilterProducts/FilterProducts";
 import { Context } from "../../context";
+import Skeleton from "./../../components/Skeleton/Skeleton";
 
 export default function AllSalesPage() {
-  
   const { theme } = useContext(Context);
 
   const dispatch = useDispatch();
   const products = useSelector((state) => state.allProducts.filterProductsData);
+  const status = useSelector((state) => state.allProducts.status === 'loading');
 
   useEffect(() => {
     dispatch(getAllProducts());
-  }, []);
-
+  }, [dispatch]);
 
   const saleProducts = filterSaleProducts(products);
 
@@ -45,8 +45,12 @@ export default function AllSalesPage() {
       {/* уже есть готовый camponents для карточек на странице MainPAge,
        поэтому я могу переиспользовать его тут */}
       <div className={styles.cardContainer}>
-        {saleProducts &&
-          saleProducts.map((el) => <ProductsCard key={el.id} {...el} />)}
+        {status ? (
+          <Skeleton />
+        ) : (
+          saleProducts &&
+          saleProducts.map((el) => <ProductsCard key={el.id} {...el} />)
+        )}
       </div>
     </div>
   );

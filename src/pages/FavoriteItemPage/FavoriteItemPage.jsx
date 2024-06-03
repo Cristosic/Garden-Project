@@ -5,11 +5,13 @@ import { Link } from "react-router-dom";
 import ProductsCard from "../../components/ProductsCard/ProductsCard";
 import FilterProducts from "../../components/FilterProducts/FilterProducts";
 import { Context } from "../../context";
+import Skeleton from "./../../components/Skeleton/Skeleton";
 
 export default function FavoriteItemPage() {
   const { theme } = useContext(Context);
   const favorites = useSelector((state) => state.favorites.filterFavoritesData);
   console.log(favorites);
+  const status = useSelector((state) => state.allProducts.status === "loading");
 
   return (
     <div
@@ -29,19 +31,21 @@ export default function FavoriteItemPage() {
 
       <h1 className={styles.titlePage}>Liked products</h1>
 
-      <FilterProducts favoritesPage={true}/>
+      <FilterProducts favoritesPage={true} />
 
       {/* уже есть готовый camponents для карточек на странице MainPAge,
        поэтому я могу переиспользовать его тут */}
 
-      {favorites.length > 0 ? (
+      {status ? (
+        <Skeleton />
+      ) :( favorites.length > 0 ? (
         <div className={styles.cardContainer}>
           {favorites.map((el) => (
             <ProductsCard key={el.id} {...el} />
           ))}
         </div>
       ) : (
-        <p>Looks like you have no items in your favorites currently.</p>
+        <p>Looks like you have no items in your favorites currently.</p>)
       )}
     </div>
   );
