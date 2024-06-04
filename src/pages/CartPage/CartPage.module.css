@@ -72,6 +72,7 @@
     font-size: 56px;
   }
   .text {
+    white-space: nowrap;
     font-size: 20px;
     line-height: 26px;
   }
@@ -85,19 +86,54 @@
 @media (max-width: 480px) {
   .titlePage {
     font-size: 48px;
-    line-height: 40px;
+    line-height: 53px;
   }
   .buttonActive {
     font-size: 12px;
-    padding: 14px, 0px, 0px, 0px;
+    padding: 8px 16px 8px 16px;
+    gap: 10px;
+    margin-bottom: 45px;
   }
 
   .text {
     font-size: 18px;
-    line-height: 23px;
+    line-height: 22px;
+    white-space: normal;
+    width: 440px;
+    height: 46px;
   }
   .btn {
     font-size: 18px;
     padding: 12px 52px;
+    margin-top: 10px;
+  }
+}
+@media (max-width: 360px) {
+  .titlePage {
+    font-size: 40px;
+    line-height: 44px;
+    white-space: nowrap;
+  }
+  .text {
+    font-size: 18px;
+    line-height: 23px;
+    width: 320px;
+  }
+  .btn {
+    width: 285px;
+    height: 47px;
+    padding: 12px 52px;
+  }
+  .buttonActive {
+    font-size: 12px;
+    width: auto;
+    height: auto;
+    position: absolute;
+    bottom: 85px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .container {
+    margin-bottom: 70px;
   }
 }
