@@ -1,14 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "./CartPage.module.css";
 import OrderForm from "../../components/OrderForm/OrderForm";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { Context } from "../../context";
 
 export default function CartPage() {
+
+  const { theme } = useContext(Context);
+
   const basketCart = useSelector((state) => state.cart?.products || []);
   const isCartEmpty = basketCart.length === 0;
   return (
-    <div className={styles.container}>
+    <div
+      className={`${styles.container} ${
+        theme === "light" ? styles.lightTheme : styles.darkTheme
+      }`}
+    >
       <div className={styles.cartPage}>
         <h1 className={styles.titlePage}>Shopping cart</h1>
         <div className={styles.line}></div>
