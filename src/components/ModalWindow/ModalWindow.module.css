@@ -1,3 +1,17 @@
+/* dark theme styles */ 
+
+.lightTheme .modal_content {
+  background-color: #92a134;
+  color: #FFFFFF;
+}
+
+.darkTheme .modal_content {
+  background-color: #424436;
+  color: #FFFFFF;
+}
+
+/*  */ 
+
 .modal {
   background-color: rgba(40, 40, 40, 0.4);
   position: fixed;
@@ -23,8 +37,6 @@
 }
 
 .modal_content {
-  background: #92a134;
-  color: white;
   max-width: 548px;
   border-radius: 12px;
   font-size: 20px;

@@ -1,3 +1,47 @@
+/* dark theme styles */
+
+.lightTheme .line {
+  background-color: #8b8b8b;
+}
+
+.lightTheme .titlePage,
+.lightTheme .text {
+  color: #424436;
+}
+
+.lightTheme .buttonActive {
+  background-color: #fffff1;
+  color: #8b8b8b;
+  border: 1px solid #8b8b8b;
+}
+
+.lightTheme .buttonActive:hover {
+  background-color: white;
+  color: #424436;
+}
+
+.darkTheme .line {
+  background-color: #8b8b8b;
+}
+
+.darkTheme .titlePage,
+.darkTheme .text {
+  color: #FFFFFF;
+}
+
+.darkTheme .buttonActive {
+  background-color: #424436;
+  color: #DDDDDD;
+  border: 1px solid #8b8b8b;
+}
+
+.darkTheme .buttonActive:hover {
+  color: #FFFFFF;
+}
+
+
+/* */
+
 .container {
   padding: 40px 40px 0 40px;
 }
@@ -8,28 +52,19 @@
 .line {
   height: 1px;
   flex-grow: 1;
-  background-color: #8b8b8b;
 }
 .buttonActive {
-  background-color: #fffff1;
-  color: #8b8b8b;
   padding: 8px 16px;
   border-radius: 6px;
-  border-color: #8b8b8b;
   text-decoration: none;
   font-size: 16px;
   font-weight: 500;
   cursor: pointer;
   gap: 10px;
 }
-.buttonActive:hover {
-  background-color: white;
-  color: #424436;
-}
 
 .titlePage {
   padding: 40px 0;
-  color: #424436;
   font-weight: 700;
   font-size: 64px;
   padding-right: 20px;
@@ -40,7 +75,6 @@
   font-weight: 500;
   font-size: 20px;
   line-height: 26px;
-  color: #424436;
   text-align: left;
 }
 .btn {
@@ -51,7 +85,7 @@
   line-height: 130%;
   padding: 16px 56px;
   gap: 10px;
-  color: white;
+  color: #FFFFFF;
   background: #92a134;
   text-align: center;
   border: none;
