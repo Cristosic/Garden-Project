@@ -3,8 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import OrderForm from "../../components/OrderForm/OrderForm";
 import { deleteOutCart } from "../../store/slices/cartProductsSlice";
-import styles from "./CartPage.module.css";
+import styles from "./CartPage.module.scss";
 import Counter from '../../components/Counter/Counter';
+import { RxCross2 } from "react-icons/rx";
 
 export default function CartPage() {
   const dispatch = useDispatch();
@@ -24,6 +25,7 @@ export default function CartPage() {
           <button className={styles.buttonActive}>Back to the store</button>
         </Link>
       </div>
+      
       {isCartEmpty ? (
         <div>
           <p className={styles.text}>
@@ -34,33 +36,45 @@ export default function CartPage() {
           </Link>
         </div>
       ) : (
-        <div>
-          {basketCart.map((el) => (
+        
+        <div className={styles.cartContainer}>
+         <div>
+         {basketCart.map((el) => (
             <div key={el.id} className={styles.cartItem}>
               <div className={styles.cartItemDetails}>
-                <div>
+                <div className={styles.cartItemImg}>
                   <img
                     src={`http://localhost:3333${el.image}`}
                     alt={el.title}
                     className={styles.cartItemImage}
                   />
                 </div>
-                <h4>{el.title}</h4>
+                <div className={styles.cartItemContent}>
+                  <h4>{el.title}</h4>
+
+                <div className={styles.cartItemPrice}>
                 <Counter productId={el.id} />
+
+                <div className={styles.priceContainer}>
                 <p>${Math.round(el.price)}</p>
-                {el.discont_price && <p>${Math.round(el.discont_price)}</p>}
-                <button
-                  className={styles.removeButton}
-                  onClick={() => deleteProductOutCart(el.id)}
-                >
-                  X
-                </button>
-              </div>
+                {el.discont_price && <p className={styles.discontPrice}>${Math.round(el.discont_price)}</p>}
+                </div>
+                </div>
+                
+                </div>
+                <RxCross2  className={styles.removeButton}
+                  onClick={() => deleteProductOutCart(el.id)} />
+              </div> 
             </div>
           ))}
-          <OrderForm />
+         </div>
+         
+          <div className={styles.formOrderContainer}>
+            <OrderForm />
+          </div>
         </div>
       )}
+      
     </div>
   );
 }
