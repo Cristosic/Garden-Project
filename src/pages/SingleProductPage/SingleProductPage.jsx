@@ -10,6 +10,8 @@ import darkHeartIcon from "../../media/icons/darkHeartIcon.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { addCard, deleteCard } from "../../store/slices/favoritesSlice";
 import { Context } from "../../context";
+import { addInCart, deleteOutCart } from "../../store/slices/cartProductsSlice";
+import { setCounter } from "../../store/slices/counterSlice";
 
 const SingleProductPage = () => {
   const { productId } = useParams();
@@ -20,6 +22,11 @@ const SingleProductPage = () => {
   const cardFavorites = useSelector((state) =>
     state.favorites.cards.find((el) => el.id === productId)
   );
+  
+  const productInCart = useSelector((state) =>
+    state.cart.products.find((el) => el.id === productId)
+  );
+
   const [isFavorite, setIsFavorite] = useState(!!cardFavorites);
 
   useEffect(() => {
@@ -43,18 +50,30 @@ const SingleProductPage = () => {
     fetchProductDetails();
   }, [productId]);
 
-  const handleAddToCart = () => {
-    alert("Product added to cart!");
-  };
+  useEffect(() => {
+    if (productInCart) {
+      dispatch(setCounter({ productId, amount: productInCart.amount }));
+    }
+  }, [productInCart, dispatch, productId]);
 
   const addFavoritesCard = (event) => {
-    event.stopPropagation(); // Остановка
+    event.stopPropagation();
+
     if (isFavorite) {
       dispatch(deleteCard({ id: productId }));
     } else {
       dispatch(addCard({ id: productId, ...product }));
     }
-    setIsFavorite(!isFavorite); // Переключение состояния избранного
+    setIsFavorite(!isFavorite);
+  };
+
+  const addProductsInCart = (e) => {
+    e.stopPropagation();
+    if (productInCart) {
+      dispatch(deleteOutCart({ id: productId }));
+    } else {
+      dispatch(addInCart({ id: productId, ...product }));
+    }
   };
 
   if (!product) {
@@ -88,7 +107,6 @@ const SingleProductPage = () => {
           alt={product.title}
         />
         <div className={styles.productInfo}>
-          {/*  добавление сердцаааааа */}
           <img
             src={
               isFavorite
@@ -100,6 +118,7 @@ const SingleProductPage = () => {
             alt="heart"
             className={`${styles.heart} ${isFavorite ? styles.favorite : ""}`}
             onClick={addFavoritesCard}
+
             onMouseOver={(e) =>
               (e.currentTarget.src =
                 theme === "dark" ? favoritesHeart : hoverHeart)
@@ -136,11 +155,12 @@ const SingleProductPage = () => {
             )}
           </div>
           <div className={styles.addToCartContainer}>
-            <Counter />
+          
+            <Counter productId={productId} />
             <div className={styles.containertButtonCart}>
               <button
                 className={styles.addToCartButton}
-                onClick={handleAddToCart}
+                onClick={addProductsInCart}
               >
                 Add to cart
               </button>
