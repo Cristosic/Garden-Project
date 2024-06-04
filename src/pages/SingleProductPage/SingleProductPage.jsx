@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useParams, Link, useLocation } from "react-router-dom";
 import styles from "./SingleProductPage.module.css";
-import { serverUrl } from "../../utils/config.js";
+import { serverUrl } from "../../utils/config";
 import Counter from "../../components/Counter/Counter";
 import heartIcon from "../../media/icons/heartIcon.svg";
 import favoritesHeart from "../../media/icons/favoritesHeart.svg";
