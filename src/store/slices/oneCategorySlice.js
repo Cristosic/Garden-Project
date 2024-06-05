@@ -7,7 +7,6 @@ const initialState = {
   error: "",
 };
 
-
 export const getOneCategory = createAsyncThunk(
   "oneCategory/getOneCategory",
   async (categoryId) => {
@@ -27,7 +26,7 @@ const oneCategorySlice = createSlice({
     sortOneCategoryAction: (state, action) => {
       const select = action.payload;
       if (select === "default") {
-        state.filterProductsData = [...state.oneCategoriesData];
+        state.filterProductsData = [...state.oneCategoriesData.data];
       } else {
         const sortCard = [...state.filterProductsData];
         if (select === "price-high-low") {
@@ -42,7 +41,7 @@ const oneCategorySlice = createSlice({
     },
     filterOneCategoryPriceAction: (state, action) => {
       const { min_price, max_price } = action.payload;
-      state.filterProductsData = state.oneCategoriesData.filter(
+      state.filterProductsData = state.oneCategoriesData.data.filter(
         (el) =>
           (min_price === 0 || el.price >= min_price) &&
           (max_price === Infinity || el.price <= max_price)
@@ -50,11 +49,11 @@ const oneCategorySlice = createSlice({
     },
     filterOneCategorySaleAction: (state, action) => {
       if (action.payload) {
-        state.filterProductsData = state.oneCategoriesData.filter(
+        state.filterProductsData = state.oneCategoriesData.data.filter(
           (product) => product.discont_price !== null
         );
       } else {
-        state.filterProductsData = [...state.oneCategoriesData];
+        state.filterProductsData = [...state.oneCategoriesData.data];
       }
     },
   },
@@ -64,7 +63,7 @@ const oneCategorySlice = createSlice({
         state.status = "loading";
       })
       .addCase(getOneCategory.fulfilled, (state, action) => {
-        state.oneCategoriesData = action.payload.data;
+        state.oneCategoriesData = action.payload;
         state.filterProductsData = action.payload.data;
         state.status = "ready";
       })

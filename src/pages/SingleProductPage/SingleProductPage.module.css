@@ -114,6 +114,22 @@
   cursor: pointer;
 }
 
+.imageModalContent {
+  padding: 0;
+  background: none;
+  margin-top: 150px;
+}
+
+.imageModalContent>img {
+  display: none;
+}
+
+.modalImage {
+  width: 561px;
+  height: 366px;
+  object-fit: cover;
+}
+
 .productTitle {
   font-size: 40px;
   font-weight: 700;
