@@ -9,6 +9,7 @@ import hoverHeart from "../../media/icons/hoverHeart.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { addCard, deleteCard } from "../../store/slices/favoritesSlice";
 import { Context } from "../../context";
+import ModalWindow from './../../components/ModalWindow/ModalWindow';
 
 const SingleProductPage = () => {
   const { productId } = useParams();
@@ -18,6 +19,8 @@ const SingleProductPage = () => {
   const dispatch = useDispatch();
   const cardFavorites = useSelector(state => state.favorites.cards.find(el => el.id === productId));
   const [isFavorite, setIsFavorite] = useState(!!cardFavorites);
+  const [modalActive, setModalActive] = useState(false);
+
 
   useEffect(() => {
     const fetchProductDetails = async () => {
@@ -54,6 +57,14 @@ const SingleProductPage = () => {
     setIsFavorite(!isFavorite); // Переключение состояния избранного
   };
 
+  const handleImageClick = () => {
+    setModalActive(true);
+  };
+
+  const closeModal = () => {
+    setModalActive(false);
+  };
+
   if (!product) {
     return <p>Loading...</p>;
   }
@@ -75,7 +86,7 @@ const SingleProductPage = () => {
         <button className={styles.buttonActive}>{product.title}</button>
       </div>
       <div className={styles.productWrapper}>
-        <img className={styles.productImage} src={`${serverUrl}${product.image}`} alt={product.title} />
+        <img className={styles.productImage} src={`${serverUrl}${product.image}`} alt={product.title} onClick={handleImageClick}/>
         <div className={styles.productInfo}>
           {/*  добавление сердцаааааа */}
           <img
@@ -115,6 +126,15 @@ const SingleProductPage = () => {
           </div>
         </div>
       </div>
+      <ModalWindow 
+      isOpen={modalActive} 
+      isClosed={closeModal} 
+      imageModalContent={styles.imageModalContent}>
+        <div>
+        {
+        <img src={`${serverUrl}${product.image}`} alt={`${product.title}`} className={styles.modalImage} />}
+        </div>
+      </ModalWindow>
     </div>
   );
 };

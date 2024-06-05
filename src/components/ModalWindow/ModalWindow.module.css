@@ -5,20 +5,18 @@
   left: 0;
   width: 100%;
   height: 100%;
-  overflow: hidden;
-  overflow-y: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   z-index: 100;
 }
 
 .modal_wrapper {
-  position: absolute;
-  top: 0;
-  left: 0;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   width: 100%;
-  min-height: 100%;
+  height: 100%;
 }
 
 .modal_content {
@@ -27,9 +25,16 @@
   max-width: 548px;
   border-radius: 12px;
   font-size: 20px;
-  width: 100%;
+  width: auto;
   position: relative;
   padding: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hide {
+  display: none;
 }
 
 .modalCross {
@@ -41,7 +46,7 @@
   height: 44px;
 }
 
-.modal_content>h3 {
+.modal_content > h3 {
   font-size: 40px;
   font-weight: 600;
   line-height: 44px;
@@ -56,3 +61,4 @@
   text-align: left;
   padding-bottom: 16px;
 }
+

@@ -23,6 +23,7 @@ export default function SingleCategoryPage() {
   const status = useSelector((state) => state.oneCategory.status);
   const category = useSelector((state) => state.oneCategory.oneCategoriesData);
 
+
   useEffect(() => {
     if (categoryId) {
       dispatch(getOneCategory(categoryId));
@@ -40,7 +41,7 @@ export default function SingleCategoryPage() {
   if (!oneCategoryState.length) {
     return <div>No data available</div>;
   }
-
+ 
   return (
     <div
       className={`${styles.categories_container} ${
@@ -62,17 +63,16 @@ export default function SingleCategoryPage() {
 
         <Link to={`/categories/${categoryId}`}>
           <button className={`${styles.btn_category_card} ${styles.active}`}>
-            {category.title || "Tools and equipment"}
+            {category.category.title}
           </button>
         </Link>
       </div>
 
-      <span>{category.title}</span>
+      <span>{category.category.title}</span>
 
       <FilterProducts showSaleFilter={true} oneCategoryFilter={true} />
 
         <div className={styles.cardContainer}>
-
           {
             oneCategoryState.map((el) => (
               <ProductsCard key={el.id} {...el} />

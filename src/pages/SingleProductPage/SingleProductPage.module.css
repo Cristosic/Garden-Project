@@ -70,14 +70,33 @@
   cursor: pointer;
 }
 
+.imageModalContent {
+  padding: 0;
+  background: none;
+  margin-top: 150px;
+}
+
+.imageModalContent>img {
+  display: none;
+}
+
+.modalImage {
+  width: 561px;
+  height: 366px;
+  object-fit: cover;
+}
+
+
 /* стиль для сердечка в избранном */
 .productInfo .heart.favorite {
- content: url('../../media/icons/favoritesHeart.svg'); /* цвет, когда добавлено в избранное */
+  content: url('../../media/icons/favoritesHeart.svg');
+  /* цвет, когда добавлено в избранное */
 }
 
 /* стиль при наведении */
 .productInfo .heart:hover {
-  content: url('../../media/icons/hoverHeart.svg'); /* иконка при наведении */
+  content: url('../../media/icons/hoverHeart.svg');
+  /* иконка при наведении */
 }
 
 .productTitle {

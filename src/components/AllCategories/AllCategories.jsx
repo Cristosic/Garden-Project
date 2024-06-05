@@ -36,7 +36,7 @@ export default function AllCategories() {
         <div className={styles.line}></div>
 
         <Link to={`/categories`}>
-          <button className={`${styles.btn_category_card} ${styles.active}`}>
+          <button className={`${styles.active}`}>
             Categories
           </button>
         </Link>

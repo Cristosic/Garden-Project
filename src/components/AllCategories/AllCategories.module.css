@@ -1,7 +1,7 @@
 /* dark theme styles */
 
 .lightTheme .btn_links_categoriesPage + span,
-.lightTheme {
+.lightTheme .btn_category_card{
   color: #424436;
 }
 
@@ -63,7 +63,6 @@
   &:hover{
     background-color: #424436;
     color: white;
-   
   }
   }
 
@@ -78,6 +77,19 @@
   font-weight: 500;
   line-height: 20px;
   text-align: center;
+  border-radius: 6px;
+  border: 1px solid #dddddd;
+  padding: 8px 16px;
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.1);
+  &:hover{
+    background-color: #424436;
+    color: white;
+  }
+}
+.active:hover{
+  background-color: #424436;
+    color: white;
 }
 
 @media (max-width: 1000px) {
