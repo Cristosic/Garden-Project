@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import styles from "./FilterProducts.module.scss";
-import arrowDown from "../../media/icons/ArrowDown.svg";
+import arrowDown from "../../media/icons/arrowDown.svg";
 import { useDispatch } from "react-redux";
 import { Context } from "../../context";
 import { 
