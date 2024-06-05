@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   cards: JSON.parse(localStorage.getItem("favoritesCards")) || [],
   filterFavoritesData: JSON.parse(localStorage.getItem("favoritesCards")) || [],
+  status:'',
 };
 
 export const favoritesCardSlice = createSlice({
