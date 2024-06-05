@@ -7,8 +7,7 @@ import ProductsCard from "../../components/ProductsCard/ProductsCard";
 import { Link } from "react-router-dom";
 import { Context } from "../../context";
 import FilterProducts from "./../../components/FilterProducts/FilterProducts";
-
-
+import Skeleton from "./../../components/Skeleton/Skeleton";
 
 export default function SingleCategoryPage() {
   const { theme } = useContext(Context);
@@ -30,18 +29,6 @@ export default function SingleCategoryPage() {
     }
   }, [dispatch, categoryId]);
 
-  if (status === "error") {
-    return <div>Error loading category data.</div>;
-  }
-
-  if (status === "loading") {
-    return <div>Loading...</div>;
-  }
-
-  if (!oneCategoryState.length) {
-    return <div>No data available</div>;
-  }
- 
   return (
     <div
       className={`${styles.categories_container} ${
@@ -71,7 +58,9 @@ export default function SingleCategoryPage() {
       <span>{category.category.title}</span>
 
       <FilterProducts showSaleFilter={true} oneCategoryFilter={true} />
-
+      {status === "loading" ? (
+        <Skeleton />
+      ) : (
         <div className={styles.cardContainer}>
           {
             oneCategoryState.map((el) => (
@@ -79,7 +68,7 @@ export default function SingleCategoryPage() {
             ))
           }
         </div>
-
-      </div>
+      )}
+    </div>
   );
 }

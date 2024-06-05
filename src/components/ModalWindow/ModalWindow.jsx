@@ -1,13 +1,21 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import styles from "./ModalWindow.module.css";
 import darkCrossIcon from "../../media/icons/darkCrossIcon.svg";
+import { Context } from "../../context";
 
-export default function ModalWindow({ isOpen, isClosed, children, cardContentStyles, imageModalContent }) {
+export default function ModalWindow({
+  isOpen,
+  isClosed,
+  children,
+  cardContentStyles,
+  imageModalContent
+}) {
   
+  const { theme } = useContext(Context);
+
   const onWrapper = () => {
     isClosed();
   };
-
 
   useEffect(() => {
     if (isOpen) {
@@ -23,7 +31,11 @@ export default function ModalWindow({ isOpen, isClosed, children, cardContentSty
   return (
     <>
       {isOpen && (
-        <div className={styles.modal}>
+        <div
+          className={`${styles.modal} ${
+            theme === "light" ? styles.lightTheme : styles.darkTheme
+          }`}
+        >
           <div className={styles.modal_wrapper} onClick={onWrapper}>
             <div
               className={`${styles.modal_content} ${cardContentStyles} ${imageModalContent}`}

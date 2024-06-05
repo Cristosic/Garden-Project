@@ -1,51 +1,52 @@
+import React, { useContext } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { addCard, deleteCard } from "../../store/slices/favoritesSlice";
+import { addInCart, deleteOutCart } from "../../store/slices/cartProductsSlice";
 import styles from "./ProductsCard.module.scss";
 import heartIcon from "../../media/icons/heartIcon.svg";
 import cartIcon from "../../media/icons/cartIcon.svg";
 import favoritesHeart from "../../media/icons/favoritesHeart.svg";
-import { useDispatch, useSelector } from "react-redux";
-import { addCard, deleteCard } from "../../store/slices/favoritesSlice";
-import { useContext } from "react";
 import { Context } from "../../context";
-// Начало Вадим
-import { Link, useLocation } from "react-router-dom";
-// Конец Вадим
 
 function ProductsCard({ id, title, image, price, discont_price, hideCartIcon }) {
-
   const { theme } = useContext(Context);
-
-  // Начало Вадим
   const location = useLocation();
-  // Конец Вадим
-
   const dispatch = useDispatch();
   const cardFavorites = useSelector((state) =>
     state.favorites.cards.find((el) => el.id === id)
   );
+  const productsCart = useSelector((state) =>
+    state.cart.products.find((el) => el.id === id)
+  );
 
   const styleHeart = cardFavorites ? favoritesHeart : heartIcon;
 
+  
   // сначала проверяю есть ли в массиве обьект с таким id,
   // если есть тогда удаляем - иначе добовляем его
 
   // Начало Вадим: добавление event.stopPropagation для избежания конфликта кликов
   const addFavoritesCard = (event) => {
-    event.stopPropagation(); // Остановка 
+    event.stopPropagation(); // Остановка
     if (cardFavorites) {
       dispatch(deleteCard({ id }));
     } else {
       dispatch(addCard({ id, title, image, price, discont_price }));
     }
   };
-
-  const handleAddToCart = (event) => {
-    event.stopPropagation(); // Остановка
-    // Лог добавления в корзину
-    console.log("Added to cart");
-  };
   // Конец Вадим
 
-  // Начало Вадим
+  const addProductsInCart = (e) => {
+    e.stopPropagation();
+    if (productsCart) {
+      dispatch(deleteOutCart({ id }));
+    } else {
+      dispatch(addInCart({ id, title, image, price, discont_price }));
+    }
+  };
+
+    // Начало Вадим
   // Ставлю локацию для клика для перехода по этим страницам
   const getPageName = () => {
     if (location.pathname.includes("categories")) return "Categories";
@@ -62,7 +63,7 @@ function ProductsCard({ id, title, image, price, discont_price, hideCartIcon }) 
       }`}
     >
       <div className={styles.card}>
-        {/* Полностью измененяю структуры Link */}
+                {/* Полностью измененяю структуры Link */}
         <Link
           to={`/product/${id}`}
           state={{ from: location.pathname, pageName: getPageName() }}
@@ -79,7 +80,8 @@ function ProductsCard({ id, title, image, price, discont_price, hideCartIcon }) 
             </div>
           )}
         </Link>
-        {/* Конец  */}
+                {/* Конец  */}
+
         <div className={styles.cardIcons}>
           <img
             src={styleHeart}
@@ -88,11 +90,15 @@ function ProductsCard({ id, title, image, price, discont_price, hideCartIcon }) 
             onClick={addFavoritesCard}
           />
           {!hideCartIcon && (
-            <img src={cartIcon} alt="bag" className={styles.shoppingBag} onClick={handleAddToCart}/>
+            <img
+              src={cartIcon}
+              alt="bag"
+              className={`${styles.shoppingBag} ${productsCart ? styles.inCart : ''}`}
+              onClick={addProductsInCart}
+            />
           )}
         </div>
       </div>
-
       <h4>{title}</h4>
       <div className={styles.priceContainer}>
         {discont_price && discont_price < price ? (
@@ -102,7 +108,6 @@ function ProductsCard({ id, title, image, price, discont_price, hideCartIcon }) 
           </>
         ) : (
           <p className={styles.originalPrice}>${Math.round(price)}</p>
-          
         )}
       </div>
     </div>
@@ -110,11 +115,3 @@ function ProductsCard({ id, title, image, price, discont_price, hideCartIcon }) 
 }
 
 export default ProductsCard;
-
-
-
-
-
-
-
-

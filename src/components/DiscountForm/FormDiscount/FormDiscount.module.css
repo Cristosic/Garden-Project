@@ -36,7 +36,7 @@
 @media (max-width: 1000px) {
 
   .form {
-    margin: 60px 20px;
+    margin: 60px 20px 0 20px;
   }
   
   .form>h2 {
@@ -67,12 +67,21 @@
 
   .form>h2 {
     margin: 24px 20px;
-    font-size: 48px;
-    line-height: 52,8px;
+    font-size: 46px;
+    line-height: 50px;
+    align-items: center;
   }
 
   .form_image {
     background-position: center;
+  }
+
+}
+
+@media (max-width: 360px) {
+  .form>h2 {
+    font-size: 38px;
+    line-height: 42px;
   }
 
 }
