@@ -36,7 +36,7 @@
 @media (max-width: 1000px) {
 
   .form {
-    margin: 60px 20px;
+    margin: 60px 20px 0 20px;
   }
   
   .form>h2 {
