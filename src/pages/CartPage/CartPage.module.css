@@ -1,3 +1,47 @@
+/* dark theme styles */
+
+.lightTheme .line {
+  background-color: #8b8b8b;
+}
+
+.lightTheme .titlePage,
+.lightTheme .text {
+  color: #424436;
+}
+
+.lightTheme .buttonActive {
+  background-color: #fffff1;
+  color: #8b8b8b;
+  border: 1px solid #8b8b8b;
+}
+
+.lightTheme .buttonActive:hover {
+  background-color: white;
+  color: #424436;
+}
+
+.darkTheme .line {
+  background-color: #8b8b8b;
+}
+
+.darkTheme .titlePage,
+.darkTheme .text {
+  color: #FFFFFF;
+}
+
+.darkTheme .buttonActive {
+  background-color: #424436;
+  color: #DDDDDD;
+  border: 1px solid #8b8b8b;
+}
+
+.darkTheme .buttonActive:hover {
+  color: #FFFFFF;
+}
+
+
+/* */
+
 .container {
   padding: 40px 40px 0 40px;
 }
@@ -8,28 +52,19 @@
 .line {
   height: 1px;
   flex-grow: 1;
-  background-color: #8b8b8b;
 }
 .buttonActive {
-  background-color: #fffff1;
-  color: #8b8b8b;
   padding: 8px 16px;
   border-radius: 6px;
-  border-color: #8b8b8b;
   text-decoration: none;
   font-size: 16px;
   font-weight: 500;
   cursor: pointer;
   gap: 10px;
 }
-.buttonActive:hover {
-  background-color: white;
-  color: #424436;
-}
 
 .titlePage {
   padding: 40px 0;
-  color: #424436;
   font-weight: 700;
   font-size: 64px;
   padding-right: 20px;
@@ -40,7 +75,6 @@
   font-weight: 500;
   font-size: 20px;
   line-height: 26px;
-  color: #424436;
   text-align: left;
 }
 .btn {
@@ -51,7 +85,7 @@
   line-height: 130%;
   padding: 16px 56px;
   gap: 10px;
-  color: white;
+  color: #FFFFFF;
   background: #92a134;
   text-align: center;
   border: none;
@@ -72,6 +106,7 @@
     font-size: 56px;
   }
   .text {
+    white-space: nowrap;
     font-size: 20px;
     line-height: 26px;
   }
@@ -85,19 +120,54 @@
 @media (max-width: 480px) {
   .titlePage {
     font-size: 48px;
-    line-height: 40px;
+    line-height: 53px;
   }
   .buttonActive {
     font-size: 12px;
-    padding: 14px, 0px, 0px, 0px;
+    padding: 8px 16px 8px 16px;
+    gap: 10px;
+    margin-bottom: 45px;
   }
 
   .text {
     font-size: 18px;
-    line-height: 23px;
+    line-height: 22px;
+    white-space: normal;
+    width: 440px;
+    height: 46px;
   }
   .btn {
     font-size: 18px;
     padding: 12px 52px;
+    margin-top: 10px;
+  }
+}
+@media (max-width: 360px) {
+  .titlePage {
+    font-size: 40px;
+    line-height: 44px;
+    white-space: nowrap;
+  }
+  .text {
+    font-size: 18px;
+    line-height: 23px;
+    width: 320px;
+  }
+  .btn {
+    width: 285px;
+    height: 47px;
+    padding: 12px 52px;
+  }
+  .buttonActive {
+    font-size: 12px;
+    width: auto;
+    height: auto;
+    position: absolute;
+    bottom: 85px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .container {
+    margin-bottom: 70px;
   }
 }

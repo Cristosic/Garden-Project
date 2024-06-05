@@ -1,3 +1,17 @@
+/* dark theme styles */ 
+
+.lightTheme .modal_content {
+  background-color: #92a134;
+  color: #FFFFFF;
+}
+
+.darkTheme .modal_content {
+  background-color: #424436;
+  color: #FFFFFF;
+}
+
+/*  */ 
+
 .modal {
   background-color: rgba(40, 40, 40, 0.4);
   position: fixed;
@@ -5,32 +19,36 @@
   left: 0;
   width: 100%;
   height: 100%;
-  overflow: hidden;
-  overflow-y: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   z-index: 100;
 }
 
 .modal_wrapper {
-  position: absolute;
-  top: 0;
-  left: 0;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   width: 100%;
+
   min-height: 100%;
   padding: 0 20px 0 20px;
-}
+
 
 .modal_content {
-  background: #92a134;
-  color: white;
   max-width: 548px;
   border-radius: 12px;
   font-size: 20px;
-  width: 100%;
+  width: auto;
   position: relative;
   padding: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hide {
+  display: none;
 }
 
 .modalCross {

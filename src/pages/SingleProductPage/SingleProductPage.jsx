@@ -10,6 +10,7 @@ import darkHeartIcon from "../../media/icons/darkHeartIcon.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { addCard, deleteCard } from "../../store/slices/favoritesSlice";
 import { Context } from "../../context";
+import ModalWindow from './../../components/ModalWindow/ModalWindow';
 import { addInCart, deleteOutCart } from "../../store/slices/cartProductsSlice";
 import { setCounter } from "../../store/slices/counterSlice";
 import { getOneCategory } from "../../store/slices/oneCategorySlice";
@@ -29,11 +30,15 @@ const SingleProductPage = () => {
   );
 
   const [isFavorite, setIsFavorite] = useState(!!cardFavorites);
+
   const [showFullDescription, setShowFullDescription] = useState(false);
 
   // К
   const categoryId = product ? product.categoryId : null;
   const category = useSelector((state) => state.oneCategory.oneCategoriesData);
+  
+  const [modalActive, setModalActive] = useState(false);
+
 
   useEffect(() => {
     const fetchProductDetails = async () => {
@@ -86,6 +91,14 @@ const SingleProductPage = () => {
     } else {
       dispatch(addInCart({ id: productId, ...product }));
     }
+  };
+
+  const handleImageClick = () => {
+    setModalActive(true);
+  };
+
+  const closeModal = () => {
+    setModalActive(false);
   };
 
   if (!product) {
@@ -141,6 +154,7 @@ const SingleProductPage = () => {
           className={styles.productImage}
           src={`${serverUrl}${product.image}`}
           alt={product.title}
+          onClick={handleImageClick}
         />
         <div className={styles.productInfo}>
           <img
@@ -217,6 +231,15 @@ const SingleProductPage = () => {
         </div>
       </div>
 
+      <ModalWindow 
+      isOpen={modalActive} 
+      isClosed={closeModal} 
+      imageModalContent={styles.imageModalContent}>
+        <div>
+        {
+        <img src={`${serverUrl}${product.image}`} alt={`${product.title}`} className={styles.modalImage} />}
+        </div>
+      </ModalWindow>
     </div>
   );
 };

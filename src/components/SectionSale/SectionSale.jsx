@@ -22,7 +22,7 @@ function SectionSale() {
 
   useEffect(() => {
     dispatch(getAllProducts());
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     if (products.length > 0) {

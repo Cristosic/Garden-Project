@@ -1,7 +1,7 @@
 /* dark theme styles */
 
 .lightTheme .btn_links_categoriesPage + span,
-.lightTheme {
+.lightTheme .btn_category_card .active{
   color: #424436;
 }
 
@@ -26,7 +26,8 @@
 }
 
 .darkTheme .active,
-.darkTheme .btn_links_categoriesPage + span {
+.darkTheme .btn_links_categoriesPage + span, 
+.darkTheme .btn_category_card.active {
   color: #FFFFFF;
 }
 
@@ -84,11 +85,12 @@ button:hover{
  
 }
 
-.active {
+.btn_category_card.active {
   font-size: 16px;
   font-weight: 500;
   line-height: 20px;
   text-align: center;
+  color: black;
 }
 .active:hover{
   color: white;

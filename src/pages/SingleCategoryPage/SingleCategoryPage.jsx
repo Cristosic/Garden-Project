@@ -7,8 +7,7 @@ import ProductsCard from "../../components/ProductsCard/ProductsCard";
 import { Link } from "react-router-dom";
 import { Context } from "../../context";
 import FilterProducts from "./../../components/FilterProducts/FilterProducts";
-
-
+import Skeleton from "./../../components/Skeleton/Skeleton";
 
 export default function SingleCategoryPage() {
   const { theme } = useContext(Context);
@@ -23,23 +22,12 @@ export default function SingleCategoryPage() {
   const status = useSelector((state) => state.oneCategory.status);
   const category = useSelector((state) => state.oneCategory.oneCategoriesData);
 
+
   useEffect(() => {
     if (categoryId) {
       dispatch(getOneCategory(categoryId));
     }
   }, [dispatch, categoryId]);
-
-  if (status === "error") {
-    return <div>Error loading category data.</div>;
-  }
-
-  if (status === "loading") {
-    return <div>Loading...</div>;
-  }
-
-  if (!oneCategoryState.length) {
-    return <div>No data available</div>;
-  }
 
   return (
     <div
@@ -62,24 +50,25 @@ export default function SingleCategoryPage() {
 
         <Link to={`/categories/${categoryId}`}>
           <button className={`${styles.btn_category_card} ${styles.active}`}>
-            {category.title || "Tools and equipment"}
+            {category.category.title}
           </button>
         </Link>
       </div>
 
-      <span>{category.title}</span>
+      <span>{category.category.title}</span>
 
       <FilterProducts showSaleFilter={true} oneCategoryFilter={true} />
-
+      {status === "loading" ? (
+        <Skeleton />
+      ) : (
         <div className={styles.cardContainer}>
-
           {
             oneCategoryState.map((el) => (
               <ProductsCard key={el.id} {...el} />
             ))
           }
         </div>
-
-      </div>
+      )}
+    </div>
   );
 }

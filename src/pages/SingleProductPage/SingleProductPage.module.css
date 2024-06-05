@@ -117,8 +117,21 @@
   cursor: pointer;
 }
 
+.imageModalContent {
+  padding: 0;
+  background: none;
+  margin-top: 150px;
+}
 
+.imageModalContent>img {
+  display: none;
+}
 
+.modalImage {
+  width: 561px;
+  height: 366px;
+  object-fit: cover;
+}
 
 .productTitle {
   font-size: 40px;
@@ -248,6 +261,7 @@
   border: none;
   border-radius: 6px;
   cursor: pointer;
+  transition: background 0.3s ease;
 }
 
 .addToCartButton:hover {
@@ -270,17 +284,14 @@
 }
 
 .productDescription p {
-  font-family: Montserrat;
   font-size: 16px;
   font-weight: 400;
-  line-height: 20.8px;
+  line-height: 20px;
   text-align: left;
-  color: #424436;
   padding-bottom: 15px;
 }
 
 .readMoreLink {
-  color: #424436;
   margin-bottom: 20px;
   text-decoration: underline;
 }
