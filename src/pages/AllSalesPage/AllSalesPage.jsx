@@ -44,13 +44,13 @@ export default function AllSalesPage() {
 
       {/* уже есть готовый camponents для карточек на странице MainPAge,
        поэтому я могу переиспользовать его тут */}
-      <div className={styles.cardContainer}>
+      <div>
         {status ? (
           <Skeleton />
-        ) : (
-          saleProducts &&
-          saleProducts.map((el) => <ProductsCard key={el.id} {...el} />)
-        )}
+        ) : <div className={styles.cardContainer}> 
+          {saleProducts &&
+          saleProducts.map((el) => <ProductsCard key={el.id} {...el} />)}
+        </div>}
       </div>
     </div>
   );
