@@ -44,6 +44,7 @@ export default function AllSalesPage() {
 
       {/* уже есть готовый camponents для карточек на странице MainPAge,
        поэтому я могу переиспользовать его тут */}
+       
       <div>
         {status ? (
           <Skeleton />
@@ -52,6 +53,7 @@ export default function AllSalesPage() {
           saleProducts.map((el) => <ProductsCard key={el.id} {...el} />)}
         </div>}
       </div>
+      
     </div>
   );
 }
