@@ -10,9 +10,10 @@ import darkHeartIcon from "../../media/icons/darkHeartIcon.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { addCard, deleteCard } from "../../store/slices/favoritesSlice";
 import { Context } from "../../context";
+import ModalWindow from './../../components/ModalWindow/ModalWindow';
 import { addInCart, deleteOutCart } from "../../store/slices/cartProductsSlice";
 import { setCounter } from "../../store/slices/counterSlice";
-import ModalWindow from './../../components/ModalWindow/ModalWindow';
+import { getOneCategory } from "../../store/slices/oneCategorySlice";
 
 const SingleProductPage = () => {
   const { productId } = useParams();
@@ -23,12 +24,19 @@ const SingleProductPage = () => {
   const cardFavorites = useSelector((state) =>
     state.favorites.cards.find((el) => el.id === productId)
   );
-  
+
   const productInCart = useSelector((state) =>
     state.cart.products.find((el) => el.id === productId)
   );
 
   const [isFavorite, setIsFavorite] = useState(!!cardFavorites);
+
+  const [showFullDescription, setShowFullDescription] = useState(false);
+
+  // К
+  const categoryId = product ? product.categoryId : null;
+  const category = useSelector((state) => state.oneCategory.oneCategoriesData);
+  
   const [modalActive, setModalActive] = useState(false);
 
 
@@ -52,6 +60,12 @@ const SingleProductPage = () => {
 
     fetchProductDetails();
   }, [productId]);
+
+  useEffect(() => {
+    if (categoryId) {
+      dispatch(getOneCategory(categoryId));
+    }
+  }, [dispatch, categoryId]);
 
   useEffect(() => {
     if (productInCart) {
@@ -94,12 +108,30 @@ const SingleProductPage = () => {
   const previousPage = location.state?.from || "/";
   const previousPageName = location.state?.pageName || "Previous Page";
 
+  const toggleDescription = (e) => {
+    e.preventDefault();
+    setShowFullDescription(!showFullDescription);
+  };
+
+  const getDescription = () => {
+    if (showFullDescription) {
+      return product.description;
+    }
+    return product.description.length > 200
+      ? product.description.slice(0, 200) + "..."
+      : product.description;
+  };
+
   return (
+
+
     <div
       className={`${styles.singleProductPage} ${
         theme === "light" ? styles.lightTheme : styles.darkTheme
       }`}
     >
+
+
       <div className={styles.navigationLink}>
         <Link to="/">
           <button>Main Page</button>
@@ -109,10 +141,21 @@ const SingleProductPage = () => {
           <button>{previousPageName}</button>
         </Link>
         <div className={styles.line}></div>
+        <Link to={`/categories/${categoryId}`}>
+          <button className={styles.buttonActive}>{category.title || "Tools and equipment"}</button>
+        </Link>
+        <div className={styles.line}></div>
         <button className={styles.buttonActive}>{product.title}</button>
       </div>
+
+
       <div className={styles.productWrapper}>
-        <img className={styles.productImage} src={`${serverUrl}${product.image}`} alt={product.title} onClick={handleImageClick}/>
+        <img
+          className={styles.productImage}
+          src={`${serverUrl}${product.image}`}
+          alt={product.title}
+          onClick={handleImageClick}
+        />
         <div className={styles.productInfo}>
           <img
             src={
@@ -125,7 +168,6 @@ const SingleProductPage = () => {
             alt="heart"
             className={`${styles.heart} ${isFavorite ? styles.favorite : ""}`}
             onClick={addFavoritesCard}
-
             onMouseOver={(e) =>
               (e.currentTarget.src =
                 theme === "dark" ? favoritesHeart : hoverHeart)
@@ -138,31 +180,35 @@ const SingleProductPage = () => {
                 : heartIcon)
             }
           />
-
           <h1 className={styles.productTitle}>{product.title}</h1>
+
           <div className={styles.priceSection}>
             {product.discont_price && product.discont_price < product.price ? (
               <>
-                <span className={styles.currentPrice}>
-                  ${Math.round(product.discont_price)}
-                </span>
-                <span className={styles.oldPrice}>
-                  ${Math.round(product.price)}
-                </span>
-                <span className={styles.discount}>
-                  -
-                  {Math.round(
-                    100 - (product.discont_price / product.price) * 100
-                  )}
-                  %
-                </span>
+                <div className={styles.price}>
+                  <span className={styles.currentPrice}>
+                    ${Math.round(product.discont_price)}
+                  </span>
+                  <span className={styles.oldPrice}>
+                    ${Math.round(product.price)}
+                  </span>
+                </div>
+                <div className={styles.procent}>
+                  <span className={styles.discount}>
+                    -
+                    {Math.round(
+                      100 - (product.discont_price / product.price) * 100
+                    )}
+                    %
+                  </span>
+                </div>
               </>
             ) : (
               <span className={styles.currentPrice}>${product.price}</span>
             )}
           </div>
+
           <div className={styles.addToCartContainer}>
-          
             <Counter productId={productId} />
             <div className={styles.containertButtonCart}>
               <button
@@ -173,15 +219,18 @@ const SingleProductPage = () => {
               </button>
             </div>
           </div>
+
           <div className={styles.productDescription}>
             <h2>Description</h2>
-            <p>{product.description}</p>
-            <a href="#" className={styles.readMoreLink}>
-              Read more
+            <p>{getDescription()}</p>
+            <a href="#" className={styles.readMoreLink} onClick={toggleDescription}>
+              {showFullDescription ? "Read more" : "Read more"}
             </a>
           </div>
+
         </div>
       </div>
+
       <ModalWindow 
       isOpen={modalActive} 
       isClosed={closeModal} 
