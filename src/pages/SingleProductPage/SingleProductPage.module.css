@@ -131,8 +131,8 @@
 }
 
 .modalImage {
-  width: 561px;
-  height: 366px;
+  width: 900px;
+  height: 530px;
   object-fit: cover;
 }
 
@@ -297,4 +297,39 @@
 .readMoreLink {
   margin-bottom: 20px;
   text-decoration: underline;
+}
+
+
+@media (max-width: 1440px) {
+  .imageModalContent {
+    margin-top: 150px;
+  }
+
+  .modalImage {
+    padding: 0 50px 0 50px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .modalImage {
+    width: 730px;
+    height: 500px;
+    padding: 0 20px 0 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .modalImage {
+    width: 585px;
+    height: 400px;
+    padding: 0 50px 0 50px;
+  }
+}
+
+@media (max-width: 480px) {
+  .modalImage {
+    width: 410px;
+    height: 290px;
+    padding: 0 50px 0 50px;
+  }
 }

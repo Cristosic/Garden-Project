@@ -105,6 +105,7 @@ const SingleProductPage = () => {
     return <p>Loading...</p>;
   }
 
+
   const previousPage = location.state?.from || "/";
   const previousPageName = location.state?.pageName || "Previous Page";
 
@@ -142,7 +143,7 @@ const SingleProductPage = () => {
         </Link>
         <div className={styles.line}></div>
         <Link to={`/categories/${categoryId}`}>
-          <button className={styles.buttonActive}>{category.category.title}</button>
+          <button className={styles.buttonActive}>{category?.category?.title || "Loading..."}</button>
         </Link>
         <div className={styles.line}></div>
         <button className={styles.buttonActive}>{product.title}</button>
