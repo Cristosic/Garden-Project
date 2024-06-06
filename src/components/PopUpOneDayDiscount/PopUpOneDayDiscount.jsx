@@ -1,13 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./PopUpOneDayDiscount.module.css";
 import ModalWindow from "../ModalWindow/ModalWindow";
 import ProductsCard from "../ProductsCard/ProductsCard";
 import { useSelector } from "react-redux";
+import { Context } from "../../context";
 
 export default function PopUpOneDayDiscount({
   oneDayDiscountIsOpen,
   setOneDayDiscountIsOpen,
 }) {
+  
+  const { theme } = useContext(Context);
+
   const products = useSelector((state) => state.allProducts.allProductsData);
   const [product, setProduct] = useState(null);
 
@@ -24,7 +28,11 @@ export default function PopUpOneDayDiscount({
   }, [products]);
 
   return (
-    <div>
+    <div
+      className={`${styles.popUpContainer} ${
+        theme === "light" ? styles.lightTheme : styles.darkTheme
+      }`}
+    >
       <ModalWindow
         cardContentStyles={styles.cardContentStyles}
         isOpen={oneDayDiscountIsOpen}

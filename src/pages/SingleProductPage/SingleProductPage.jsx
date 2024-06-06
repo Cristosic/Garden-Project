@@ -1,14 +1,17 @@
-import React, { useEffect, useState, useContext } from 'react';
-import { useParams, Link, useLocation } from 'react-router-dom';
+import React, { useEffect, useState, useContext } from "react";
+import { useParams, Link, useLocation } from "react-router-dom";
 import styles from "./SingleProductPage.module.css";
-import { serverUrl } from '../../utils/Config';
-import Counter from '../../components/Counter/Counter';
+import { serverUrl } from "../../utils/config.js";
+import Counter from "../../components/Counter/Counter";
 import heartIcon from "../../media/icons/heartIcon.svg";
 import favoritesHeart from "../../media/icons/favoritesHeart.svg";
 import hoverHeart from "../../media/icons/hoverHeart.svg";
+import darkHeartIcon from "../../media/icons/darkHeartIcon.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { addCard, deleteCard } from "../../store/slices/favoritesSlice";
 import { Context } from "../../context";
+import { addInCart, deleteOutCart } from "../../store/slices/cartProductsSlice";
+import { setCounter } from "../../store/slices/counterSlice";
 import ModalWindow from './../../components/ModalWindow/ModalWindow';
 
 const SingleProductPage = () => {
@@ -17,7 +20,14 @@ const SingleProductPage = () => {
   const location = useLocation();
   const { theme } = useContext(Context);
   const dispatch = useDispatch();
-  const cardFavorites = useSelector(state => state.favorites.cards.find(el => el.id === productId));
+  const cardFavorites = useSelector((state) =>
+    state.favorites.cards.find((el) => el.id === productId)
+  );
+  
+  const productInCart = useSelector((state) =>
+    state.cart.products.find((el) => el.id === productId)
+  );
+
   const [isFavorite, setIsFavorite] = useState(!!cardFavorites);
   const [modalActive, setModalActive] = useState(false);
 
@@ -27,7 +37,7 @@ const SingleProductPage = () => {
       try {
         const response = await fetch(`${serverUrl}products/${productId}`);
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+          throw new Error("Network response was not ok");
         }
         const data = await response.json();
         if (Array.isArray(data) && data.length > 0) {
@@ -36,25 +46,37 @@ const SingleProductPage = () => {
           setProduct(data);
         }
       } catch (error) {
-        console.error('Error fetching product details:', error);
+        console.error("Error fetching product details:", error);
       }
     };
 
     fetchProductDetails();
   }, [productId]);
 
-  const handleAddToCart = () => {
-    alert('Product added to cart!');
-  };
+  useEffect(() => {
+    if (productInCart) {
+      dispatch(setCounter({ productId, amount: productInCart.amount }));
+    }
+  }, [productInCart, dispatch, productId]);
 
   const addFavoritesCard = (event) => {
-    event.stopPropagation(); // Остановка 
+    event.stopPropagation();
+
     if (isFavorite) {
       dispatch(deleteCard({ id: productId }));
     } else {
       dispatch(addCard({ id: productId, ...product }));
     }
-    setIsFavorite(!isFavorite); // Переключение состояния избранного
+    setIsFavorite(!isFavorite);
+  };
+
+  const addProductsInCart = (e) => {
+    e.stopPropagation();
+    if (productInCart) {
+      dispatch(deleteOutCart({ id: productId }));
+    } else {
+      dispatch(addInCart({ id: productId, ...product }));
+    }
   };
 
   const handleImageClick = () => {
@@ -73,7 +95,11 @@ const SingleProductPage = () => {
   const previousPageName = location.state?.pageName || "Previous Page";
 
   return (
-    <div className={styles.singleProductPage}>
+    <div
+      className={`${styles.singleProductPage} ${
+        theme === "light" ? styles.lightTheme : styles.darkTheme
+      }`}
+    >
       <div className={styles.navigationLink}>
         <Link to="/">
           <button>Main Page</button>
@@ -88,41 +114,71 @@ const SingleProductPage = () => {
       <div className={styles.productWrapper}>
         <img className={styles.productImage} src={`${serverUrl}${product.image}`} alt={product.title} onClick={handleImageClick}/>
         <div className={styles.productInfo}>
-          {/*  добавление сердцаааааа */}
           <img
-            src={isFavorite ? favoritesHeart : heartIcon}
+            src={
+              isFavorite
+                ? favoritesHeart
+                : theme === "dark"
+                ? darkHeartIcon
+                : heartIcon
+            }
             alt="heart"
-            className={`${styles.heart} ${isFavorite ? styles.favorite : ''}`}
+            className={`${styles.heart} ${isFavorite ? styles.favorite : ""}`}
             onClick={addFavoritesCard}
-            onMouseOver={e => e.currentTarget.src = hoverHeart}
-            onMouseOut={e => e.currentTarget.src = isFavorite ? favoritesHeart : heartIcon}
+
+            onMouseOver={(e) =>
+              (e.currentTarget.src =
+                theme === "dark" ? favoritesHeart : hoverHeart)
+            }
+            onMouseOut={(e) =>
+              (e.currentTarget.src = isFavorite
+                ? favoritesHeart
+                : theme === "dark"
+                ? darkHeartIcon
+                : heartIcon)
+            }
           />
-        
+
           <h1 className={styles.productTitle}>{product.title}</h1>
           <div className={styles.priceSection}>
             {product.discont_price && product.discont_price < product.price ? (
               <>
-                <span className={styles.currentPrice}>${Math.round(product.discont_price)}</span>
-                <span className={styles.oldPrice}>${Math.round(product.price)}</span>
+                <span className={styles.currentPrice}>
+                  ${Math.round(product.discont_price)}
+                </span>
+                <span className={styles.oldPrice}>
+                  ${Math.round(product.price)}
+                </span>
                 <span className={styles.discount}>
-                  -{Math.round(100 - (product.discont_price / product.price) * 100)}%
+                  -
+                  {Math.round(
+                    100 - (product.discont_price / product.price) * 100
+                  )}
+                  %
                 </span>
               </>
             ) : (
               <span className={styles.currentPrice}>${product.price}</span>
             )}
           </div>
-          <div  className={styles.addToCartContainer}>
-            <Counter />
-            <div className={styles.containertButtonCart}  >
-            <button className={styles.addToCartButton} onClick={handleAddToCart}>Add to cart</button>
-            </div>
+          <div className={styles.addToCartContainer}>
           
+            <Counter productId={productId} />
+            <div className={styles.containertButtonCart}>
+              <button
+                className={styles.addToCartButton}
+                onClick={addProductsInCart}
+              >
+                Add to cart
+              </button>
+            </div>
           </div>
           <div className={styles.productDescription}>
             <h2>Description</h2>
             <p>{product.description}</p>
-            <a href="#" className={styles.readMoreLink}>Read more</a>
+            <a href="#" className={styles.readMoreLink}>
+              Read more
+            </a>
           </div>
         </div>
       </div>

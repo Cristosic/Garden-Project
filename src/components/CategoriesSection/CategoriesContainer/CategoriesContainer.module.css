@@ -33,6 +33,10 @@
   }
 }  
 
+.darkTheme .btn_category_card:hover {
+  color: #FFFFFF;
+}
+
 /*  */ 
 
 

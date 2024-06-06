@@ -7,6 +7,7 @@ import ProductsCard from "../../components/ProductsCard/ProductsCard";
 import { Link } from "react-router-dom";
 import { Context } from "../../context";
 import FilterProducts from "./../../components/FilterProducts/FilterProducts";
+import Skeleton from './../../components/Skeleton/Skeleton';
 
 
 
@@ -35,7 +36,7 @@ export default function SingleCategoryPage() {
   }
 
   if (status === "loading") {
-    return <div>Loading...</div>;
+    return <Skeleton />
   }
 
   if (!oneCategoryState.length) {
