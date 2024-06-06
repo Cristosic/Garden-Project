@@ -9,7 +9,6 @@ import { RxCross2 } from "react-icons/rx";
 import { Context } from "../../context";
 
 export default function CartPage() {
-
   const { theme } = useContext(Context);
 
   const dispatch = useDispatch();

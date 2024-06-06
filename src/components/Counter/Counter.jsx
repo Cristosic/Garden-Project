@@ -7,7 +7,7 @@ import { Context } from '../../context';
 const Counter = ({ productId }) => {
   const { theme } = useContext(Context);
   const dispatch = useDispatch();
-  const counter = useSelector((state) => state.counter[productId] || 1);
+   const counter = useSelector((state) => state.counter[productId] || 1);
 
   const countIncrement = () => {
     dispatch(increment({ productId }));

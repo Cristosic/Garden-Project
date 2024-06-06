@@ -115,7 +115,26 @@
   background: #F2F6D3;
 }
 
+.orderContentStyles {
+  display: flex;
+  flex-direction: column;
+  margin-top: 260px;
+  
+}
 
+.orderContentStyles > h3 {
+
+  align-self: flex-start;
+}
+
+.orderContentStyles > p {
+  align-self: flex-end;
+}
+
+.orderContentStyles img {
+  display: none;
+
+}
 
 @media (max-width: 1440px) {
   .newUser {
@@ -149,13 +168,13 @@
 
   .inputForm {
     padding: 16px 20px;
-    font-size: 18px;
+    font-size: 16px;
     height: 58px;
   }
 
   .submitButton {
     padding: 16px 20px;
-    font-size: 18px;
+    font-size: 16px;
     height: 58px;
     text-align: center;
   }
@@ -183,6 +202,16 @@
     font-size: 16px;
     padding: 12px 20px;
   }
+  .orderContentStyles > h3{
+    font-size: 33px;
+  }
+  .orderContentStyles > p{
+    font-size: 18px;
+  }
+  .orderContentStyles img {
+    display: none;
+
+  }
 }
 @media (max-width: 360px) {
   .newUser {
@@ -201,6 +230,12 @@
     height: 47px;
     font-size: 15px;
     padding: 12px 20px;
+  }
+  .orderContentStyles > h3{
+    font-size: 28px;
+  }
+  .orderContentStyles > p{
+    font-size: 18px;
   }
 }
 

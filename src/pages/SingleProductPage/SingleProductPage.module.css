@@ -153,6 +153,7 @@
   font-weight: 700;
   line-height: 70.4px;
   text-align: left;
+  align-self: flex-start;
 }
 
 .oldPrice {
@@ -161,6 +162,7 @@
   line-height: 52px;
   text-align: left;
   text-decoration: line-through;
+  align-self: flex-end;
   color: grey;
 }
 
@@ -172,7 +174,7 @@
   color: #ffffff;
   border-radius: 6px;
   padding: 4px 8px;
-  position: absolute;
+  align-self: flex-start;
   top: 0;
   right: 0;
 }
