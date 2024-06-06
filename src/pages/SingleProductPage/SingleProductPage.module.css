@@ -5,6 +5,9 @@
   border: 1px solid #dddddd;
   color: #8b8b8b;
 }
+.lightTheme .imageModalContent{
+  background: none;
+}
 
 .lightTheme .navigationLink .line {
   background-color: #dddddd;

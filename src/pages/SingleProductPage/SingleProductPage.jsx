@@ -142,7 +142,7 @@ const SingleProductPage = () => {
         </Link>
         <div className={styles.line}></div>
         <Link to={`/categories/${categoryId}`}>
-          <button className={styles.buttonActive}>{category.title || "Tools and equipment"}</button>
+          <button className={styles.buttonActive}>{category.category.title}</button>
         </Link>
         <div className={styles.line}></div>
         <button className={styles.buttonActive}>{product.title}</button>
