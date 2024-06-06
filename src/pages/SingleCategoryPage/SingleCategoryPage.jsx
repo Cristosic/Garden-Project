@@ -29,6 +29,10 @@ export default function SingleCategoryPage() {
     }
   }, [dispatch, categoryId]);
 
+  if (!oneCategoryState.length) {
+    return <div>No data available</div>;
+  }
+
   return (
     <div
       className={`${styles.categories_container} ${
