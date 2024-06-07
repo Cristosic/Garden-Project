@@ -10,51 +10,23 @@ import darkHeartIcon from "../../media/icons/darkHeartIcon.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { addCard, deleteCard } from "../../store/slices/favoritesSlice";
 import { Context } from "../../context";
-import { addInCart, deleteOutCart } from "../../store/slices/cartProductsSlice";
-import { setCounter } from "../../store/slices/counterSlice";
+import { addInCart } from "../../store/slices/cartProductsSlice";
+import { getSingleProduct } from "../../store/slices/singleProductsSlice";
 
 const SingleProductPage = () => {
   const { productId } = useParams();
-  const [product, setProduct] = useState(null);
   const location = useLocation();
   const { theme } = useContext(Context);
   const dispatch = useDispatch();
-  const cardFavorites = useSelector((state) =>
-    state.favorites.cards.find((el) => el.id === productId)
-  );
-  
-  const productInCart = useSelector((state) =>
-    state.cart.products.find((el) => el.id === productId)
-  );
 
+  const product = useSelector((state) => state.singleProduct.product);
+  const cardFavorites = useSelector((state) => state.favorites.cards.find((el) => el.id === productId));
+  const productInCart = useSelector((state) => state.cart.products.find((el) => el.id === productId));
   const [isFavorite, setIsFavorite] = useState(!!cardFavorites);
 
   useEffect(() => {
-    const fetchProductDetails = async () => {
-      try {
-        const response = await fetch(`${serverUrl}products/${productId}`);
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const data = await response.json();
-        if (Array.isArray(data) && data.length > 0) {
-          setProduct(data[0]);
-        } else {
-          setProduct(data);
-        }
-      } catch (error) {
-        console.error("Error fetching product details:", error);
-      }
-    };
-
-    fetchProductDetails();
-  }, [productId]);
-
-  useEffect(() => {
-    if (productInCart) {
-      dispatch(setCounter({ productId, amount: productInCart.amount }));
-    }
-  }, [productInCart, dispatch, productId]);
+    dispatch(getSingleProduct(productId));
+  }, [dispatch, productId]); 
 
   const addFavoritesCard = (event) => {
     event.stopPropagation();
@@ -69,16 +41,8 @@ const SingleProductPage = () => {
 
   const addProductsInCart = (e) => {
     e.stopPropagation();
-    if (productInCart) {
-      dispatch(deleteOutCart({ id: productId }));
-    } else {
-      dispatch(addInCart({ id: productId, ...product }));
-    }
+    dispatch(addInCart({ id: productId, ...product, amount: product.amount }));
   };
-
-  if (!product) {
-    return <p>Loading...</p>;
-  }
 
   const previousPage = location.state?.from || "/";
   const previousPageName = location.state?.pageName || "Previous Page";
@@ -107,6 +71,7 @@ const SingleProductPage = () => {
           alt={product.title}
         />
         <div className={styles.productInfo}>
+
           <img
             src={
               isFavorite
@@ -118,7 +83,6 @@ const SingleProductPage = () => {
             alt="heart"
             className={`${styles.heart} ${isFavorite ? styles.favorite : ""}`}
             onClick={addFavoritesCard}
-
             onMouseOver={(e) =>
               (e.currentTarget.src =
                 theme === "dark" ? favoritesHeart : hoverHeart)
@@ -131,7 +95,7 @@ const SingleProductPage = () => {
                 : heartIcon)
             }
           />
-
+          
           <h1 className={styles.productTitle}>{product.title}</h1>
           <div className={styles.priceSection}>
             {product.discont_price && product.discont_price < product.price ? (
@@ -143,11 +107,7 @@ const SingleProductPage = () => {
                   ${Math.round(product.price)}
                 </span>
                 <span className={styles.discount}>
-                  -
-                  {Math.round(
-                    100 - (product.discont_price / product.price) * 100
-                  )}
-                  %
+                  -{Math.round(100 - (product.discont_price / product.price) * 100)}%
                 </span>
               </>
             ) : (
@@ -155,8 +115,7 @@ const SingleProductPage = () => {
             )}
           </div>
           <div className={styles.addToCartContainer}>
-          
-            <Counter productId={productId} />
+            <Counter productId={productId} isSingleProduct={true} />
             <div className={styles.containertButtonCart}>
               <button
                 className={styles.addToCartButton}
