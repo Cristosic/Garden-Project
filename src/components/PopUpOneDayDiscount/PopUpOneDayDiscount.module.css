@@ -1,7 +1,35 @@
+/* dark theme styles */
+
+.lightTheme .addToCartButton {
+  color: #424436;
+  background-color: #fffff1;
+  border: 1px solid #dddddd;
+}
+
+.lightTheme .addToCartButton:hover {
+  background-color: #424436;
+  color: #ffffff;
+  border: none;
+}
+
+.darkTheme .addToCartButton {
+  background-color: #92a134;
+  color: #ffffff;
+  border: none;
+}
+
+.darkTheme .addToCartButton:hover {
+  background-color: #424436;
+  color: #ffffff;
+  border: 1px solid #ffffff;
+}
+
+/*  */
+
 .cardContentStyles {
   white-space: wrap;
-  min-width: 548px;
-  min-height: 664px;
+  min-width: 484px;
+  min-height: 422px;
 }
 
 .modalWindowContent > h3 {
@@ -14,9 +42,6 @@
 
 .addToCartButton {
   padding: 16px 32px;
-  color: #424436;
-  background-color: #fffff1;
-  border: 1px solid #dddddd;
   border-radius: 6px;
   cursor: pointer;
   width: 100%;
@@ -24,12 +49,7 @@
   font-size: 20px;
   line-height: 26px;
   font-weight: 600;
-}
-
-.addToCartButton:hover {
-  background-color: #424436;
-  color: #ffffff;
-  border: none;
+  transition: background 0.3s ease;
 }
 
 @media (max-width: 780px) {

@@ -5,13 +5,13 @@ import { Link, useParams } from "react-router-dom";
 import styles from "./AllCategories.module.css";
 import CategoryCard from "../CategoriesSection/CategoryCard/CategoryCard";
 import { Context } from "../../context";
+import Skeleton from "./../Skeleton/Skeleton";
 
 export default function AllCategories() {
-
   const { theme } = useContext(Context);
 
   const dispatch = useDispatch();
-  const {categoryId} = useParams()
+  const { categoryId } = useParams();
 
   useEffect(() => {
     dispatch(getCategories());
@@ -20,8 +20,8 @@ export default function AllCategories() {
   const categoriesState = useSelector(
     (state) => state.categories.categoriesData
   );
+   const status = useSelector((state) => state.categories.status === "loading");
 
-  
   return (
     <div
       className={`${styles.categories_container} ${
@@ -36,7 +36,7 @@ export default function AllCategories() {
         <div className={styles.line}></div>
 
         <Link to={`/categories`}>
-          <button className={`${styles.btn_category_card} ${styles.active}`}>
+          <button className={`${styles.active}`}>
             Categories
           </button>
         </Link>
@@ -44,11 +44,13 @@ export default function AllCategories() {
       <span>Categories</span>
 
       <Link to={`/categories/${categoryId}`}>
-      <div className={styles.containerImg}>
-        {categoriesState.map((el) => (
-          <CategoryCard key={el.id} {...el} />
-        ))}
-      </div>
+        <div className={styles.containerImg}>
+          {status ? (
+            <Skeleton />
+          ) : (
+            categoriesState.map((el) => <CategoryCard key={el.id} {...el} />)
+          )}
+        </div>
       </Link>
     </div>
   );

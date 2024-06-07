@@ -28,7 +28,7 @@ export default function NavMenu() {
 
   useEffect(() => {
     dispatch(getAllProducts());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div
@@ -37,8 +37,8 @@ export default function NavMenu() {
       }`}
     >
       <div className={styles.iconsLeft}>
-        <Link to={'/'}>
-        <img className={styles.plantLogo} src={plantLogo} alt="plant-logo" />
+        <Link to={"/"}>
+          <img className={styles.plantLogo} src={plantLogo} alt="plant-logo" />
         </Link>
         <ThemeToggle className={styles.themeToggle} />
       </div>

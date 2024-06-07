@@ -1,15 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./PopUpOneDayDiscount.module.css";
 import ModalWindow from "../ModalWindow/ModalWindow";
 import ProductsCard from "../ProductsCard/ProductsCard";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { Context } from "../../context";
+import { addInCart, deleteOutCart } from "../../store/slices/cartProductsSlice";
 
 export default function PopUpOneDayDiscount({
   oneDayDiscountIsOpen,
   setOneDayDiscountIsOpen,
+  productId,
 }) {
+  
+  const { theme } = useContext(Context);
+
   const products = useSelector((state) => state.allProducts.allProductsData);
   const [product, setProduct] = useState(null);
+
+  const productInCart = useSelector((state) =>
+    state.cart.products.find((el) => el.id === productId)
+  );
 
   useEffect(() => {
     if (products.length > 0) {
@@ -23,8 +33,23 @@ export default function PopUpOneDayDiscount({
     }
   }, [products]);
 
+  const dispatch = useDispatch();
+
+  const addProductInCart = (event) => {
+    event.stopPropagation();
+    if (productInCart) {
+      dispatch(deleteOutCart({ id: productId }));
+    } else {
+      dispatch(addInCart({ id: productId, ...product }));
+    }
+  };
+
   return (
-    <div className={styles.popUpContainer}>
+    <div
+      className={`${styles.popUpContainer} ${
+        theme === "light" ? styles.lightTheme : styles.darkTheme
+      }`}
+    >
       <ModalWindow
         cardContentStyles={styles.cardContentStyles}
         isOpen={oneDayDiscountIsOpen}
@@ -42,7 +67,9 @@ export default function PopUpOneDayDiscount({
               hideCartIcon={true}
             />
           )}
-          <button className={styles.addToCartButton}>Add to cart</button>
+          <button className={styles.addToCartButton} onClick={addProductInCart}>
+            Add to cart
+          </button>
         </div>
       </ModalWindow>
     </div>

@@ -18,7 +18,7 @@ export default function CategoriesContainer() {
 
   useEffect(() => {
     dispatch(getCategories());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div

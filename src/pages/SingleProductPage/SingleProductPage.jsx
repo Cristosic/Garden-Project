@@ -10,8 +10,10 @@ import darkHeartIcon from "../../media/icons/darkHeartIcon.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { addCard, deleteCard } from "../../store/slices/favoritesSlice";
 import { Context } from "../../context";
-import { addInCart } from "../../store/slices/cartProductsSlice";
+import ModalWindow from './../../components/ModalWindow/ModalWindow';
+import { addInCart, deleteOutCart } from "../../store/slices/cartProductsSlice";
 import { getSingleProduct } from "../../store/slices/singleProductsSlice";
+import { getOneCategory } from "../../store/slices/oneCategorySlice";
 
 const SingleProductPage = () => {
   const { productId } = useParams();
@@ -24,9 +26,24 @@ const SingleProductPage = () => {
   const productInCart = useSelector((state) => state.cart.products.find((el) => el.id === productId));
   const [isFavorite, setIsFavorite] = useState(!!cardFavorites);
 
+  const [showFullDescription, setShowFullDescription] = useState(false);
+
+  // К
+  const categoryId = product ? product.categoryId : null;
+  const category = useSelector((state) => state.oneCategory.oneCategoriesData);
+  
+  const [modalActive, setModalActive] = useState(false);
+
+
   useEffect(() => {
     dispatch(getSingleProduct(productId));
   }, [dispatch, productId]); 
+
+  useEffect(() => {
+    if (categoryId) {
+      dispatch(getOneCategory(categoryId));
+    }
+  }, [dispatch, categoryId]);
 
   const addFavoritesCard = (event) => {
     event.stopPropagation();
@@ -41,18 +58,41 @@ const SingleProductPage = () => {
 
   const addProductsInCart = (e) => {
     e.stopPropagation();
-    dispatch(addInCart({ id: productId, ...product, amount: product.amount }));
+    if (productInCart) {
+      dispatch(deleteOutCart({ id: productId }));
+    } else {
+      dispatch(
+        addInCart({ id: productId, ...product, amount: product.amount })
+      );
+    }
   };
+
+  const handleImageClick = () => {
+    setModalActive(true);
+  };
+
+  const closeModal = () => {
+    setModalActive(false);
+  };
+
+  if (!product) {
+    return <p>Loading...</p>;
+  }
+
 
   const previousPage = location.state?.from || "/";
   const previousPageName = location.state?.pageName || "Previous Page";
 
   return (
+
+
     <div
       className={`${styles.singleProductPage} ${
         theme === "light" ? styles.lightTheme : styles.darkTheme
       }`}
     >
+
+
       <div className={styles.navigationLink}>
         <Link to="/">
           <button>Main Page</button>
@@ -62,13 +102,20 @@ const SingleProductPage = () => {
           <button>{previousPageName}</button>
         </Link>
         <div className={styles.line}></div>
+        <Link to={`/categories/${categoryId}`}>
+          <button className={styles.buttonActive}>{category.title || "Tools and equipment"}</button>
+        </Link>
+        <div className={styles.line}></div>
         <button className={styles.buttonActive}>{product.title}</button>
       </div>
+
+
       <div className={styles.productWrapper}>
         <img
           className={styles.productImage}
           src={`${serverUrl}${product.image}`}
           alt={product.title}
+          onClick={handleImageClick}
         />
         <div className={styles.productInfo}>
 
@@ -95,8 +142,8 @@ const SingleProductPage = () => {
                 : heartIcon)
             }
           />
-          
           <h1 className={styles.productTitle}>{product.title}</h1>
+
           <div className={styles.priceSection}>
             {product.discont_price && product.discont_price < product.price ? (
               <>
@@ -114,6 +161,7 @@ const SingleProductPage = () => {
               <span className={styles.currentPrice}>${product.price}</span>
             )}
           </div>
+
           <div className={styles.addToCartContainer}>
             <Counter productId={productId} isSingleProduct={true} />
             <div className={styles.containertButtonCart}>
@@ -125,15 +173,26 @@ const SingleProductPage = () => {
               </button>
             </div>
           </div>
+
           <div className={styles.productDescription}>
             <h2>Description</h2>
             <p>{product.description}</p>
             <a href="#" className={styles.readMoreLink}>
-              Read more
             </a>
           </div>
+
         </div>
       </div>
+
+      <ModalWindow 
+      isOpen={modalActive} 
+      isClosed={closeModal} 
+      imageModalContent={styles.imageModalContent}>
+        <div>
+        {
+        <img src={`${serverUrl}${product.image}`} alt={`${product.title}`} className={styles.modalImage} />}
+        </div>
+      </ModalWindow>
     </div>
   );
 };
