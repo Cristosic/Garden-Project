@@ -58,6 +58,11 @@
   color: #DDDDDD;
 }
 
+.darkTheme .addToCartButton:hover {
+  background-color: #424436;
+  border: 1px solid #8B8B8B;
+}
+
 /* */
 
 .singleProductPage {
