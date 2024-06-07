@@ -2,11 +2,14 @@ import React from "react";
 import { useSelector } from "react-redux";
 import styles from "./OrderForm.module.css";
 import NewUserForm from "../DiscountForm/NewUserForm/NewUserForm";
+import { useSelector } from "react-redux";
+
 
 export default function OrderForm() {
+
   const cartProducts = useSelector((state) => state.cart.products);
   
-  // Calculate total items and total price
+  // Рассчитать общее количество товаров и общую стоимость
   const totalItems = cartProducts.reduce((acc, product) => acc + product.amount, 0);
   const totalPrice = cartProducts.reduce((acc, product) => acc + product.amount * product.price, 0);
 
@@ -14,7 +17,7 @@ export default function OrderForm() {
     <div className={styles.orderContainer}>
       <div className={styles.orderText}>
         <h2>Order details</h2>
-        <p>Items: {totalItems}</p>
+        <p>{totalItems} items</p>
         <p>Total: ${totalPrice.toFixed(2)}</p>
       </div>
 
@@ -29,7 +32,7 @@ export default function OrderForm() {
         conf_msgStyles={styles.order_conf_msg}
         buttonText="Order"
         successText="Submitted Order"
-        requestType="Order"
+        requestType="order"
       />
     </div>
   );

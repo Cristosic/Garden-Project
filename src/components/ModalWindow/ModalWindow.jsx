@@ -8,8 +8,9 @@ export default function ModalWindow({
   isClosed,
   children,
   cardContentStyles,
-  imageModalContent
-}) {
+  imageModalContent,
+  orderWindowStyles,
+  }) {
   
   const { theme } = useContext(Context);
 
@@ -38,7 +39,7 @@ export default function ModalWindow({
         >
           <div className={styles.modal_wrapper} onClick={onWrapper}>
             <div
-              className={`${styles.modal_content} ${cardContentStyles} ${imageModalContent}`}
+              className={`${styles.modal_content} ${cardContentStyles} ${imageModalContent} ${orderWindowStyles}`}
               onClick={(event) => event.stopPropagation()}
             >
               <img

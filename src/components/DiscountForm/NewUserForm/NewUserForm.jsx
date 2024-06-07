@@ -18,6 +18,7 @@ export default function NewUserForm({
   buttonText = "Get a discount",
   successText = "Request Submitted",
   requestType = "discount",
+  
 }) {
   const dispatch = useDispatch();
 
@@ -68,11 +69,13 @@ export default function NewUserForm({
       setConfirmationMessage(
         "The discount has been successfully sent by email."
       );
-    } else if (requestType === "Order") {
+    } else if (requestType === "order") {
       setConfirmationMessage("The order has been successfully submitted.");
       setModalActive(true);
+      
     }
     setIsSubmitted(true);
+    
 
 
     setTimeout(() => {
@@ -160,16 +163,18 @@ export default function NewUserForm({
           }`}
           type="submit"
         >
-          {isSubmitted && requestType === "Order"
+          {isSubmitted && requestType === "order"
             ? "Submit Order"
             : isSubmitted
             ? successText
             : buttonText}
         </button>
       </div>
-      <ModalWindow isOpen={modalActive} isClosed={() => setModalActive(false)}>
+      <ModalWindow 
+      orderWindowStyles={styles.orderContentStyles}
+      isOpen={modalActive} isClosed={() => setModalActive(false)}>
         <h3>Congratulations!</h3>
-        <p>
+        <p >
           Your order has been successfully placed on the website.
           <br />
           <br />

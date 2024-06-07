@@ -9,7 +9,6 @@ import crossIcon from "../../media/icons/crossIcon.svg";
 import { Context } from "../../context";
 
 export default function CartPage() {
-
   const { theme } = useContext(Context);
 
   const dispatch = useDispatch();

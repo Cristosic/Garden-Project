@@ -8,6 +8,7 @@ import { Context } from '../../context';
 const Counter = ({ productId, isSingleProduct }) => {
   const { theme } = useContext(Context);
   const dispatch = useDispatch();
+
   
   const productAmount = useSelector((state) => {
     if (isSingleProduct) {
@@ -17,6 +18,7 @@ const Counter = ({ productId, isSingleProduct }) => {
       return product ? product.amount : 1;
     }
   });
+
 
   const incrementAmount = () => {
     if (isSingleProduct) {
