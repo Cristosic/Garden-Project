@@ -28,11 +28,9 @@ const SingleProductPage = () => {
   const productInCart = useSelector((state) =>
     state.cart.products.find((el) => el.id === productId)
   );
+  
   const [isFavorite, setIsFavorite] = useState(!!cardFavorites);
 
-  const [showFullDescription, setShowFullDescription] = useState(false);
-
-  // К
   const categoryId = product ? product.categoryId : null;
   const category = useSelector((state) => state.oneCategory.oneCategoriesData);
 
@@ -189,7 +187,7 @@ const SingleProductPage = () => {
           <div className={styles.productDescription}>
             <h2>Description</h2>
             <p>{product.description}</p>
-            <a href="#" className={styles.readMoreLink}></a>
+            <a href="#" className={styles.readMoreLink}>Read me</a>
           </div>
         </div>
       </div>
