@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState, useContext } from "react";
 import { useParams, Link, useLocation } from "react-router-dom";
 import styles from "./SingleProductPage.module.css";
@@ -12,23 +13,18 @@ import { addCard, deleteCard } from "../../store/slices/favoritesSlice";
 import { Context } from "../../context";
 import ModalWindow from './../../components/ModalWindow/ModalWindow';
 import { addInCart, deleteOutCart } from "../../store/slices/cartProductsSlice";
-import { setCounter } from "../../store/slices/counterSlice";
+import { getSingleProduct } from "../../store/slices/singleProductsSlice";
 import { getOneCategory } from "../../store/slices/oneCategorySlice";
 
 const SingleProductPage = () => {
   const { productId } = useParams();
-  const [product, setProduct] = useState(null);
   const location = useLocation();
   const { theme } = useContext(Context);
   const dispatch = useDispatch();
-  const cardFavorites = useSelector((state) =>
-    state.favorites.cards.find((el) => el.id === productId)
-  );
 
-  const productInCart = useSelector((state) =>
-    state.cart.products.find((el) => el.id === productId)
-  );
-
+  const product = useSelector((state) => state.singleProduct.product);
+  const cardFavorites = useSelector((state) => state.favorites.cards.find((el) => el.id === productId));
+  const productInCart = useSelector((state) => state.cart.products.find((el) => el.id === productId));
   const [isFavorite, setIsFavorite] = useState(!!cardFavorites);
 
   const [showFullDescription, setShowFullDescription] = useState(false);
@@ -41,37 +37,14 @@ const SingleProductPage = () => {
 
 
   useEffect(() => {
-    const fetchProductDetails = async () => {
-      try {
-        const response = await fetch(`${serverUrl}products/${productId}`);
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const data = await response.json();
-        if (Array.isArray(data) && data.length > 0) {
-          setProduct(data[0]);
-        } else {
-          setProduct(data);
-        }
-      } catch (error) {
-        console.error("Error fetching product details:", error);
-      }
-    };
-
-    fetchProductDetails();
-  }, [productId]);
+    dispatch(getSingleProduct(productId));
+  }, [dispatch, productId]); 
 
   useEffect(() => {
     if (categoryId) {
       dispatch(getOneCategory(categoryId));
     }
   }, [dispatch, categoryId]);
-
-  useEffect(() => {
-    if (productInCart) {
-      dispatch(setCounter({ productId, amount: productInCart.amount }));
-    }
-  }, [productInCart, dispatch, productId]);
 
   const addFavoritesCard = (event) => {
     event.stopPropagation();
@@ -89,7 +62,9 @@ const SingleProductPage = () => {
     if (productInCart) {
       dispatch(deleteOutCart({ id: productId }));
     } else {
-      dispatch(addInCart({ id: productId, ...product }));
+      dispatch(
+        addInCart({ id: productId, ...product, amount: product.amount })
+      );
     }
   };
 
@@ -108,20 +83,6 @@ const SingleProductPage = () => {
 
   const previousPage = location.state?.from || "/";
   const previousPageName = location.state?.pageName || "Previous Page";
-
-  const toggleDescription = (e) => {
-    e.preventDefault();
-    setShowFullDescription(!showFullDescription);
-  };
-
-  const getDescription = () => {
-    if (showFullDescription) {
-      return product.description;
-    }
-    return product.description.length > 200
-      ? product.description.slice(0, 200) + "..."
-      : product.description;
-  };
 
   return (
 
@@ -158,6 +119,7 @@ const SingleProductPage = () => {
           onClick={handleImageClick}
         />
         <div className={styles.productInfo}>
+
           <img
             src={
               isFavorite
@@ -186,23 +148,15 @@ const SingleProductPage = () => {
           <div className={styles.priceSection}>
             {product.discont_price && product.discont_price < product.price ? (
               <>
-                <div className={styles.price}>
-                  <span className={styles.currentPrice}>
-                    ${Math.round(product.discont_price)}
-                  </span>
-                  <span className={styles.oldPrice}>
-                    ${Math.round(product.price)}
-                  </span>
-                </div>
-                <div className={styles.procent}>
-                  <span className={styles.discount}>
-                    -
-                    {Math.round(
-                      100 - (product.discont_price / product.price) * 100
-                    )}
-                    %
-                  </span>
-                </div>
+                <span className={styles.currentPrice}>
+                  ${Math.round(product.discont_price)}
+                </span>
+                <span className={styles.oldPrice}>
+                  ${Math.round(product.price)}
+                </span>
+                <span className={styles.discount}>
+                  -{Math.round(100 - (product.discont_price / product.price) * 100)}%
+                </span>
               </>
             ) : (
               <span className={styles.currentPrice}>${product.price}</span>
@@ -210,7 +164,7 @@ const SingleProductPage = () => {
           </div>
 
           <div className={styles.addToCartContainer}>
-            <Counter productId={productId} />
+            <Counter productId={productId} isSingleProduct={true} />
             <div className={styles.containertButtonCart}>
               <button
                 className={styles.addToCartButton}
@@ -223,9 +177,8 @@ const SingleProductPage = () => {
 
           <div className={styles.productDescription}>
             <h2>Description</h2>
-            <p>{getDescription()}</p>
-            <a href="#" className={styles.readMoreLink} onClick={toggleDescription}>
-              {showFullDescription ? "Read more" : "Read more"}
+            <p>{product.description}</p>
+            <a href="#" className={styles.readMoreLink}>
             </a>
           </div>
 

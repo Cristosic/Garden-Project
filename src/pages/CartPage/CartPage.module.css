@@ -1,11 +1,14 @@
 /* dark theme styles */
 
 .lightTheme .line {
-  background-color: #8b8b8b;
+  background-color: #dddddd;
 }
 
 .lightTheme .titlePage,
-.lightTheme .text {
+.lightTheme .text,
+.lightTheme .cartItemContent > h4,
+.lightTheme .removeButton,
+.lightTheme .discontPrice {
   color: #424436;
 }
 
@@ -16,29 +19,32 @@
 }
 
 .lightTheme .buttonActive:hover {
-  background-color: white;
-  color: #424436;
-}
-
-.darkTheme .line {
-  background-color: #8b8b8b;
+  background-color: #424436;
+  color: #ffffff;
 }
 
 .darkTheme .titlePage,
 .darkTheme .text {
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .darkTheme .buttonActive {
   background-color: #424436;
-  color: #DDDDDD;
+  color: #8b8b8b;
   border: 1px solid #8b8b8b;
 }
 
-.darkTheme .buttonActive:hover {
-  color: #FFFFFF;
+.darkTheme .buttonActive:hover,
+.darkTheme .cartItemContent > h4,
+.darkTheme .price {
+  color: #ffffff;
 }
 
+.darkTheme .discontPrice,
+.darkTheme .removeButton,
+.darkTheme .line {
+  color: #8b8b8b;
+}
 
 /* */
 
@@ -85,7 +91,7 @@
   line-height: 130%;
   padding: 16px 56px;
   gap: 10px;
-  color: #FFFFFF;
+  color: #ffffff;
   background: #92a134;
   text-align: center;
   border: none;
