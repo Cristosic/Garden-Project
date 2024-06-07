@@ -5,7 +5,7 @@ import favoritesReducer from "./slices/favoritesSlice";
 import oneCategoryReducer from "./slices/oneCategorySlice";
 import themeReducer from "./slices/themeSlice";
 import cartProductsReducer from "./slices/cartProductsSlice";
-import counterReducer from "./slices/counterSlice";
+import singleProductsReducer from "./slices/singleProductsSlice"
 
 export const store = configureStore({
   reducer: {
@@ -15,6 +15,6 @@ export const store = configureStore({
     oneCategory: oneCategoryReducer,
     theme: themeReducer,
     cart: cartProductsReducer,
-    counter: counterReducer,
+    singleProduct: singleProductsReducer
   },
 });
