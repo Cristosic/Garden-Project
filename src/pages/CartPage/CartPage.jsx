@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import styles from "./CartPage.module.css";
+import styles from "./CartPage.module.scss";
 import OrderForm from "../../components/OrderForm/OrderForm";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -58,22 +58,18 @@ export default function CartPage() {
                   </div>
                   <div className={styles.cartItemContent}>
                     <h4>{el.title}</h4>
-
                     <div className={styles.cartItemPrice}>
                       <Counter productId={el.id} isSingleProduct={false} />
 
                       <div className={styles.priceContainer}>
-                        <p className={styles.price}>${Math.round(el.price)}</p>
-                        {el.discont_price && (
-                          <p className={styles.discontPrice}>
-                            ${Math.round(el.discont_price)}
-                          </p>
-                        )}
+                        <p>${Math.round(el.price)}</p>
+                        {el.discont_price && <p className={styles.discontPrice}>${Math.round(el.discont_price)}</p>}
                       </div>
                     </div>
                   </div>
-                  <img
-                    src={crossIcon}
+                  <img 
+                    src={crossIcon} 
+                    alt="crossIcon" 
                     className={styles.removeButton}
                     onClick={() => deleteProductOutCart(el.id)}
                   />
@@ -81,7 +77,6 @@ export default function CartPage() {
               </div>
             ))}
           </div>
-
           <div className={styles.formOrderContainer}>
             <OrderForm />
           </div>

@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
+import { useSelector } from "react-redux";
 import styles from "./OrderForm.module.css";
 import NewUserForm from "../DiscountForm/NewUserForm/NewUserForm";
 import { Context } from "../../context";
-import { useSelector } from "react-redux";
 
 export default function OrderForm() {
 
@@ -23,9 +23,9 @@ export default function OrderForm() {
     >
       <div className={styles.orderText}>
         <h2>Order details</h2>
-        <p className={styles.items}>{totalItems} items</p>
-        <p className={styles.total}>Total:</p>
-        <p className={styles.price}>${totalPrice.toFixed(2)}</p>
+        <p>Items: {totalItems}</p>
+        <p>Total: ${totalPrice.toFixed(2)}</p>
+
       </div>
 
       <NewUserForm
