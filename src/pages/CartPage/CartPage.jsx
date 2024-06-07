@@ -5,11 +5,10 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteOutCart } from "../../store/slices/cartProductsSlice";
 import Counter from "../../components/Counter/Counter";
-import { RxCross2 } from "react-icons/rx";
+import crossIcon from "../../media/icons/crossIcon.svg";
 import { Context } from "../../context";
 
 export default function CartPage() {
-
   const { theme } = useContext(Context);
 
   const dispatch = useDispatch();
@@ -61,7 +60,7 @@ export default function CartPage() {
                     <h4>{el.title}</h4>
 
                     <div className={styles.cartItemPrice}>
-                      <Counter productId={el.id} />
+                      <Counter productId={el.id} isSingleProduct={false} />
 
                       <div className={styles.priceContainer}>
                         <p>${Math.round(el.price)}</p>
@@ -73,7 +72,8 @@ export default function CartPage() {
                       </div>
                     </div>
                   </div>
-                  <RxCross2
+                  <img
+                    src={crossIcon}
                     className={styles.removeButton}
                     onClick={() => deleteProductOutCart(el.id)}
                   />
