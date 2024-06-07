@@ -7,9 +7,17 @@ import styles from "./ProductsCard.module.scss";
 import heartIcon from "../../media/icons/heartIcon.svg";
 import cartIcon from "../../media/icons/cartIcon.svg";
 import favoritesHeart from "../../media/icons/favoritesHeart.svg";
+import activeCart from "../../media/icons/greenBag.svg";
 import { Context } from "../../context";
 
-function ProductsCard({ id, title, image, price, discont_price, hideCartIcon }) {
+function ProductsCard({
+  id,
+  title,
+  image,
+  price,
+  discont_price,
+  hideCartIcon,
+}) {
   const { theme } = useContext(Context);
   const location = useLocation();
   const dispatch = useDispatch();
@@ -22,7 +30,8 @@ function ProductsCard({ id, title, image, price, discont_price, hideCartIcon }) 
 
   const styleHeart = cardFavorites ? favoritesHeart : heartIcon;
 
-  
+  const styleCart = productsCart ? activeCart : cartIcon
+
   // сначала проверяю есть ли в массиве обьект с таким id,
   // если есть тогда удаляем - иначе добовляем его
 
@@ -42,11 +51,11 @@ function ProductsCard({ id, title, image, price, discont_price, hideCartIcon }) 
     if (productsCart) {
       dispatch(deleteOutCart({ id }));
     } else {
-      dispatch(addInCart({ id, title, image, price, discont_price }));
+      dispatch(addInCart({ id, title, image, price, discont_price, amount: 1 }));
     }
   };
 
-    // Начало Вадим
+  // Начало Вадим
   // Ставлю локацию для клика для перехода по этим страницам
   const getPageName = () => {
     if (location.pathname.includes("categories")) return "Categories";
@@ -63,7 +72,7 @@ function ProductsCard({ id, title, image, price, discont_price, hideCartIcon }) 
       }`}
     >
       <div className={styles.card}>
-                {/* Полностью измененяю структуры Link */}
+        {/* Полностью измененяю структуры Link */}
         <Link
           to={`/product/${id}`}
           state={{ from: location.pathname, pageName: getPageName() }}
@@ -80,7 +89,7 @@ function ProductsCard({ id, title, image, price, discont_price, hideCartIcon }) 
             </div>
           )}
         </Link>
-                {/* Конец  */}
+        {/* Конец  */}
 
         <div className={styles.cardIcons}>
           <img
@@ -91,9 +100,11 @@ function ProductsCard({ id, title, image, price, discont_price, hideCartIcon }) 
           />
           {!hideCartIcon && (
             <img
-              src={cartIcon}
+              src={styleCart}
               alt="bag"
-              className={`${styles.shoppingBag} ${productsCart ? styles.inCart : ''}`}
+              className={`${styles.shoppingBag} ${
+                productsCart ? styles.inCart : ""
+              }`}
               onClick={addProductsInCart}
             />
           )}
