@@ -58,6 +58,10 @@
   color: #DDDDDD;
 }
 
+.darkTheme .imageModalContent{
+  background: none;
+}
+
 /* */
 
 .singleProductPage {
@@ -120,11 +124,16 @@
   cursor: pointer;
 }
 
-.imageModalContent {
-  padding: 0;
-  background: none;
-  margin-top: 150px;
-}
+
+  .imageModalContent {
+    padding: 0;
+    background: none;
+    margin-top: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
 
 .imageModalContent>img {
   display: none;
@@ -132,7 +141,7 @@
 
 .modalImage {
   width: 900px;
-  height: 530px;
+  height: 610px;
   object-fit: cover;
 }
 
@@ -299,37 +308,42 @@
   text-decoration: underline;
 }
 
-
 @media (max-width: 1440px) {
+  .modalImage {
+    padding: 0 50px 0 50px;
+    width: 900px;
+    height: 610px;
+  }
+}
+
+@media (max-width: 1000px) {
   .imageModalContent {
     margin-top: 150px;
   }
 
   .modalImage {
     padding: 0 50px 0 50px;
-  }
-}
-
-@media (max-width: 1000px) {
-  .modalImage {
-    width: 730px;
-    height: 500px;
-    padding: 0 20px 0 20px;
+    width: 728px;
+    height: 493px;
   }
 }
 
 @media (max-width: 768px) {
   .modalImage {
-    width: 585px;
-    height: 400px;
-    padding: 0 50px 0 50px;
+  
+    padding: 0 20px 0 20px;
+    width: 440px;
+    height: 298px;
   }
 }
 
 @media (max-width: 480px) {
   .modalImage {
-    width: 410px;
-    height: 290px;
+   
     padding: 0 50px 0 50px;
+    width: 320px;
+    height: 217px;
   }
 }
+
+
