@@ -43,7 +43,6 @@ export default function AllCategories() {
       </div>
       <span>Categories</span>
 
-      <Link to={`/categories/${categoryId}`}>
         <div className={styles.containerImg}>
           {status ? (
             <Skeleton />
@@ -51,7 +50,6 @@ export default function AllCategories() {
             categoriesState.map((el) => <CategoryCard key={el.id} {...el} />)
           )}
         </div>
-      </Link>
     </div>
   );
 }
