@@ -35,6 +35,12 @@
   color: #424436;
 }
 
+.lightTheme .addToCartButton:hover {
+  background-color: #424436;
+  border: 1px solid #8B8B8B;
+  color: #FFFFFF;
+}
+
 .darkTheme .navigationLink button {
   color: #8b8b8b;
   background-color: #424436;
@@ -65,9 +71,16 @@
 .darkTheme .addToCartButton:hover {
   background-color: #424436;
   border: 1px solid #8B8B8B;
+  color: #FFFFFF;
 }
 
 /* */
+
+.containertButtonCart .addedButton {
+  background-color: #FFFFF1;
+  color: #424436;
+  border: 1px solid #424436;
+}
 
 .singleProductPage {
   
