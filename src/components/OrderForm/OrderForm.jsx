@@ -1,11 +1,12 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useContext } from "react";
 import styles from "./OrderForm.module.css";
 import NewUserForm from "../DiscountForm/NewUserForm/NewUserForm";
+import { Context } from "../../context";
 import { useSelector } from "react-redux";
 
-
 export default function OrderForm() {
+
+  const { theme } = useContext(Context);
 
   const cartProducts = useSelector((state) => state.cart.products);
   
@@ -13,12 +14,18 @@ export default function OrderForm() {
   const totalItems = cartProducts.reduce((acc, product) => acc + product.amount, 0);
   const totalPrice = cartProducts.reduce((acc, product) => acc + product.amount * product.price, 0);
 
+
   return (
-    <div className={styles.orderContainer}>
+    <div
+      className={`${styles.orderContainer} ${
+        theme === "light" ? styles.lightTheme : styles.darkTheme
+      }`}
+    >
       <div className={styles.orderText}>
         <h2>Order details</h2>
-        <p>{totalItems} items</p>
-        <p>Total: ${totalPrice.toFixed(2)}</p>
+        <p className={styles.items}>{totalItems} items</p>
+        <p className={styles.total}>Total:</p>
+        <p className={styles.price}>${totalPrice.toFixed(2)}</p>
       </div>
 
       <NewUserForm

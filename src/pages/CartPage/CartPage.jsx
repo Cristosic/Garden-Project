@@ -63,7 +63,7 @@ export default function CartPage() {
                       <Counter productId={el.id} isSingleProduct={false} />
 
                       <div className={styles.priceContainer}>
-                        <p>${Math.round(el.price)}</p>
+                        <p className={styles.price}>${Math.round(el.price)}</p>
                         {el.discont_price && (
                           <p className={styles.discontPrice}>
                             ${Math.round(el.discont_price)}
