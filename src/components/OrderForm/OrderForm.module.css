@@ -11,10 +11,21 @@
 .lightTheme .orderText p {
   color: #8b8b8b;
 }
+
 .lightTheme .order_input {
   border: 1px solid #ddd;
   background: #ddd;
   color: #8b8b8b;
+}
+
+.lightTheme .order_input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 30px #fff inset;
+  -webkit-text-fill-color: #8b8b8b;
+}
+
+.darkTheme .order_input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 30px #424436 inset;
+  -webkit-text-fill-color: #fff;
 }
 
 .darkTheme.orderContainer {
@@ -79,11 +90,6 @@ h2 {
 
 .order_input::placeholder {
   color: #8b8b8b;
-}
-
-.order_input:-webkit-autofill {
-  -webkit-box-shadow: 0 0 0 30px #fff inset;
-  -webkit-text-fill-color: #8b8b8b;
 }
 
 .order_button {
