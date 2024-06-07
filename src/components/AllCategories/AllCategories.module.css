@@ -18,7 +18,8 @@
   background-color: #8B8B8B;
 }
 
-.darkTheme .btn_category_card {
+.darkTheme .btn_category_card,
+.darkTheme .active {
   color: #8b8b8b;
   background-color: #424436;
 }
