@@ -1,15 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "./OrderForm.module.css";
 import NewUserForm from "../DiscountForm/NewUserForm/NewUserForm";
+import { Context } from "../../context";
 
 export default function OrderForm() {
+
+    const { theme } = useContext(Context);
+
   return (
-    <div className={styles.orderContainer}>
+    <div
+      className={`${styles.orderContainer} ${
+        theme === "light" ? styles.lightTheme : styles.darkTheme
+      }`}
+    >
       <div className={styles.orderText}>
         <h2>Order details</h2>
-        <p>items</p>
-        <p>Total:</p>
-        <p>$</p>
+        <p className={styles.items}>items</p>
+        <p className={styles.total}>Total:</p>
+        <p className={styles.price}>$</p>
       </div>
 
       <NewUserForm
