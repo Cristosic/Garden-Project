@@ -10,14 +10,8 @@ import favoritesHeart from "../../media/icons/favoritesHeart.svg";
 import activeCart from "../../media/icons/greenBag.svg";
 import { Context } from "../../context";
 
-function ProductsCard({
-  id,
-  title,
-  image,
-  price,
-  discont_price,
-  hideCartIcon,
-}) {
+function ProductsCard({ id, title, image, price, discont_price, hideCartIcon,}) {
+
   const { theme } = useContext(Context);
   const location = useLocation();
   const dispatch = useDispatch();

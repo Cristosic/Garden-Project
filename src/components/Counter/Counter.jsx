@@ -8,7 +8,6 @@ import { Context } from '../../context';
 const Counter = ({ productId, isSingleProduct }) => {
   const { theme } = useContext(Context);
   const dispatch = useDispatch();
-
   
   const productAmount = useSelector((state) => {
     if (isSingleProduct) {

@@ -118,8 +118,6 @@
 .orderContentStyles {
   display: flex;
   flex-direction: column;
-  margin-top: 260px;
-  
 }
 
 .orderContentStyles > h3 {

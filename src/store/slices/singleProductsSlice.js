@@ -31,6 +31,11 @@ const singleProductSlice = createSlice({
         state.product.amount--;
       }
     },
+    resetCounter(state) {
+      if (state.product) {
+        state.product.amount = 1;
+      }
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -48,5 +53,9 @@ const singleProductSlice = createSlice({
   },
 });
 
-export const { incrementSingleProducts, decrementSingleProducts } = singleProductSlice.actions;
+export const {
+  incrementSingleProducts,
+  decrementSingleProducts,
+  resetCounter,
+} = singleProductSlice.actions;
 export default singleProductSlice.reducer;

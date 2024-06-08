@@ -12,8 +12,12 @@ import { addCard, deleteCard } from "../../store/slices/favoritesSlice";
 import { Context } from "../../context";
 import ModalWindow from "./../../components/ModalWindow/ModalWindow";
 import { addInCart, deleteOutCart } from "../../store/slices/cartProductsSlice";
-import { getSingleProduct } from "../../store/slices/singleProductsSlice";
+import {
+  getSingleProduct,
+  resetCounter,
+} from "../../store/slices/singleProductsSlice";
 import { getOneCategory } from "../../store/slices/oneCategorySlice";
+
 
 const SingleProductPage = () => {
   const { productId } = useParams();
@@ -22,6 +26,7 @@ const SingleProductPage = () => {
   const dispatch = useDispatch();
 
   const product = useSelector((state) => state.singleProduct.product);
+
   const cardFavorites = useSelector((state) =>
     state.favorites.cards.find((el) => el.id === productId)
   );
@@ -41,6 +46,7 @@ const SingleProductPage = () => {
   // состояние, которое используется для изменения текста в кнопке, используя setTimeout.
   const [buttonText, setButtonText] = useState("Add to cart");
 
+
   useEffect(() => {
     dispatch(getSingleProduct(productId));
   }, [dispatch, productId]);
@@ -50,6 +56,7 @@ const SingleProductPage = () => {
       dispatch(getOneCategory(categoryId));
     }
   }, [dispatch, categoryId]);
+
 
   const addFavoritesCard = (event) => {
     event.stopPropagation();
@@ -68,13 +75,20 @@ const SingleProductPage = () => {
       dispatch(deleteOutCart({ id: productId }));
       setButtonText("Add to cart");
     } else {
+
       dispatch(
         addInCart({ id: productId, ...product, amount: product.amount })
       );
+      dispatch(resetCounter());
       setButtonText("Added");
       setTimeout(() => {
         setButtonText("Add to cart");
+<<<<<<< Liuba/Styles_single_product_page
       }, 1000);
+=======
+      }, 1000)
+
+>>>>>>> dev
     }
   };
 
@@ -112,7 +126,9 @@ const SingleProductPage = () => {
         theme === "light" ? styles.lightTheme : styles.darkTheme
       }`}
     >
+
       <div className={styles.navigationLink}>
+
         <Link to="/">
           <button>Main Page</button>
         </Link>
@@ -121,23 +137,41 @@ const SingleProductPage = () => {
           <button>{previousPageName}</button>
         </Link>
         <div className={styles.line}></div>
+
         <Link to={`/categories/${categoryId}`}>
+          <button className={styles.buttonActive}>
+            {category?.category?.title || "Loading..."}
+          </button>
           <button className={styles.buttonActive}>
             {category?.category?.title || "Loading..."}
           </button>
         </Link>
         <div className={styles.line}></div>
+
+
         <button className={styles.buttonActive}>{product.title}</button>
       </div>
 
       <div className={styles.productWrapper}>
+<<<<<<< Liuba/Styles_single_product_page
         <div className={styles.productImageContainer}>
+=======
+        <img
+          className={styles.productImage}
+          src={`${serverUrl}${product.image}`}
+          alt={product.title}
+          onClick={handleImageClick}
+        />
+        <div className={styles.productInfo}>
+
+>>>>>>> dev
           <img
             className={styles.productImage}
             src={`${serverUrl}${product.image}`}
             alt={product.title}
             onClick={handleImageClick}
           />
+<<<<<<< Liuba/Styles_single_product_page
         </div>
         <div className={styles.containerTitle}>
           <div className={styles.productInfo}>
@@ -166,6 +200,10 @@ const SingleProductPage = () => {
               }
             />
           </div>
+=======
+          
+          <h1 className={styles.productTitle}>{product.title}</h1>
+>>>>>>> dev
 
           <div className={styles.priceSection}>
             {product.discont_price && product.discont_price < product.price ? (
@@ -178,6 +216,10 @@ const SingleProductPage = () => {
                 </span>
                 <span className={styles.discount}>
                   -
+                  {Math.round(
+                    100 - (product.discont_price / product.price) * 100
+                  )}
+                  % -
                   {Math.round(
                     100 - (product.discont_price / product.price) * 100
                   )}
@@ -202,6 +244,7 @@ const SingleProductPage = () => {
               </button>
             </div>
           </div>
+<<<<<<< Liuba/Styles_single_product_page
         </div>
         <div className={styles.productDescription}>
           <h2>Description</h2>
@@ -221,6 +264,16 @@ const SingleProductPage = () => {
           >
             {showFullDescription ? "Show less" : "Read more"}
           </button>
+=======
+
+          <div className={styles.productDescription}>
+            <h2>Description</h2>
+            <p>{product.description}</p>
+            <button className={styles.readMoreLink}>
+              Read me
+            </button>
+          </div>
+>>>>>>> dev
         </div>
       </div>
 
@@ -242,5 +295,6 @@ const SingleProductPage = () => {
     </div>
   );
 };
+
 
 export default SingleProductPage;
