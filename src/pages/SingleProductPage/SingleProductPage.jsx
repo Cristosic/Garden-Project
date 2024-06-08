@@ -28,13 +28,18 @@ const SingleProductPage = () => {
   const productInCart = useSelector((state) =>
     state.cart.products.find((el) => el.id === productId)
   );
+
   const [isFavorite, setIsFavorite] = useState(!!cardFavorites);
+
   const [showFullDescription, setShowFullDescription] = useState(false);
 
   const categoryId = product ? product.categoryId : null;
   const category = useSelector((state) => state.oneCategory.oneCategoriesData);
 
   const [modalActive, setModalActive] = useState(false);
+
+  // состояние, которое используется для изменения текста в кнопке, используя setTimeout.
+  const [buttonText, setButtonText] = useState("Add to cart");
 
   useEffect(() => {
     dispatch(getSingleProduct(productId));
@@ -61,10 +66,15 @@ const SingleProductPage = () => {
     e.stopPropagation();
     if (productInCart) {
       dispatch(deleteOutCart({ id: productId }));
+      setButtonText("Add to cart");
     } else {
       dispatch(
         addInCart({ id: productId, ...product, amount: product.amount })
       );
+      setButtonText("Added");
+      setTimeout(() => {
+        setButtonText("Add to cart");
+      }, 1000);
     }
   };
 
@@ -75,6 +85,7 @@ const SingleProductPage = () => {
   const closeModal = () => {
     setModalActive(false);
   };
+
   const toggleDescription = () => {
     setShowFullDescription(!showFullDescription);
   };
@@ -128,7 +139,6 @@ const SingleProductPage = () => {
             onClick={handleImageClick}
           />
         </div>
-
         <div className={styles.containerTitle}>
           <div className={styles.productInfo}>
             <h1 className={styles.productTitle}>{product.title}</h1>
@@ -183,10 +193,12 @@ const SingleProductPage = () => {
             <Counter productId={productId} isSingleProduct={true} />
             <div className={styles.containertButtonCart}>
               <button
-                className={styles.addToCartButton}
+                className={`${styles.addToCartButton} ${
+                  buttonText === "Added" ? styles.addedButton : ""
+                }`}
                 onClick={addProductsInCart}
               >
-                Add to cart
+                {buttonText}
               </button>
             </div>
           </div>

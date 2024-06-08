@@ -36,6 +36,12 @@
   color: #424436;
 }
 
+.lightTheme .addToCartButton:hover {
+  background-color: #424436;
+  border: 1px solid #8B8B8B;
+  color: #FFFFFF;
+}
+
 .darkTheme .navigationLink button {
   color: #8b8b8b;
   background-color: #424436;
@@ -59,12 +65,26 @@
   color: #DDDDDD;
 }
 
+.darkTheme .imageModalContent{
+  background: none;
+}
+
+.darkTheme .addToCartButton:hover {
+  background-color: #424436;
+  border: 1px solid #8B8B8B;
+  color: #FFFFFF;
+}
+
 /* */
+
+.containertButtonCart .addedButton {
+  background-color: #FFFFF1;
+  color: #424436;
+  border: 1px solid #424436;
+}
 
 .singleProductPage {
   margin: 0 40px;
-  /* display: flex;
-  flex-direction: column; */
 }
 
 .navigationLink {
@@ -103,7 +123,6 @@
 .productImageContainer img {
   width: 100%;
   height: auto;
-
   border-radius: 12px;
 }
 
@@ -137,11 +156,15 @@
   align-items: flex-start;
 }
 
-.imageModalContent {
-  padding: 0;
-  background: none;
-  margin-top: 150px;
-}
+
+  .imageModalContent {
+    padding: 0;
+    background: none;
+    margin-top: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
 .imageModalContent>img {
   display: none;
@@ -149,7 +172,7 @@
 
 .modalImage {
   width: 900px;
-  height: 530px;
+  height: 610px;
   object-fit: cover;
 }
 
@@ -207,7 +230,7 @@
 
 .addToCartContainer {
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
   gap: 16px;
 }
@@ -270,9 +293,27 @@
   color: #282828;
 }
 
+
+@media (max-width: 1440px) {
+  .modalImage {
+    padding: 0 50px 0 50px;
+    width: 900px;
+    height: 610px;
+  }
+}
+
 @media (max-width: 1000px) {
   .productWrapper {
     gap: 16px;
+}
+  .imageModalContent {
+    margin-top: 150px;
+  }
+
+  .modalImage {
+    padding: 0 50px 0 50px;
+    width: 728px;
+    height: 493px;
   }
 
   .productDescription {
@@ -318,13 +359,22 @@
   .productDescription p {
     font-size: 16px;
   }
+  .modalImage {
+    padding: 0 20px 0 20px;
+    width: 440px;
+    height: 298px;
+  }
 }
 
 @media (max-width: 480px) {
-
-  .productWrapper {
+ .productWrapper {
     display: grid;
     grid-template-columns: 1fr 3fr;
+  }
+  .modalImage {
+    padding: 0 50px 0 50px;
+    width: 320px;
+    height: 217px;
   }
 
   .productImageContainer {
@@ -357,6 +407,7 @@
 
 }
 
+
 @media (max-width: 380px) {
   .productWrapper {
     width: 272px;
@@ -380,3 +431,4 @@
     grid-row: 3;
   }
 }
+

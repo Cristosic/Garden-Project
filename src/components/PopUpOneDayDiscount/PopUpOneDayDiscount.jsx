@@ -11,11 +11,13 @@ export default function PopUpOneDayDiscount({
   setOneDayDiscountIsOpen,
   productId,
 }) {
-  
   const { theme } = useContext(Context);
 
   const products = useSelector((state) => state.allProducts.allProductsData);
   const [product, setProduct] = useState(null);
+
+  // состояние, которое используется для изменения текста в кнопке, используя setTimeout.
+  const [popupButtonText, setPopupButtonText] = useState("Add to cart");
 
   const productInCart = useSelector((state) =>
     state.cart.products.find((el) => el.id === productId)
@@ -35,12 +37,19 @@ export default function PopUpOneDayDiscount({
 
   const dispatch = useDispatch();
 
-  const addProductInCart = (event) => {
-    event.stopPropagation();
+  const addProductInCart = (e) => {
+    e.stopPropagation();
     if (productInCart) {
       dispatch(deleteOutCart({ id: productId }));
+      setPopupButtonText("Add to cart");
     } else {
-      dispatch(addInCart({ id: productId, ...product }));
+      dispatch(
+        addInCart({ id: productId, ...product, amount: product.amount })
+      );
+      setPopupButtonText("Added");
+      setTimeout(() => {
+        setPopupButtonText("Add to cart");
+      }, 1000);
     }
   };
 
@@ -68,7 +77,7 @@ export default function PopUpOneDayDiscount({
             />
           )}
           <button className={styles.addToCartButton} onClick={addProductInCart}>
-            Add to cart
+            {popupButtonText}
           </button>
         </div>
       </ModalWindow>

@@ -123,18 +123,17 @@
 }
 
 .orderContentStyles > h3 {
-
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 44px;
   align-self: flex-start;
 }
 
 .orderContentStyles > p {
+  
   align-self: flex-end;
 }
 
-.orderContentStyles img {
-  display: none;
-
-}
 
 @media (max-width: 1440px) {
   .newUser {
@@ -167,19 +166,15 @@
   }
 
   .inputForm {
-    padding: 16px 20px;
     font-size: 16px;
     height: 58px;
   }
 
   .submitButton {
-    padding: 16px 20px;
     font-size: 16px;
     height: 58px;
     text-align: center;
   }
-
-
 }
 
 @media (max-width: 480px) {
@@ -203,15 +198,9 @@
     padding: 12px 20px;
   }
   .orderContentStyles > h3{
-    font-size: 33px;
+    padding: 24px 72px 136px 0;
   }
-  .orderContentStyles > p{
-    font-size: 18px;
-  }
-  .orderContentStyles img {
-    display: none;
-
-  }
+ 
 }
 @media (max-width: 360px) {
   .newUser {
@@ -232,10 +221,9 @@
     padding: 12px 20px;
   }
   .orderContentStyles > h3{
-    font-size: 28px;
+    padding: 24px 20px 20px 0;
   }
-  .orderContentStyles > p{
-    font-size: 18px;
-  }
+
+ 
 }
 
