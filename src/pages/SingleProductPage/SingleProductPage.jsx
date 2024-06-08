@@ -12,7 +12,10 @@ import { addCard, deleteCard } from "../../store/slices/favoritesSlice";
 import { Context } from "../../context";
 import ModalWindow from "./../../components/ModalWindow/ModalWindow";
 import { addInCart, deleteOutCart } from "../../store/slices/cartProductsSlice";
-import { getSingleProduct } from "../../store/slices/singleProductsSlice";
+import {
+  getSingleProduct,
+  resetCounter,
+} from "../../store/slices/singleProductsSlice";
 import { getOneCategory } from "../../store/slices/oneCategorySlice";
 
 
@@ -35,7 +38,6 @@ const SingleProductPage = () => {
 
   const categoryId = product ? product.categoryId : null;
   const category = useSelector((state) => state.oneCategory.oneCategoriesData);
-
 
   const [modalActive, setModalActive] = useState(false);
 
@@ -75,6 +77,7 @@ const SingleProductPage = () => {
       dispatch(
         addInCart({ id: productId, ...product, amount: product.amount })
       );
+      dispatch(resetCounter());
       setButtonText("Added");
       setTimeout(() => {
         setButtonText("Add to cart");
@@ -95,11 +98,8 @@ const SingleProductPage = () => {
     return <p>Loading...</p>;
   }
 
-
-
   const previousPage = location.state?.from || "/";
   const previousPageName = location.state?.pageName || "Previous Page";
-
 
   return (
     <div
@@ -120,6 +120,9 @@ const SingleProductPage = () => {
         <div className={styles.line}></div>
 
         <Link to={`/categories/${categoryId}`}>
+          <button className={styles.buttonActive}>
+            {category?.category?.title || "Loading..."}
+          </button>
           <button className={styles.buttonActive}>
             {category?.category?.title || "Loading..."}
           </button>
@@ -175,9 +178,15 @@ const SingleProductPage = () => {
                   ${Math.round(product.price)}
                 </span>
                 <span className={styles.discount}>
-
-                  -{Math.round(100 - (product.discont_price / product.price) * 100)}%
-
+                  -
+                  {Math.round(
+                    100 - (product.discont_price / product.price) * 100
+                  )}
+                  % -
+                  {Math.round(
+                    100 - (product.discont_price / product.price) * 100
+                  )}
+                  %
                 </span>
               </>
             ) : (
@@ -202,9 +211,9 @@ const SingleProductPage = () => {
           <div className={styles.productDescription}>
             <h2>Description</h2>
             <p>{product.description}</p>
-
-            <a href="#" className={styles.readMoreLink}>Read me</a>
-
+            <button className={styles.readMoreLink}>
+              Read me
+            </button>
           </div>
         </div>
       </div>
