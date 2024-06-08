@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState, useContext } from "react";
 import { useParams, Link, useLocation } from "react-router-dom";
 import styles from "./SingleProductPage.module.css";
@@ -11,7 +10,7 @@ import darkHeartIcon from "../../media/icons/darkHeartIcon.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { addCard, deleteCard } from "../../store/slices/favoritesSlice";
 import { Context } from "../../context";
-import ModalWindow from './../../components/ModalWindow/ModalWindow';
+import ModalWindow from "./../../components/ModalWindow/ModalWindow";
 import { addInCart, deleteOutCart } from "../../store/slices/cartProductsSlice";
 import { getSingleProduct } from "../../store/slices/singleProductsSlice";
 import { getOneCategory } from "../../store/slices/oneCategorySlice";
@@ -23,22 +22,23 @@ const SingleProductPage = () => {
   const dispatch = useDispatch();
 
   const product = useSelector((state) => state.singleProduct.product);
-  const cardFavorites = useSelector((state) => state.favorites.cards.find((el) => el.id === productId));
-  const productInCart = useSelector((state) => state.cart.products.find((el) => el.id === productId));
+  const cardFavorites = useSelector((state) =>
+    state.favorites.cards.find((el) => el.id === productId)
+  );
+  const productInCart = useSelector((state) =>
+    state.cart.products.find((el) => el.id === productId)
+  );
   const [isFavorite, setIsFavorite] = useState(!!cardFavorites);
-
   const [showFullDescription, setShowFullDescription] = useState(false);
 
-  // К
   const categoryId = product ? product.categoryId : null;
   const category = useSelector((state) => state.oneCategory.oneCategoriesData);
-  
-  const [modalActive, setModalActive] = useState(false);
 
+  const [modalActive, setModalActive] = useState(false);
 
   useEffect(() => {
     dispatch(getSingleProduct(productId));
-  }, [dispatch, productId]); 
+  }, [dispatch, productId]);
 
   useEffect(() => {
     if (categoryId) {
@@ -75,25 +75,32 @@ const SingleProductPage = () => {
   const closeModal = () => {
     setModalActive(false);
   };
+  const toggleDescription = () => {
+    setShowFullDescription(!showFullDescription);
+  };
 
+  const displayedDescription =
+    product && product.description
+      ? showFullDescription
+        ? product.description
+        : product.description.slice(
+            0,
+            Math.ceil(product.description.length / 2)
+          ) + (showFullDescription ? "" : "...")
+      : "";
   if (!product) {
     return <p>Loading...</p>;
   }
-
 
   const previousPage = location.state?.from || "/";
   const previousPageName = location.state?.pageName || "Previous Page";
 
   return (
-
-
     <div
       className={`${styles.singleProductPage} ${
         theme === "light" ? styles.lightTheme : styles.darkTheme
       }`}
     >
-
-
       <div className={styles.navigationLink}>
         <Link to="/">
           <button>Main Page</button>
@@ -104,46 +111,51 @@ const SingleProductPage = () => {
         </Link>
         <div className={styles.line}></div>
         <Link to={`/categories/${categoryId}`}>
-          <button className={styles.buttonActive}>{category?.category?.title || "Loading..."}</button>
+          <button className={styles.buttonActive}>
+            {category?.category?.title || "Loading..."}
+          </button>
         </Link>
         <div className={styles.line}></div>
         <button className={styles.buttonActive}>{product.title}</button>
       </div>
 
-
       <div className={styles.productWrapper}>
-        <img
-          className={styles.productImage}
-          src={`${serverUrl}${product.image}`}
-          alt={product.title}
-          onClick={handleImageClick}
-        />
-        <div className={styles.productInfo}>
-
+        <div className={styles.productImageContainer}>
           <img
-            src={
-              isFavorite
-                ? favoritesHeart
-                : theme === "dark"
-                ? darkHeartIcon
-                : heartIcon
-            }
-            alt="heart"
-            className={`${styles.heart} ${isFavorite ? styles.favorite : ""}`}
-            onClick={addFavoritesCard}
-            onMouseOver={(e) =>
-              (e.currentTarget.src =
-                theme === "dark" ? favoritesHeart : hoverHeart)
-            }
-            onMouseOut={(e) =>
-              (e.currentTarget.src = isFavorite
-                ? favoritesHeart
-                : theme === "dark"
-                ? darkHeartIcon
-                : heartIcon)
-            }
+            className={styles.productImage}
+            src={`${serverUrl}${product.image}`}
+            alt={product.title}
+            onClick={handleImageClick}
           />
-          <h1 className={styles.productTitle}>{product.title}</h1>
+        </div>
+
+        <div className={styles.containerTitle}>
+          <div className={styles.productInfo}>
+            <h1 className={styles.productTitle}>{product.title}</h1>
+            <img
+              src={
+                isFavorite
+                  ? favoritesHeart
+                  : theme === "dark"
+                  ? darkHeartIcon
+                  : heartIcon
+              }
+              alt="heart"
+              className={`${styles.heart} ${isFavorite ? styles.favorite : ""}`}
+              onClick={addFavoritesCard}
+              onMouseOver={(e) =>
+                (e.currentTarget.src =
+                  theme === "dark" ? favoritesHeart : hoverHeart)
+              }
+              onMouseOut={(e) =>
+                (e.currentTarget.src = isFavorite
+                  ? favoritesHeart
+                  : theme === "dark"
+                  ? darkHeartIcon
+                  : heartIcon)
+              }
+            />
+          </div>
 
           <div className={styles.priceSection}>
             {product.discont_price && product.discont_price < product.price ? (
@@ -155,7 +167,11 @@ const SingleProductPage = () => {
                   ${Math.round(product.price)}
                 </span>
                 <span className={styles.discount}>
-                  -{Math.round(100 - (product.discont_price / product.price) * 100)}%
+                  -
+                  {Math.round(
+                    100 - (product.discont_price / product.price) * 100
+                  )}
+                  %
                 </span>
               </>
             ) : (
@@ -174,24 +190,41 @@ const SingleProductPage = () => {
               </button>
             </div>
           </div>
-
-          <div className={styles.productDescription}>
-            <h2>Description</h2>
-            <p>{product.description}</p>
-            <a href="#" className={styles.readMoreLink}>
-            </a>
-          </div>
-
+        </div>
+        <div className={styles.productDescription}>
+          <h2>Description</h2>
+          <p
+            className={`${styles.descriptionText} ${
+              showFullDescription ? styles.expanded : styles.collapsed
+            }`}
+          >
+            {displayedDescription}
+          </p>
+          <button
+            className={styles.readMoreButton}
+            onClick={(e) => {
+              e.preventDefault();
+              toggleDescription();
+            }}
+          >
+            {showFullDescription ? "Show less" : "Read more"}
+          </button>
         </div>
       </div>
 
-      <ModalWindow 
-      isOpen={modalActive} 
-      isClosed={closeModal} 
-      imageModalContent={styles.imageModalContent}>
+      <ModalWindow
+        isOpen={modalActive}
+        isClosed={closeModal}
+        imageModalContent={styles.imageModalContent}
+      >
         <div>
-        {
-        <img src={`${serverUrl}${product.image}`} alt={`${product.title}`} className={styles.modalImage} />}
+          {
+            <img
+              src={`${serverUrl}${product.image}`}
+              alt={`${product.title}`}
+              className={styles.modalImage}
+            />
+          }
         </div>
       </ModalWindow>
     </div>

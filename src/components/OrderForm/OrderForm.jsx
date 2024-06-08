@@ -24,8 +24,10 @@ export default function OrderForm() {
       <div className={styles.orderText}>
         <h2>Order details</h2>
         <p className={styles.items}>{totalItems} items</p>
-        <p className={styles.total}>Total:</p>
+        <div className={styles.total}>
+        <p>Total</p>
         <p className={styles.price}>${totalPrice.toFixed(2)}</p>
+        </div>
       </div>
 
       <NewUserForm

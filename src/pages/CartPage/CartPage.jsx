@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import styles from "./CartPage.module.css";
+import styles from "./CartPage.module.scss";
 import OrderForm from "../../components/OrderForm/OrderForm";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
