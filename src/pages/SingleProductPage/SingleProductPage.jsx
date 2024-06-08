@@ -18,6 +18,7 @@ import {
 } from "../../store/slices/singleProductsSlice";
 import { getOneCategory } from "../../store/slices/oneCategorySlice";
 
+
 const SingleProductPage = () => {
   const { productId } = useParams();
   const location = useLocation();
@@ -25,6 +26,7 @@ const SingleProductPage = () => {
   const dispatch = useDispatch();
 
   const product = useSelector((state) => state.singleProduct.product);
+
   const cardFavorites = useSelector((state) =>
     state.favorites.cards.find((el) => el.id === productId)
   );
@@ -36,10 +38,12 @@ const SingleProductPage = () => {
 
   const categoryId = product ? product.categoryId : null;
   const category = useSelector((state) => state.oneCategory.oneCategoriesData);
+
   const [modalActive, setModalActive] = useState(false);
 
   // состояние, которое используется для изменения текста в кнопке, используя setTimeout.
   const [buttonText, setButtonText] = useState("Add to cart");
+
 
   useEffect(() => {
     dispatch(getSingleProduct(productId));
@@ -50,6 +54,7 @@ const SingleProductPage = () => {
       dispatch(getOneCategory(categoryId));
     }
   }, [dispatch, categoryId]);
+
 
   const addFavoritesCard = (event) => {
     event.stopPropagation();
@@ -68,6 +73,7 @@ const SingleProductPage = () => {
       dispatch(deleteOutCart({ id: productId }));
       setButtonText("Add to cart");
     } else {
+
       dispatch(
         addInCart({ id: productId, ...product, amount: product.amount })
       );
@@ -76,6 +82,7 @@ const SingleProductPage = () => {
       setTimeout(() => {
         setButtonText("Add to cart");
       }, 1000)
+
     }
   };
 
@@ -100,7 +107,9 @@ const SingleProductPage = () => {
         theme === "light" ? styles.lightTheme : styles.darkTheme
       }`}
     >
+
       <div className={styles.navigationLink}>
+
         <Link to="/">
           <button>Main Page</button>
         </Link>
@@ -109,6 +118,7 @@ const SingleProductPage = () => {
           <button>{previousPageName}</button>
         </Link>
         <div className={styles.line}></div>
+
         <Link to={`/categories/${categoryId}`}>
           <button className={styles.buttonActive}>
             {category?.category?.title || "Loading..."}
@@ -118,6 +128,8 @@ const SingleProductPage = () => {
           </button>
         </Link>
         <div className={styles.line}></div>
+
+
         <button className={styles.buttonActive}>{product.title}</button>
       </div>
 
@@ -129,6 +141,7 @@ const SingleProductPage = () => {
           onClick={handleImageClick}
         />
         <div className={styles.productInfo}>
+
           <img
             src={
               isFavorite
@@ -152,6 +165,7 @@ const SingleProductPage = () => {
                 : heartIcon)
             }
           />
+          
           <h1 className={styles.productTitle}>{product.title}</h1>
 
           <div className={styles.priceSection}>
@@ -222,5 +236,6 @@ const SingleProductPage = () => {
     </div>
   );
 };
+
 
 export default SingleProductPage;
