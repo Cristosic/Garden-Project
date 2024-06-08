@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import styles from "./AllProductsPage.module.css";
+import styles from "./AllProductsPage.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts } from "../../store/slices/allProductsSlice";
 import ProductsCard from "../../components/ProductsCard/ProductsCard";

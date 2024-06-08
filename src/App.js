@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import "./App.scss";
+import "./App.css";
 import MainPage from "./pages/MainPage/MainPage";
 import AllProductsPage from "./pages/AllProductsPage/AllProductsPage";
 import AllSalesPage from "./pages/AllSalesPage/AllSalesPage";
@@ -14,9 +14,7 @@ import Footer from "./components/Footer/Footer";
 import { useSelector } from "react-redux";
 import { Context } from "./context";
 
-
 function App() {
-
   const theme = useSelector((state) => state.theme.theme);
 
   return (
@@ -34,7 +32,10 @@ function App() {
           <Route path="/cart" element={<CartPage />} />
           <Route path="/categories" element={<CategoriesPage />} />
           <Route path="/favorites" element={<FavoriteItemPage />} />
-          <Route path="/categories/:categoryId" element={<SingleCategoryPage />} />
+          <Route
+            path="/categories/:categoryId"
+            element={<SingleCategoryPage />}
+          />
           <Route path="/product/:productId" element={<SingleProductPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
