@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState, useContext } from "react";
 import { useParams, Link, useLocation } from "react-router-dom";
 import styles from "./SingleProductPage.module.css";
@@ -11,9 +10,12 @@ import darkHeartIcon from "../../media/icons/darkHeartIcon.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { addCard, deleteCard } from "../../store/slices/favoritesSlice";
 import { Context } from "../../context";
-import ModalWindow from './../../components/ModalWindow/ModalWindow';
+import ModalWindow from "./../../components/ModalWindow/ModalWindow";
 import { addInCart, deleteOutCart } from "../../store/slices/cartProductsSlice";
-import { getSingleProduct } from "../../store/slices/singleProductsSlice";
+import {
+  getSingleProduct,
+  resetCounter,
+} from "../../store/slices/singleProductsSlice";
 import { getOneCategory } from "../../store/slices/oneCategorySlice";
 
 const SingleProductPage = () => {
@@ -23,22 +25,24 @@ const SingleProductPage = () => {
   const dispatch = useDispatch();
 
   const product = useSelector((state) => state.singleProduct.product);
-  const cardFavorites = useSelector((state) => state.favorites.cards.find((el) => el.id === productId));
-  const productInCart = useSelector((state) => state.cart.products.find((el) => el.id === productId));
+  const cardFavorites = useSelector((state) =>
+    state.favorites.cards.find((el) => el.id === productId)
+  );
+  const productInCart = useSelector((state) =>
+    state.cart.products.find((el) => el.id === productId)
+  );
+
   const [isFavorite, setIsFavorite] = useState(!!cardFavorites);
 
-  const [showFullDescription, setShowFullDescription] = useState(false);
-
-  // К
+  
   const categoryId = product ? product.categoryId : null;
   const category = useSelector((state) => state.oneCategory.oneCategoriesData);
-  
-  const [modalActive, setModalActive] = useState(false);
 
+  const [modalActive, setModalActive] = useState(false);
 
   useEffect(() => {
     dispatch(getSingleProduct(productId));
-  }, [dispatch, productId]); 
+  }, [dispatch, productId]);
 
   useEffect(() => {
     if (categoryId) {
@@ -65,6 +69,7 @@ const SingleProductPage = () => {
       dispatch(
         addInCart({ id: productId, ...product, amount: product.amount })
       );
+      dispatch(resetCounter());
     }
   };
 
@@ -80,20 +85,15 @@ const SingleProductPage = () => {
     return <p>Loading...</p>;
   }
 
-
   const previousPage = location.state?.from || "/";
   const previousPageName = location.state?.pageName || "Previous Page";
 
   return (
-
-
     <div
       className={`${styles.singleProductPage} ${
         theme === "light" ? styles.lightTheme : styles.darkTheme
       }`}
     >
-
-
       <div className={styles.navigationLink}>
         <Link to="/">
           <button>Main Page</button>
@@ -104,12 +104,13 @@ const SingleProductPage = () => {
         </Link>
         <div className={styles.line}></div>
         <Link to={`/categories/${categoryId}`}>
-          <button className={styles.buttonActive}>{category?.category?.title || "Loading..."}</button>
+          <button className={styles.buttonActive}>
+            {category?.category?.title || "Loading..."}
+          </button>
         </Link>
         <div className={styles.line}></div>
         <button className={styles.buttonActive}>{product.title}</button>
       </div>
-
 
       <div className={styles.productWrapper}>
         <img
@@ -119,7 +120,6 @@ const SingleProductPage = () => {
           onClick={handleImageClick}
         />
         <div className={styles.productInfo}>
-
           <img
             src={
               isFavorite
@@ -155,7 +155,11 @@ const SingleProductPage = () => {
                   ${Math.round(product.price)}
                 </span>
                 <span className={styles.discount}>
-                  -{Math.round(100 - (product.discont_price / product.price) * 100)}%
+                  -
+                  {Math.round(
+                    100 - (product.discont_price / product.price) * 100
+                  )}
+                  %
                 </span>
               </>
             ) : (
@@ -178,20 +182,24 @@ const SingleProductPage = () => {
           <div className={styles.productDescription}>
             <h2>Description</h2>
             <p>{product.description}</p>
-            <a href="#" className={styles.readMoreLink}>
-            </a>
+            <a href="#" className={styles.readMoreLink}></a>
           </div>
-
         </div>
       </div>
 
-      <ModalWindow 
-      isOpen={modalActive} 
-      isClosed={closeModal} 
-      imageModalContent={styles.imageModalContent}>
+      <ModalWindow
+        isOpen={modalActive}
+        isClosed={closeModal}
+        imageModalContent={styles.imageModalContent}
+      >
         <div>
-        {
-        <img src={`${serverUrl}${product.image}`} alt={`${product.title}`} className={styles.modalImage} />}
+          {
+            <img
+              src={`${serverUrl}${product.image}`}
+              alt={`${product.title}`}
+              className={styles.modalImage}
+            />
+          }
         </div>
       </ModalWindow>
     </div>

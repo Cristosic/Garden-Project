@@ -13,11 +13,18 @@ import { Link } from "react-router-dom";
 import ThemeToggle from "../ThemeToggle/ThemeToggle";
 import { Context } from "../../context";
 import { getAllProducts } from "../../store/slices/allProductsSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import PopUpOneDayDiscount from "../PopUpOneDayDiscount/PopUpOneDayDiscount";
 
 export default function NavMenu() {
-  
+
+  // состояние, чтобы продемонстрировать количество продуктов в Favorite Page и Cart Page
+  const cartState = useSelector((state) => state.cart.products);
+  const favoriteState = useSelector((state) => state.favorites.cards);
+
+  const cartCount = cartState.reduce((acc, el) => acc + el.amount, 0);
+  const favoriteCount = favoriteState.length;
+
   const { theme } = useContext(Context);
 
   const [isOpen, setIsOpen] = useState(false);
@@ -90,6 +97,11 @@ export default function NavMenu() {
             src={theme === "light" ? heartIcon : darkHeartIcon}
             alt="heart-icon"
           />
+          {favoriteState.length === 0 ? (
+            ""
+          ) : (
+            <span className={styles.favoriteCount}>{favoriteCount}</span>
+          )}
         </Link>
         <Link to={"/cart"}>
           <img
@@ -97,6 +109,11 @@ export default function NavMenu() {
             src={theme === "light" ? cartIcon : darkCartIcon}
             alt="cart-icon"
           />
+          {cartState.length === 0 ? (
+            ""
+          ) : (
+            <span className={styles.cartCount}>{cartCount}</span>
+          )}
         </Link>
         <div
           onClick={() => setIsOpen(!isOpen)}
