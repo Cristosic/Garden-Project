@@ -278,7 +278,7 @@
     width: 100%;
     height: 100%;
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
   }
 
   .navMenu .cartCount,

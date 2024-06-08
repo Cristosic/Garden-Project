@@ -1,10 +1,10 @@
-/* dark theme styles */ 
+/* dark theme styles */
 
-.lightTheme > h4 {
+.lightTheme>h4 {
   color: #424436;
 }
 
-.darkTheme > h4 {
+.darkTheme>h4 {
   color: #fffff1;
 }
 
@@ -23,8 +23,13 @@
   height: 350px;
   object-fit: cover;
   border-radius: 12px;
+  transition: 0.5s ease-in-out;
 }
-
+.categoriesImg:hover {
+  -webkit-transform: scale(0.9);
+  -ms-transform: scale(0.9);
+  transform: scale(0.9);
+}
 .cardTitle {
   padding-top: 16px;
   font-size: 20px;

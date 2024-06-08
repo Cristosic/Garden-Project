@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategories } from "./../../store/slices/categoriesSlice";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styles from "./AllCategories.module.css";
 import CategoryCard from "../CategoriesSection/CategoryCard/CategoryCard";
 import { Context } from "../../context";
@@ -11,7 +11,7 @@ export default function AllCategories() {
   const { theme } = useContext(Context);
 
   const dispatch = useDispatch();
-  const { categoryId } = useParams();
+  // const { categoryId } = useParams();
 
   useEffect(() => {
     dispatch(getCategories());
@@ -43,7 +43,6 @@ export default function AllCategories() {
       </div>
       <span>Categories</span>
 
-      <Link to={`/categories/${categoryId}`}>
         <div className={styles.containerImg}>
           {status ? (
             <Skeleton />
@@ -51,7 +50,6 @@ export default function AllCategories() {
             categoriesState.map((el) => <CategoryCard key={el.id} {...el} />)
           )}
         </div>
-      </Link>
     </div>
   );
 }

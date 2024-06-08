@@ -31,14 +31,15 @@ const SingleProductPage = () => {
   const productInCart = useSelector((state) =>
     state.cart.products.find((el) => el.id === productId)
   );
-
+  
   const [isFavorite, setIsFavorite] = useState(!!cardFavorites);
 
-  
   const categoryId = product ? product.categoryId : null;
   const category = useSelector((state) => state.oneCategory.oneCategoriesData);
-
   const [modalActive, setModalActive] = useState(false);
+
+  // состояние, которое используется для изменения текста в кнопке, используя setTimeout.
+  const [buttonText, setButtonText] = useState("Add to cart");
 
   useEffect(() => {
     dispatch(getSingleProduct(productId));
@@ -65,11 +66,16 @@ const SingleProductPage = () => {
     e.stopPropagation();
     if (productInCart) {
       dispatch(deleteOutCart({ id: productId }));
+      setButtonText("Add to cart");
     } else {
       dispatch(
         addInCart({ id: productId, ...product, amount: product.amount })
       );
       dispatch(resetCounter());
+      setButtonText("Added");
+      setTimeout(() => {
+        setButtonText("Add to cart");
+      }, 1000)
     }
   };
 
@@ -104,6 +110,9 @@ const SingleProductPage = () => {
         </Link>
         <div className={styles.line}></div>
         <Link to={`/categories/${categoryId}`}>
+          <button className={styles.buttonActive}>
+            {category?.category?.title || "Loading..."}
+          </button>
           <button className={styles.buttonActive}>
             {category?.category?.title || "Loading..."}
           </button>
@@ -159,6 +168,10 @@ const SingleProductPage = () => {
                   {Math.round(
                     100 - (product.discont_price / product.price) * 100
                   )}
+                  % -
+                  {Math.round(
+                    100 - (product.discont_price / product.price) * 100
+                  )}
                   %
                 </span>
               </>
@@ -171,10 +184,12 @@ const SingleProductPage = () => {
             <Counter productId={productId} isSingleProduct={true} />
             <div className={styles.containertButtonCart}>
               <button
-                className={styles.addToCartButton}
+                className={`${styles.addToCartButton} ${
+                  buttonText === "Added" ? styles.addedButton : ""
+                }`}
                 onClick={addProductsInCart}
               >
-                Add to cart
+                {buttonText}
               </button>
             </div>
           </div>
@@ -182,7 +197,9 @@ const SingleProductPage = () => {
           <div className={styles.productDescription}>
             <h2>Description</h2>
             <p>{product.description}</p>
-            <a href="#" className={styles.readMoreLink}></a>
+            <button className={styles.readMoreLink}>
+              Read me
+            </button>
           </div>
         </div>
       </div>

@@ -11,11 +11,13 @@ export default function PopUpOneDayDiscount({
   setOneDayDiscountIsOpen,
   productId,
 }) {
-  
   const { theme } = useContext(Context);
 
   const products = useSelector((state) => state.allProducts.allProductsData);
   const [product, setProduct] = useState(null);
+
+  // состояние, которое используется для изменения текста в кнопке, используя setTimeout.
+  const [popupButtonText, setPopupButtonText] = useState("Add to cart");
 
   const productInCart = useSelector((state) =>
     state.cart.products.find((el) => el.id === productId)
@@ -34,10 +36,9 @@ export default function PopUpOneDayDiscount({
   }, [products]);
 
   const dispatch = useDispatch();
-  const [popupButtonText, setPopupButtonText] = useState("Add to cart");
 
-  const addProductInCart = (e) => {
-    e.stopPropagation();
+  const addProductInCart = (event) => {
+    event.stopPropagation();
     if (productInCart) {
       dispatch(deleteOutCart({ id: productId }));
       setPopupButtonText("Add to cart");
