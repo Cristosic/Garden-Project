@@ -49,6 +49,29 @@
   padding-top: 12px;
 }
 
+.navMenu span {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  top: 60px;
+  right: 65px;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 10px;
+  position: absolute;
+  background-color: #92a134;
+  color: #fffff1;
+  width: 24px;
+  height: 24px;
+  border-radius: 15px;
+  padding: 6px;
+}
+
+.navMenu .favoriteCount {
+  top: 60px;
+  left: 35px;
+}
+
 .themeToggle {
   display: flex;
 }
@@ -104,6 +127,7 @@
   display: flex;
   gap: 24px;
   padding: 40px;
+  position: relative;
 }
 
 .heartIcon {
@@ -149,6 +173,16 @@
   .iconsRight {
     gap: 12px;
     padding: 40px 15px 40px 15px;
+  }
+
+  .navMenu .cartCount {
+    top: 60px;
+    right: 40px;
+  }
+
+  .navMenu .favoriteCount {
+    top: 60px;
+    left: 10px;
   }
 }
 
@@ -246,6 +280,22 @@
     display: flex;
     justify-content: flex-end;
   }
+
+  .navMenu .cartCount,
+  .navMenu .favoriteCount {
+    top: 30px;
+    right: 80px;
+    font-size: 8px;
+    line-height: 7px;
+    padding: 5px;
+    width: 17px;
+    height: 17px;
+  }
+
+  .navMenu .favoriteCount {
+    left: 15px;
+  }
+
 }
 
 @media (max-width: 360px) {

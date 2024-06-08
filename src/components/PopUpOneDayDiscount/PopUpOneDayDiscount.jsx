@@ -36,6 +36,7 @@ export default function PopUpOneDayDiscount({
   }, [products]);
 
   const dispatch = useDispatch();
+  
 
   const addProductInCart = (e) => {
     e.stopPropagation();
@@ -43,9 +44,7 @@ export default function PopUpOneDayDiscount({
       dispatch(deleteOutCart({ id: productId }));
       setPopupButtonText("Add to cart");
     } else {
-      dispatch(
-        addInCart({ id: productId, ...product, amount: product.amount })
-      );
+      dispatch(addInCart({ id: productId, ...product, amount: 1 }));
       setPopupButtonText("Added");
       setTimeout(() => {
         setPopupButtonText("Add to cart");
