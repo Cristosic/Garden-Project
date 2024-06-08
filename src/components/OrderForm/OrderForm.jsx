@@ -9,7 +9,7 @@ export default function OrderForm() {
   const { theme } = useContext(Context);
 
   const cartProducts = useSelector((state) => state.cart.products);
-  
+
   // Рассчитать общее количество товаров и общую стоимость
   const totalItems = cartProducts.reduce((acc, product) => acc + product.amount, 0);
   const totalPrice = cartProducts.reduce((acc, product) => acc + product.amount * product.price, 0);
@@ -17,15 +17,14 @@ export default function OrderForm() {
 
   return (
     <div
-      className={`${styles.orderContainer} ${
-        theme === "light" ? styles.lightTheme : styles.darkTheme
-      }`}
+      className={`${styles.orderContainer} ${theme === "light" ? styles.lightTheme : styles.darkTheme
+        }`}
     >
       <div className={styles.orderText}>
         <h2>Order details</h2>
-        <p>Items: {totalItems}</p>
-        <p>Total: ${totalPrice.toFixed(2)}</p>
-
+        <p className={styles.items}>{totalItems} items</p>
+        <p className={styles.total}>Total:</p>
+        <p className={styles.price}>${totalPrice.toFixed(2)}</p>
       </div>
 
       <NewUserForm
