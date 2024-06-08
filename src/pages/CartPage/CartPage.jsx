@@ -28,14 +28,16 @@ export default function CartPage() {
     >
       <div className={styles.cartPage}>
         <h1 className={styles.titlePage}>Shopping cart</h1>
+
         <div className={styles.line}></div>
+
         <Link to={"/"}>
           <button className={styles.buttonActive}>Back to the store</button>
         </Link>
       </div>
 
       {isCartEmpty ? (
-        <div>
+        <div className={styles.cartEmpty}>
           <p className={styles.text}>
             Looks like you have no items in your basket currently.
           </p>
@@ -80,8 +82,15 @@ export default function CartPage() {
           <div className={styles.formOrderContainer}>
             <OrderForm />
           </div>
+         
         </div>
       )}
+      <div className={styles.containerButtonNone}>
+      <Link to={"/"}>
+          <button className={styles.buttonActiveNone}>Back to the store</button>
+        </Link>
+      </div>
+     
     </div>
   );
 }

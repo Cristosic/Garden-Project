@@ -1,58 +1,109 @@
+.lightTheme .line {
+  background-color: #dddddd;
+}
+
+.lightTheme .titlePage,
+.lightTheme .text,
+.lightTheme .cartItemContent > h4,
+.lightTheme .removeButton,
+.lightTheme .discontPrice {
+  color: #424436;
+}
+
+.lightTheme .buttonActive {
+  background-color: #fffff1;
+  color: #8b8b8b;
+  border: 1px solid #8b8b8b;
+}
+
+.lightTheme .buttonActive:hover {
+  background-color: #424436;
+  color: #ffffff;
+}
+
+.darkTheme .titlePage,
+.darkTheme .text {
+  color: #ffffff;
+}
+
+.darkTheme .buttonActive {
+  background-color: #424436;
+  color: #8b8b8b;
+  border: 1px solid #8b8b8b;
+}
+
+.darkTheme .buttonActive:hover,
+.darkTheme .cartItemContent > h4,
+.darkTheme .price {
+  color: #ffffff;
+}
+
+.darkTheme .discontPrice,
+.darkTheme .removeButton,
+.darkTheme .line {
+  color: #8b8b8b;
+}
+
+/* */
+
+
 .container {
   padding: 40px 40px 0 40px;
-  .cartPage {
-    display: flex;
-    align-items: center;
-    .titlePage {
-      color: #424436;
-      font-weight: 700;
-      font-size: 64px;
-    }
-    .line {
-      height: 1px;
-      flex-grow: 1;
-      background-color: #8b8b8b;
-    }
 
-    .buttonActive {
-      background-color: #fffff1;
-      color: #8b8b8b;
-      padding: 8px 16px;
+  .containerButtonNone {
+    text-align: center;
+    margin-top: 24px;
+    display: none;
+    .buttonActiveNone {
+      
+      padding: 12px 24px;
       border-radius: 6px;
-      border-color: #8b8b8b;
-      text-decoration: none;
       font-size: 16px;
       font-weight: 500;
       cursor: pointer;
-      gap: 10px;
-
-      :hover {
-        background-color: white;
-        color: #424436;
-      }
+      border: 1px solid #dddddd;
     }
   }
-  & > div {
+
+  .cartPage {
+    display: flex;
+    align-items: center;
+
+    .titlePage {
+      font-weight: 700;
+      font-size: 64px;
+      padding-right: 20px;
+    }
+
+    .line {
+      height: 1px;
+      flex-grow: 1;
+    }
+
+    .buttonActive {
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+  }
+
+  .cartEmpty {
     .text {
-      width: 100%;
-      max-width: 548px;
-      height: 26px;
       font-weight: 500;
       font-size: 20px;
       line-height: 26px;
-      color: #424436;
-      text-align: left;
     }
-
     .btn {
-      margin: 32px 0px;
+      margin-top: 32px;
       border-radius: 6px;
       font-size: 20px;
       font-weight: 600;
       line-height: 130%;
       padding: 16px 56px;
       gap: 10px;
-      color: white;
+      color: #ffffff;
       background: #92a134;
       text-align: center;
       border: none;
@@ -64,6 +115,7 @@
   .cartContainer {
     display: flex;
     padding-top: 40px;
+    gap: 32px;
 
     & > div {
       display: flex;
@@ -75,6 +127,7 @@
       max-width: 780px;
       height: auto;
       position: relative;
+
       .removeButton {
         position: absolute;
         top: 32px;
@@ -115,6 +168,7 @@
           h4 {
             font-size: 20px;
             font-weight: 500;
+            flex-wrap: wrap;
           }
 
           .cartItemPrice {
@@ -148,10 +202,18 @@
   }
 
   @media (max-width: 1000px) {
+    .cartEmpty {
+      .text {
+        font-size: 20px;
+        line-height: 26px;
+      }
+    }
     .cartContainer {
+      gap: 20px;
       & > div {
         gap: 12px;
       }
+
       .cartItem {
         .cartItemDetails {
           gap: 20px;
@@ -173,36 +235,31 @@
   }
 
   @media (max-width: 768px) {
-    .text {
-      font-size: 20px;
-      line-height: 26px;
+    .cartEmpty {
+      .text {
+        flex-wrap: nowrap;
+        font-size: 20px;
+        line-height: 26px;
+      }
+    }
+
+    .cartPage {
+      .titlePage {
+        font-size: 56px;
+      }
     }
     .cartContainer {
       flex-direction: column;
       gap: 20px;
-
-      .cartPage {
-        .titlePage {
-          font-size: 56px;
-        }
-        .buttonActive {
-          width: 153px;
-          height: 34px;
-          font-size: 13px;
-          line-height: 17px;
-        }
-      }
       .cartItem {
-        
         .cartItemDetails {
           .cartItemImg {
-        
             img {
-              
             }
           }
 
           .cartItemContent {
+            
             .cartItemPrice {
               flex-direction: row;
             }
@@ -213,46 +270,92 @@
   }
 
   @media (max-width: 480px) {
-    .cartContainer {
-      .cartPage {
-        .titlePage {
-          font-size: 48px;
-          line-height: 40px;
-        }
-        .buttonActive {
-          font-size: 12px;
-          padding: 14px 0px;
-        }
+    .cartPage {
+      align-items: normal;
+      .titlePage {
+        font-size: 48px;
+        line-height: 53px;
       }
-
+      .buttonActive {
+        font-size: 14px;
+      }
+    }
+    .cartEmpty {
       .text {
         font-size: 18px;
-        line-height: 23px;
+        line-height: 22px;
+        flex-wrap: wrap;
       }
       .btn {
         font-size: 18px;
         padding: 12px 52px;
+        margin-top: 10px;
       }
+    }
 
+    .cartContainer {
       .cartItem {
-        max-width: 440px;
+        
         .cartItemDetails {
-          .cartItemImg {
-            max-width: 229px;
-            height: 136px;
-            img {
-              
-            }
-          }
-
+          
           .cartItemContent {
-
             h4 {
               font-size: 18px;
             }
 
             .cartItemPrice {
               flex-direction: column;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 360px) {
+   .containerButtonNone{
+    display: block;
+   }
+    .cartPage {
+      .titlePage {
+        font-size: 48px;
+        line-height: 53px;
+      }
+      .buttonActive {
+        display: none;
+      }
+    }
+    .cartEmpty {
+      .text {
+        font-size: 18px;
+        line-height: 22px;
+        flex-wrap: wrap;
+        width: 320px;
+      }
+      .btn {
+        font-size: 18px;
+        padding: 12px 52px;
+        margin-top: 10px;
+      }
+    }
+
+    .cartContainer {
+      .cartItem {
+        
+        .cartItemDetails {
+          .cartItemImg {
+            
+            img {
+            }
+          }
+
+          .cartItemContent {
+            h4 {
+              
+            }
+
+            .cartItemPrice {
+              
             }
           }
         }
