@@ -11,7 +11,6 @@ export default function AllCategories() {
   const { theme } = useContext(Context);
 
   const dispatch = useDispatch();
-  // const { categoryId } = useParams();
 
   useEffect(() => {
     dispatch(getCategories());
