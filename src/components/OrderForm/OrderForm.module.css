@@ -8,7 +8,7 @@
   color: #424436;
 }
 
-.lightTheme .orderText p {
+.lightTheme .orderText {
   color: #8b8b8b;
 }
 
@@ -49,17 +49,17 @@
 }
 
 .darkTheme .order_button:hover {
-  border: 1px solid #8B8B8B;
+  border: 1px solid #8b8b8b;
 }
 /* */
 
 .orderContainer {
   border-radius: 12px;
   padding: 32px;
-  width: 40%;
+  width: 548px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-end;
 }
 
 .orderText {
@@ -76,10 +76,23 @@ h2 {
   line-height: 44px;
 }
 
-.orderText p {
+.orderText {
   font-size: 40px;
   font-weight: 500;
   line-height: 52px;
+}
+
+.total {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.price {
+  font-weight: 700;
+  line-height: 52px;
+  color: #424436;
 }
 
 .order_form {
@@ -164,6 +177,7 @@ h2 {
 
   .order_input {
     padding: 16px 20px;
+    font-size: 16px;
   }
 
   .order_button {
@@ -192,6 +206,10 @@ h2 {
     text-align: center;
     margin-left: 0;
     align-self: flex-start;
+  }
+
+   .price {
+    font-size: 40px;
   }
 }
 
