@@ -101,20 +101,6 @@ const SingleProductPage = () => {
           ) + (showFullDescription ? "" : "...")
       : "";
 
-  const handleImageClick = () => {
-    setModalActive(true);
-  };
-
-  const displayedDescription =
-    product && product.description
-      ? showFullDescription
-        ? product.description
-        : product.description.slice(
-            0,
-            Math.ceil(product.description.length / 2)
-          ) + (showFullDescription ? "" : "...")
-      : "";
-
   if (!product) {
     return <p>Loading...</p>;
   }
@@ -241,13 +227,6 @@ const SingleProductPage = () => {
         imageModalContent={styles.imageModalContent}
       >
         <div>
-          {
-            <img
-              src={`${serverUrl}${product.image}`}
-              alt={`${product.title}`}
-              className={styles.modalImage}
-            />
-          }
           {
             <img
               src={`${serverUrl}${product.image}`}
