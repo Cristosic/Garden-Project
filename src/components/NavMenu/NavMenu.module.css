@@ -209,7 +209,6 @@
     right: -200%;
     top: 0;
     width: 282px;
-    transition: right 0.5s;
     padding: 100px 90px 1067px 32px;
     transition: background 0.3s ease;
   }
@@ -246,6 +245,7 @@
     z-index: 10;
     width: 32px;
     margin-top: 8px;
+    z-index: 201;
   }
 
   .iconsRight {
@@ -280,6 +280,7 @@
     height: 100%;
     display: flex;
     justify-content: flex-end;
+    z-index: 200;
   }
 
   .navMenu .cartCount,

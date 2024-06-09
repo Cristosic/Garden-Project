@@ -125,6 +125,7 @@
   width: 80%;
   height: 100%;
   border-radius: var(--radiusbig);
+  border-radius: 12px;
 }
 
 .productInfo {
@@ -132,6 +133,7 @@
   height: 100%;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 /* стиль для сердечка */
