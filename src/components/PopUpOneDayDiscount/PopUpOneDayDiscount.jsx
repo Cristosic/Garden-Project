@@ -38,8 +38,8 @@ export default function PopUpOneDayDiscount({
   const dispatch = useDispatch();
   
 
-  const addProductInCart = (e) => {
-    e.stopPropagation();
+  const addProductInCart = (event) => {
+    event.stopPropagation();
     if (productInCart) {
       dispatch(deleteOutCart({ id: productId }));
       setPopupButtonText("Add to cart");

@@ -31,13 +31,16 @@ const SingleProductPage = () => {
   const productInCart = useSelector((state) =>
     state.cart.products.find((el) => el.id === productId)
   );
+
   const categoryId = product ? product.categoryId : null;
   const category = useSelector((state) => state.oneCategory.oneCategoriesData);
   
   const [isFavorite, setIsFavorite] = useState(!!cardFavorites);
+
   const [modalActive, setModalActive] = useState(false);
   // состояние, которое используется для изменения текста в кнопке, используя setTimeout.
   const [buttonText, setButtonText] = useState("Add to cart");
+
   const [showFullDescription, setShowFullDescription] = useState(false);
 
   useEffect(() => {
@@ -49,6 +52,7 @@ const SingleProductPage = () => {
       dispatch(getOneCategory(categoryId));
     }
   }, [dispatch, categoryId]);
+
 
  // Добавление товара в изброное 
   const addFavoritesCard = (event) => {
@@ -72,16 +76,33 @@ const SingleProductPage = () => {
       dispatch(
         addInCart({ id: productId, ...product, amount: product.amount })
       );
+      dispatch(resetCounter());
       setButtonText("Added");
       setTimeout(() => {
         setButtonText("Add to cart");
+
       }, 1000)
       dispatch(resetCounter());
+
     }
   };
 
   const toggleDescription = () => {
     setShowFullDescription(!showFullDescription);
+  };
+
+  const displayedDescription =
+    product && product.description
+      ? showFullDescription
+        ? product.description
+        : product.description.slice(
+            0,
+            Math.ceil(product.description.length / 2)
+          ) + (showFullDescription ? "" : "...")
+      : "";
+
+  const handleImageClick = () => {
+    setModalActive(true);
   };
 
   const displayedDescription =
@@ -100,7 +121,6 @@ const SingleProductPage = () => {
 
   const previousPage = location.state?.from || "/";
   const previousPageName = location.state?.pageName || "Previous Page";
-
 
   return (
     <div
@@ -122,7 +142,8 @@ const SingleProductPage = () => {
             {category?.category?.title || "Loading..."}
           </button>
         </Link>
-        <span className={styles.line}></span>
+
+        <div className={styles.line}></div>
 
         <button className={styles.buttonActive}>{product.title}</button>
       </div>
@@ -154,6 +175,7 @@ const SingleProductPage = () => {
                 : heartIcon)
             }
           />
+
           <h1 className={styles.productTitle}>{product.title}</h1>
 
           <div className={styles.priceSection}>
@@ -168,7 +190,9 @@ const SingleProductPage = () => {
                 <div className={styles.discontPrice}>
 
                 <span className={styles.discount}>
+
                   -{Math.round(100 - (product.discont_price / product.price) * 100)}%
+
                 </span>
                 </div>
               </>
