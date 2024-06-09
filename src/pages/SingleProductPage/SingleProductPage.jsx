@@ -18,7 +18,6 @@ import {
 } from "../../store/slices/singleProductsSlice";
 import { getOneCategory } from "../../store/slices/oneCategorySlice";
 
-
 const SingleProductPage = () => {
   const { productId } = useParams();
   const location = useLocation();
@@ -42,6 +41,7 @@ const SingleProductPage = () => {
   // состояние, которое используется для изменения текста в кнопке, используя setTimeout.
   const [buttonText, setButtonText] = useState("Add to cart");
 
+  const [showFullDescription, setShowFullDescription] = useState(false);
 
   useEffect(() => {
     dispatch(getSingleProduct(productId));
@@ -52,7 +52,6 @@ const SingleProductPage = () => {
       dispatch(getOneCategory(categoryId));
     }
   }, [dispatch, categoryId]);
-
 
   const addFavoritesCard = (event) => {
     event.stopPropagation();
@@ -71,7 +70,6 @@ const SingleProductPage = () => {
       dispatch(deleteOutCart({ id: productId }));
       setButtonText("Add to cart");
     } else {
-
       dispatch(
         addInCart({ id: productId, ...product, amount: product.amount })
       );
@@ -82,6 +80,34 @@ const SingleProductPage = () => {
       dispatch(resetCounter());
     }
   };
+
+  const toggleDescription = () => {
+    setShowFullDescription(!showFullDescription);
+  };
+
+  const displayedDescription =
+    product && product.description
+      ? showFullDescription
+        ? product.description
+        : product.description.slice(
+            0,
+            Math.ceil(product.description.length / 2)
+          ) + (showFullDescription ? "" : "...")
+      : "";
+
+  const toggleDescription = () => {
+    setShowFullDescription(!showFullDescription);
+  };
+
+  const displayedDescription =
+    product && product.description
+      ? showFullDescription
+        ? product.description
+        : product.description.slice(
+            0,
+            Math.ceil(product.description.length / 2)
+          ) + (showFullDescription ? "" : "...")
+      : "";
 
   const handleImageClick = () => {
     setModalActive(true);
@@ -106,7 +132,6 @@ const SingleProductPage = () => {
       }`}
     >
       <div className={styles.navigationLink}>
-
         <Link to="/">
           <button>Main Page</button>
         </Link>
@@ -116,11 +141,12 @@ const SingleProductPage = () => {
         </Link>
         <div className={styles.line}></div>
         <Link to={`/categories/${categoryId}`}>
-          <button className={styles.buttonActive}>
+          <button className={styles.buttonCategory}>
             {category?.category?.title || "Loading..."}
           </button>
         </Link>
         <div className={styles.line}></div>
+
         <button className={styles.buttonActive}>{product.title}</button>
       </div>
       <div className={styles.productWrapper}>
@@ -154,7 +180,7 @@ const SingleProductPage = () => {
                 : heartIcon)
             }
           />
-          
+
           <h1 className={styles.productTitle}>{product.title}</h1>
 
           <div className={styles.priceSection}>
@@ -166,9 +192,12 @@ const SingleProductPage = () => {
                 <span className={styles.oldPrice}>
                   ${Math.round(product.price)}
                 </span>
+                <div className={styles.discontPrice}>
+
                 <span className={styles.discount}>
                   -{Math.round(100 - (product.discont_price / product.price) * 100)}%
                 </span>
+                </div>
               </>
             ) : (
               <span className={styles.currentPrice}>${product.price}</span>
@@ -191,8 +220,22 @@ const SingleProductPage = () => {
 
           <div className={styles.productDescription}>
             <h2>Description</h2>
-            <p>{product.description}</p>
-            <a href="#" className={styles.readMoreLink}></a>
+            <p
+              className={`${styles.descriptionText} ${
+                showFullDescription ? styles.expanded : styles.collapsed
+              }`}
+            >
+              {displayedDescription}
+            </p>
+            <button
+              className={styles.readMoreButton}
+              onClick={(e) => {
+                e.preventDefault();
+                toggleDescription();
+              }}
+            >
+              {showFullDescription ? "Show less" : "Read more"}
+            </button>
           </div>
         </div>
       </div>
@@ -222,6 +265,5 @@ const SingleProductPage = () => {
     </div>
   );
 };
-
 
 export default SingleProductPage;

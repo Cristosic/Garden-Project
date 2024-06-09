@@ -58,11 +58,10 @@
   text-align: start;
   font-weight: 500;
   font-size: 16px;
-  color: #FFFFF1;
+  color: #fffff1;
   line-height: 20px;
   margin: 0;
 }
-
 
 .conf_msg_container {
   display: flex;
@@ -70,14 +69,13 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-
-} 
+}
 
 .conf_msg {
   text-align: start;
   font-weight: 500;
   font-size: 16px;
-  color: #FFFFF1;
+  color: #fffff1;
   line-height: 20px;
   margin: 0;
 }
@@ -89,13 +87,12 @@
   align-items: flex-start;
   font-weight: 500;
   font-size: 16px;
-  color: #FFFFF1;
+  color: #fffff1;
   line-height: 20px;
   margin: 0;
 }
 
 .error_icon {
-
   background-color: red;
   margin-right: 8px;
   border-radius: 50%;
@@ -111,8 +108,8 @@
 }
 
 .submittedButton {
-  color: #92A134;
-  background: #F2F6D3;
+  color: #92a134;
+  background: #f2f6d3;
 }
 
 .orderContentStyles {
@@ -121,7 +118,9 @@
 }
 
 .orderContentStyles > h3 {
-
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 44px;
   align-self: flex-start;
 }
 
@@ -129,17 +128,11 @@
   align-self: flex-end;
 }
 
-.orderContentStyles img {
-  display: none;
-
-}
-
 @media (max-width: 1440px) {
   .newUser {
     width: 100%;
     align-items: center;
   }
-
 }
 
 @media (max-width: 1000px) {
@@ -157,7 +150,6 @@
   }
 }
 
-
 @media (max-width: 768px) {
   .newUser {
     width: 100%;
@@ -165,19 +157,15 @@
   }
 
   .inputForm {
-    padding: 16px 20px;
     font-size: 16px;
     height: 58px;
   }
 
   .submitButton {
-    padding: 16px 20px;
     font-size: 16px;
     height: 58px;
     text-align: center;
   }
-
-
 }
 
 @media (max-width: 480px) {
@@ -190,7 +178,7 @@
   .inputForm {
     width: 100%;
     height: 47px;
-    font-size: 16px;  
+    font-size: 16px;
     padding: 12px 20px;
   }
 
@@ -200,17 +188,12 @@
     font-size: 16px;
     padding: 12px 20px;
   }
-  .orderContentStyles > h3{
-    font-size: 33px;
-  }
-  .orderContentStyles > p{
-    font-size: 18px;
-  }
-  .orderContentStyles img {
-    display: none;
 
+  .orderContentStyles > h3 {
+    padding: 24px 72px 136px 0;
   }
 }
+
 @media (max-width: 360px) {
   .newUser {
     width: 100%;
@@ -229,11 +212,7 @@
     font-size: 15px;
     padding: 12px 20px;
   }
-  .orderContentStyles > h3{
-    font-size: 28px;
-  }
-  .orderContentStyles > p{
-    font-size: 18px;
+  .orderContentStyles > h3 {
+    padding: 24px 20px 20px 0;
   }
 }
-

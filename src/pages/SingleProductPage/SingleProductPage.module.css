@@ -5,6 +5,7 @@
   border: 1px solid #dddddd;
   color: #8b8b8b;
 }
+
 .lightTheme .imageModalContent{
   background: none;
 }
@@ -19,20 +20,23 @@
   border-color: #dddddd;
 }
 
-.lightTheme .navigationLink .buttonActive {
-  color: #443736;
-}
-
 .lightTheme .productInfo h1,
 .lightTheme .priceSection,
-.lightTheme .navigationLink .buttonActive {
+.lightTheme .navigationLink .buttonActive,
+.lightTheme .navigationLink .buttonCategory {
   color: #424436;
 }
 
 .lightTheme .productDescription h2,
 .lightTheme .productDescription p,
-.lightTheme .readMoreLink {
+.lightTheme .readMoreLink,
+.lightTheme .readMoreButton {
   color: #424436;
+}
+
+.lightTheme .readMoreButton:hover {
+  background-color: transparent;
+  color: #443736;
 }
 
 .lightTheme .addToCartButton:hover {
@@ -54,7 +58,8 @@
 .darkTheme .productInfo h1,
 .darkTheme .priceSection,
 .darkTheme .navigationLink .buttonActive,
-.darkTheme .navigationLink button:hover {
+.darkTheme .navigationLink button:hover,
+.darkTheme .readMoreButton {
   color: #FFFFFF;
 }
 
@@ -83,10 +88,7 @@
 }
 
 .singleProductPage {
-  
   margin: 0 40px;
-  /* display: flex;
-  flex-direction: column; */
 }
 
 .navigationLink {
@@ -130,7 +132,6 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  position: relative;
 }
 
 /* стиль для сердечка */
@@ -172,64 +173,41 @@
 }
 
 .priceSection {
-
-  width: 359px;
-  height: 70px;
-  position: relative;
-  display: flex;
-  align-items: center;
-  margin-top: 40px;
+  margin-top: 32px;
   margin-bottom: 32px;
-}
-
-.price {
- 
-  width: 280px;
   position: relative;
+  width: 260px;
 }
 
 .currentPrice {
-
-  width: 147px;
-  
   font-size: 64px;
   font-weight: 700;
-  line-height: 70.4px;
-  text-align: left;
-  align-self: flex-start;
+  line-height: 70px;
 }
 
 .oldPrice {
-  
   font-size: 40px;
   font-weight: 500;
   line-height: 52px;
-  text-decoration: line-through;
-  align-self: flex-end;
-  color: grey;
-  position: absolute;
-  right: 0;
-  bottom: 0;
-}
-
-.procent {
-  width: 79px;
-  height: 70px;
-
-  position: relative;
+  color: #8B8B8B;
+  padding: 18px 0 0 32px;
 }
 
 .discount {
   font-size: 20px;
-  font-weight: 500;
-  text-align: left;
+  font-weight: 600;
   background-color: #f26d22;
   color: #ffffff;
   border-radius: 6px;
   padding: 4px 8px;
-  align-self: flex-start;
-  right: 0;
+  margin-bottom: 32px; 
+  position: absolute;
   top: 0;
+  right: 0;
+}
+
+.priceSection.discountPrice {
+  position: relative;
 }
 
 .quantityContainer {
@@ -324,9 +302,15 @@
   padding-bottom: 15px;
 }
 
-.readMoreLink {
+.readMoreButton {
+  border: none;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20.8px;
+  background-color: transparent;
   margin-bottom: 20px;
   text-decoration: underline;
+  cursor: pointer;
 }
 
 @media (max-width: 1440px) {

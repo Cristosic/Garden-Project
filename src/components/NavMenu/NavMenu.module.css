@@ -211,6 +211,7 @@
     width: 282px;
     transition: right 0.5s;
     padding: 100px 90px 1067px 32px;
+    transition: background 0.3s ease;
   }
 
   .buttonNavMenu {
@@ -295,10 +296,9 @@
   .navMenu .favoriteCount {
     left: 15px;
   }
-
 }
 
-@media (max-width: 360px) {
+@media (max-width: 480px) {
   .navBarCenter {
     width: 222px;
   }
