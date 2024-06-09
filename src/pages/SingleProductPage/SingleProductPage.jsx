@@ -25,7 +25,6 @@ const SingleProductPage = () => {
   const dispatch = useDispatch();
 
   const product = useSelector((state) => state.singleProduct.product);
-
   const cardFavorites = useSelector((state) =>
     state.favorites.cards.find((el) => el.id === productId)
   );
@@ -33,13 +32,12 @@ const SingleProductPage = () => {
     state.cart.products.find((el) => el.id === productId)
   );
 
-  const [isFavorite, setIsFavorite] = useState(!!cardFavorites);
-
   const categoryId = product ? product.categoryId : null;
   const category = useSelector((state) => state.oneCategory.oneCategoriesData);
+  
+  const [isFavorite, setIsFavorite] = useState(!!cardFavorites);
 
   const [modalActive, setModalActive] = useState(false);
-
   // состояние, которое используется для изменения текста в кнопке, используя setTimeout.
   const [buttonText, setButtonText] = useState("Add to cart");
 
@@ -55,6 +53,8 @@ const SingleProductPage = () => {
     }
   }, [dispatch, categoryId]);
 
+
+ // Добавление товара в изброное 
   const addFavoritesCard = (event) => {
     event.stopPropagation();
 
@@ -66,6 +66,7 @@ const SingleProductPage = () => {
     setIsFavorite(!isFavorite);
   };
 
+  // Добавление товара в корзину 
   const addProductsInCart = (e) => {
     e.stopPropagation();
     if (productInCart) {
@@ -79,7 +80,10 @@ const SingleProductPage = () => {
       setButtonText("Added");
       setTimeout(() => {
         setButtonText("Add to cart");
-      }, 1000);
+
+      }, 1000)
+      dispatch(resetCounter());
+
     }
   };
 
@@ -101,9 +105,15 @@ const SingleProductPage = () => {
     setModalActive(true);
   };
 
-  const closeModal = () => {
-    setModalActive(false);
-  };
+  const displayedDescription =
+    product && product.description
+      ? showFullDescription
+        ? product.description
+        : product.description.slice(
+            0,
+            Math.ceil(product.description.length / 2)
+          ) + (showFullDescription ? "" : "...")
+      : "";
 
   if (!product) {
     return <p>Loading...</p>;
@@ -116,7 +126,7 @@ const SingleProductPage = () => {
     <div
       className={`${styles.singleProductPage} ${
         theme === "light" ? styles.lightTheme : styles.darkTheme
-      }`}
+ }`}
     >
       <div className={styles.navigationLink}>
         <Link to="/">
@@ -127,23 +137,22 @@ const SingleProductPage = () => {
           <button>{previousPageName}</button>
         </Link>
         <div className={styles.line}></div>
-
         <Link to={`/categories/${categoryId}`}>
           <button className={styles.buttonCategory}>
             {category?.category?.title || "Loading..."}
           </button>
         </Link>
+
         <div className={styles.line}></div>
 
         <button className={styles.buttonActive}>{product.title}</button>
       </div>
-
       <div className={styles.productWrapper}>
         <img
           className={styles.productImage}
           src={`${serverUrl}${product.image}`}
           alt={product.title}
-          onClick={handleImageClick}
+          onClick={()=> setModalActive(true)}
         />
         <div className={styles.productInfo}>
           <img
@@ -157,10 +166,7 @@ const SingleProductPage = () => {
             alt="heart"
             className={`${styles.heart} ${isFavorite ? styles.favorite : ""}`}
             onClick={addFavoritesCard}
-            onMouseOver={(e) =>
-              (e.currentTarget.src =
-                theme === "dark" ? favoritesHeart : hoverHeart)
-            }
+            onMouseOver={(e) => (e.currentTarget.src = theme === "dark" ? favoritesHeart : hoverHeart)}
             onMouseOut={(e) =>
               (e.currentTarget.src = isFavorite
                 ? favoritesHeart
@@ -184,11 +190,9 @@ const SingleProductPage = () => {
                 <div className={styles.discontPrice}>
 
                 <span className={styles.discount}>
-                  -
-                  {Math.round(
-                    100 - (product.discont_price / product.price) * 100
-                  )}
-                  %
+
+                  -{Math.round(100 - (product.discont_price / product.price) * 100)}%
+
                 </span>
                 </div>
               </>
@@ -201,9 +205,7 @@ const SingleProductPage = () => {
             <Counter productId={productId} isSingleProduct={true} />
             <div className={styles.containertButtonCart}>
               <button
-                className={`${styles.addToCartButton} ${
-                  buttonText === "Added" ? styles.addedButton : ""
-                }`}
+                className={`${styles.addToCartButton} ${buttonText === "Added" ? styles.addedButton : ""}`}
                 onClick={addProductsInCart}
               >
                 {buttonText}
@@ -232,13 +234,20 @@ const SingleProductPage = () => {
           </div>
         </div>
       </div>
-
+      
       <ModalWindow
         isOpen={modalActive}
-        isClosed={closeModal}
+        isClosed={()=> setModalActive(false)}
         imageModalContent={styles.imageModalContent}
       >
         <div>
+          {
+            <img
+              src={`${serverUrl}${product.image}`}
+              alt={`${product.title}`}
+              className={styles.modalImage}
+            />
+          }
           {
             <img
               src={`${serverUrl}${product.image}`}
