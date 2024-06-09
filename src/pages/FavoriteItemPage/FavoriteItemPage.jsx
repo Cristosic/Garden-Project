@@ -10,7 +10,6 @@ import Skeleton from "./../../components/Skeleton/Skeleton";
 export default function FavoriteItemPage() {
   const { theme } = useContext(Context);
   const favorites = useSelector((state) => state.favorites.filterFavoritesData);
-  console.log(favorites);
   const status = useSelector((state) => state.allProducts.status === "loading");
 
   return (
@@ -45,7 +44,7 @@ export default function FavoriteItemPage() {
           ))}
         </div>
       ) : (
-        <p>Looks like you have no items in your favorites currently.</p>)
+        <p className={styles.emptyFavoritesTitle}>Looks like you have no items in your favorites currently.</p>)
       )}
     </div>
   );
