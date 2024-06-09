@@ -3,8 +3,8 @@ import { useDispatch } from "react-redux";
 import { addNewUser } from "../../../store/slices/newuserSlice";
 import styles from "./NewUserForm.module.css";
 import { useForm } from "react-hook-form";
-import { BsXOctagon } from "react-icons/bs";
 import ModalWindow from "../../ModalWindow/ModalWindow";
+import octagonIcon from "../../../media/icons/octagonIcon.svg";
 
 export default function NewUserForm({
   orderStyles,
@@ -141,7 +141,11 @@ export default function NewUserForm({
         <div
           className={`${styles.error_icon_container} ${icon_containerStyles}`}
         >
-          <BsXOctagon className={`${styles.error_icon} ${iconStyles}`} />
+          <img
+            src={octagonIcon}
+            className={`${styles.error_icon} ${iconStyles}`}
+            alt="error-icon"
+          />
           <p className={`${styles.conf_msg} ${conf_msgStyles}`}>
             Wrong input. Try again
           </p>
@@ -170,18 +174,19 @@ export default function NewUserForm({
             : buttonText}
         </button>
       </div>
-      <ModalWindow 
-      orderWindowStyles={styles.orderContentStyles}
-      isOpen={modalActive} isClosed={() => setModalActive(false)}>
+      <ModalWindow
+        orderWindowStyles={styles.orderContentStyles}
+        isOpen={modalActive}
+        isClosed={() => setModalActive(false)}
+      >
         <h3>Congratulations!</h3>
-        <p >
+        <p>
           Your order has been successfully placed on the website.
           <br />
           <br />
           A manager will contact you shortly to confirm your order.
         </p>
       </ModalWindow>
-
     </form>
   );
 }
