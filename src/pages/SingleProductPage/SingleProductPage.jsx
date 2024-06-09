@@ -31,16 +31,13 @@ const SingleProductPage = () => {
   const productInCart = useSelector((state) =>
     state.cart.products.find((el) => el.id === productId)
   );
-  const [isFavorite, setIsFavorite] = useState(!!cardFavorites);
-
   const categoryId = product ? product.categoryId : null;
   const category = useSelector((state) => state.oneCategory.oneCategoriesData);
-
+  
+  const [isFavorite, setIsFavorite] = useState(!!cardFavorites);
   const [modalActive, setModalActive] = useState(false);
-
   // состояние, которое используется для изменения текста в кнопке, используя setTimeout.
   const [buttonText, setButtonText] = useState("Add to cart");
-
   const [showFullDescription, setShowFullDescription] = useState(false);
 
   useEffect(() => {
@@ -53,6 +50,7 @@ const SingleProductPage = () => {
     }
   }, [dispatch, categoryId]);
 
+ // Добавление товара в изброное 
   const addFavoritesCard = (event) => {
     event.stopPropagation();
 
@@ -64,6 +62,7 @@ const SingleProductPage = () => {
     setIsFavorite(!isFavorite);
   };
 
+  // Добавление товара в корзину 
   const addProductsInCart = (e) => {
     e.stopPropagation();
     if (productInCart) {
@@ -95,28 +94,6 @@ const SingleProductPage = () => {
           ) + (showFullDescription ? "" : "...")
       : "";
 
-  const toggleDescription = () => {
-    setShowFullDescription(!showFullDescription);
-  };
-
-  const displayedDescription =
-    product && product.description
-      ? showFullDescription
-        ? product.description
-        : product.description.slice(
-            0,
-            Math.ceil(product.description.length / 2)
-          ) + (showFullDescription ? "" : "...")
-      : "";
-
-  const handleImageClick = () => {
-    setModalActive(true);
-  };
-
-  const closeModal = () => {
-    setModalActive(false);
-  };
-
   if (!product) {
     return <p>Loading...</p>;
   }
@@ -129,7 +106,7 @@ const SingleProductPage = () => {
     <div
       className={`${styles.singleProductPage} ${
         theme === "light" ? styles.lightTheme : styles.darkTheme
-      }`}
+ }`}
     >
       <div className={styles.navigationLink}>
         <Link to="/">
@@ -145,7 +122,7 @@ const SingleProductPage = () => {
             {category?.category?.title || "Loading..."}
           </button>
         </Link>
-        <div className={styles.line}></div>
+        <span className={styles.line}></span>
 
         <button className={styles.buttonActive}>{product.title}</button>
       </div>
@@ -154,7 +131,7 @@ const SingleProductPage = () => {
           className={styles.productImage}
           src={`${serverUrl}${product.image}`}
           alt={product.title}
-          onClick={handleImageClick}
+          onClick={()=> setModalActive(true)}
         />
         <div className={styles.productInfo}>
           <img
@@ -168,10 +145,7 @@ const SingleProductPage = () => {
             alt="heart"
             className={`${styles.heart} ${isFavorite ? styles.favorite : ""}`}
             onClick={addFavoritesCard}
-            onMouseOver={(e) =>
-              (e.currentTarget.src =
-                theme === "dark" ? favoritesHeart : hoverHeart)
-            }
+            onMouseOver={(e) => (e.currentTarget.src = theme === "dark" ? favoritesHeart : hoverHeart)}
             onMouseOut={(e) =>
               (e.currentTarget.src = isFavorite
                 ? favoritesHeart
@@ -180,7 +154,6 @@ const SingleProductPage = () => {
                 : heartIcon)
             }
           />
-
           <h1 className={styles.productTitle}>{product.title}</h1>
 
           <div className={styles.priceSection}>
@@ -208,9 +181,7 @@ const SingleProductPage = () => {
             <Counter productId={productId} isSingleProduct={true} />
             <div className={styles.containertButtonCart}>
               <button
-                className={`${styles.addToCartButton} ${
-                  buttonText === "Added" ? styles.addedButton : ""
-                }`}
+                className={`${styles.addToCartButton} ${buttonText === "Added" ? styles.addedButton : ""}`}
                 onClick={addProductsInCart}
               >
                 {buttonText}
@@ -242,7 +213,7 @@ const SingleProductPage = () => {
       
       <ModalWindow
         isOpen={modalActive}
-        isClosed={closeModal}
+        isClosed={()=> setModalActive(false)}
         imageModalContent={styles.imageModalContent}
       >
         <div>
