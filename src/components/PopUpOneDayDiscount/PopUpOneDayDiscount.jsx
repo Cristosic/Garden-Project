@@ -36,7 +36,6 @@ export default function PopUpOneDayDiscount({
   }, [products]);
 
   const dispatch = useDispatch();
-  
 
   const addProductInCart = (event) => {
     event.stopPropagation();

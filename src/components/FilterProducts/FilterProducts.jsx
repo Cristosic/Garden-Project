@@ -3,9 +3,20 @@ import styles from "./FilterProducts.module.scss";
 import arrowDown from "../../media/icons/arrowDown.svg";
 import { useDispatch } from "react-redux";
 import { Context } from "../../context";
-import { filterOneCategoryPriceAction, sortOneCategoryAction, filterOneCategorySaleAction} from "../../store/slices/oneCategorySlice";
-import {filterPriceAction, filterSaleProductsAction, sortProductsAction} from "../../store/slices/allProductsSlice";
-import {filterFavoritesPriceAction, sortFavoritesAction} from "../../store/slices/favoritesSlice";
+import { 
+  filterOneCategoryPriceAction,
+  sortOneCategoryAction,
+  filterOneCategorySaleAction
+} from "../../store/slices/oneCategorySlice";
+import {
+  filterPriceAction,
+  filterSaleProductsAction,
+  sortProductsAction,
+} from "../../store/slices/allProductsSlice";
+import {
+  filterFavoritesPriceAction,
+  sortFavoritesAction,
+} from "../../store/slices/favoritesSlice";
 
 function FilterProducts({ showSaleFilter, oneCategoryFilter, favoritesPage }) {
   const dispatch = useDispatch();
