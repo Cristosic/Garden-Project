@@ -1,16 +1,16 @@
-/* dark theme styles */ 
+/* dark theme styles */
 
 .lightTheme .modal_content {
   background-color: #92a134;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .darkTheme .modal_content {
   background-color: #424436;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
-/*  */ 
+/*  */
 
 .modal {
   background-color: rgba(40, 40, 40, 0.4);
@@ -34,7 +34,6 @@
   min-height: 100%;
   padding: 0 20px 0 20px;
 }
-
 
 .modal_content {
   max-width: 548px;
@@ -66,6 +65,19 @@
   text-align: left;
   padding-bottom: 16px;
 }
+
+@media (max-width: 768px) {
+  .modal_content > h3 {
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 39px;
+  }
+  .modal_content p {
+    font-size: 18px;
+    line-height: 19px;
+  }
+}
+
 @media (max-width: 480px) {
   .modalCross {
     height: 40px;
@@ -75,9 +87,20 @@
   .modal_content {
     padding: 20px;
   }
+
+  .modal_content > h3 {
+    font-size: 28px;
+    line-height: 30px;
+  }
 }
+
 @media (max-width: 360px) {
   .modalCross {
     height: 35px;
+  }
+
+  .modal_content > h3 {
+    font-size: 25px;
+    line-height: 30px;
   }
 }

@@ -5,26 +5,33 @@ import NewUserForm from "../DiscountForm/NewUserForm/NewUserForm";
 import { Context } from "../../context";
 
 export default function OrderForm() {
-
   const { theme } = useContext(Context);
 
   const cartProducts = useSelector((state) => state.cart.products);
 
   // Рассчитать общее количество товаров и общую стоимость
-  const totalItems = cartProducts.reduce((acc, product) => acc + product.amount, 0);
-  const totalPrice = cartProducts.reduce((acc, product) => acc + product.amount * product.price, 0);
-
+  const totalItems = cartProducts.reduce(
+    (acc, product) => acc + product.amount,
+    0
+  );
+  const totalPrice = cartProducts.reduce(
+    (acc, product) => acc + product.amount * product.price,
+    0
+  );
 
   return (
     <div
-      className={`${styles.orderContainer} ${theme === "light" ? styles.lightTheme : styles.darkTheme
-        }`}
+      className={`${styles.orderContainer} ${
+        theme === "light" ? styles.lightTheme : styles.darkTheme
+      }`}
     >
       <div className={styles.orderText}>
         <h2>Order details</h2>
         <p className={styles.items}>{totalItems} items</p>
-        <p className={styles.total}>Total:</p>
-        <p className={styles.price}>${totalPrice.toFixed(2)}</p>
+        <div className={styles.total}>
+          <p>Total</p>
+          <p className={styles.price}>${totalPrice.toFixed(2)}</p>
+        </div>
       </div>
 
       <NewUserForm
