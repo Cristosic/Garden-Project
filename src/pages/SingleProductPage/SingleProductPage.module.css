@@ -125,6 +125,7 @@
   width: 80%;
   height: 100%;
   border-radius: var(--radiusbig);
+  border-radius: 12px;
 }
 
 .productInfo {
