@@ -8,15 +8,13 @@ import favoritesHeart from "../../media/icons/favoritesHeart.svg";
 import hoverHeart from "../../media/icons/hoverHeart.svg";
 import darkHeartIcon from "../../media/icons/darkHeartIcon.svg";
 import { useDispatch, useSelector } from "react-redux";
-import { addCard, deleteCard } from "../../store/slices/favoritesSlice";
+
 import { Context } from "../../context";
 import ModalWindow from "./../../components/ModalWindow/ModalWindow";
-import { addInCart, deleteOutCart } from "../../store/slices/cartProductsSlice";
-import {
-  getSingleProduct,
-  resetCounter,
-} from "../../store/slices/singleProductsSlice";
-import { getOneCategory } from "../../store/slices/oneCategorySlice";
+import { fetchProductData } from "../../utils/fetchSinglePage.js";
+import { addProductInFavorite } from "../../utils/favorites.js";
+import { addProductInCart } from "../../utils/cart.js";
+import { displayedFullDescription, showDescription } from "../../utils/descriptionButton.js";
 
 const SingleProductPage = () => {
   const { productId } = useParams();
@@ -36,70 +34,28 @@ const SingleProductPage = () => {
   const category = useSelector((state) => state.oneCategory.oneCategoriesData);
   
   const [isFavorite, setIsFavorite] = useState(!!cardFavorites);
-
   const [modalActive, setModalActive] = useState(false);
   // состояние, которое используется для изменения текста в кнопке, используя setTimeout.
   const [buttonText, setButtonText] = useState("Add to cart");
-
   const [showFullDescription, setShowFullDescription] = useState(false);
 
-  useEffect(() => {
-    dispatch(getSingleProduct(productId));
-  }, [dispatch, productId]);
-
-  useEffect(() => {
-    if (categoryId) {
-      dispatch(getOneCategory(categoryId));
-    }
-  }, [dispatch, categoryId]);
-
+useEffect(()=> {
+  fetchProductData(dispatch, productId, categoryId);
+}, [dispatch, productId, categoryId])
 
  // Добавление товара в изброное 
-  const addFavoritesCard = (event) => {
-    event.stopPropagation();
-
-    if (isFavorite) {
-      dispatch(deleteCard({ id: productId }));
-    } else {
-      dispatch(addCard({ id: productId, ...product }));
-    }
-    setIsFavorite(!isFavorite);
-  };
+ const addFavoritesCard = (event) => {
+  event.stopPropagation();
+  addProductInFavorite(dispatch, productId, product, isFavorite, setIsFavorite);
+};
 
   // Добавление товара в корзину 
   const addProductsInCart = (e) => {
     e.stopPropagation();
-    if (productInCart) {
-      dispatch(deleteOutCart({ id: productId }));
-      setButtonText("Add to cart");
-    } else {
-      dispatch(
-        addInCart({ id: productId, ...product, amount: product.amount })
-      );
-      dispatch(resetCounter());
-      setButtonText("Added");
-      setTimeout(() => {
-        setButtonText("Add to cart");
-
-      }, 1000)
-      dispatch(resetCounter());
-
-    }
+    addProductInCart(dispatch, productId, product, productInCart, setButtonText);
   };
 
-  const toggleDescription = () => {
-    setShowFullDescription(!showFullDescription);
-  };
-
-  const displayedDescription =
-    product && product.description
-      ? showFullDescription
-        ? product.description
-        : product.description.slice(
-            0,
-            Math.ceil(product.description.length / 2)
-          ) + (showFullDescription ? "" : "...")
-      : "";
+  const displayedDescription = displayedFullDescription(product, showFullDescription);
 
   if (!product) {
     return <p>Loading...</p>;
@@ -212,10 +168,9 @@ const SingleProductPage = () => {
               className={styles.readMoreButton}
               onClick={(e) => {
                 e.preventDefault();
-                toggleDescription();
+                showDescription(showFullDescription, setShowFullDescription);
               }}
             >
-              {showFullDescription ? "Show less" : "Read more"}
             </button>
           </div>
         </div>
