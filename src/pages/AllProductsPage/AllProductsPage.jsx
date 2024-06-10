@@ -13,11 +13,10 @@ export default function AllProductsPage() {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.allProducts.filterProductsData);
   const status = useSelector((state) => state.allProducts.status === "loading");
+  
   useEffect(() => {
     dispatch(getAllProducts());
   }, [dispatch]);
-
-  console.log("All products: ", products);
 
   return (
     <div
