@@ -57,6 +57,7 @@ useEffect(()=> {
 
   const displayedDescription = displayedFullDescription(product, showFullDescription);
 
+
   if (!product) {
     return <p>Loading...</p>;
   }
