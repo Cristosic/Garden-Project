@@ -15,22 +15,19 @@
   }
 
   .headerContent {
-    padding: 80px 40px 0 40px;
+    padding: 90px 0 0 40px;
     position: relative;
     display: flex;
     justify-content: center;
     overflow: hidden;
     flex-direction: column;
     gap: 40px;
-    color: white;
+    color: #ffffff;
 
-    h1 {
+    .title {
+      max-width: 1100px;
       font-size: 96px;
-      line-height: 100.6px;
-
-      span {
-        display: inline-block;
-      }
+      line-height: 100px;
     }
 
     button {
@@ -40,7 +37,7 @@
       border-radius: 6px;
       font-size: 20px;
       font-weight: 600;
-      color: white;
+      color: #ffffff;
       cursor: pointer;
     }
   }
@@ -60,14 +57,9 @@
     .headerContent {
       padding: 60px 0px 0 20px;
 
-      h1 {
+      .title {
         line-height: 99px;
         font-size: 90px;
-
-        span {
-          display: inline;
-          font-size: 81.5px;
-        }
       }
     }
   }
@@ -80,14 +72,9 @@
     .headerContent {
       padding: 60px 0px 0 20px;
 
-      h1 {
+      .title {
         line-height: 74.8px;
         font-size: 68px;
-
-        span {
-          display: inline-block;
-          font-size: 68px;
-        }
       }
     }
   }
@@ -103,13 +90,9 @@
       padding: 50px 0px 0 20px;
       gap: 24px;
 
-      h1 {
+      .title {
         line-height: 66px;
         font-size: 60px;
-
-        span {
-          font-size: 60px;
-        }
       }
 
       button {
@@ -129,13 +112,9 @@
       padding: 50px 0px 0 20px;
       gap: 24px;
 
-      h1 {
+      .title {
         line-height: 57.2px;
         font-size: 52px;
-
-        span {
-          font-size: 52px;
-        }
       }
     }
   }
