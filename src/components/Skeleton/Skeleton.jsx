@@ -5,11 +5,9 @@ import renderSkeletonSquares from "./../../utils/renderSkeletonSquares";
 import { Context } from "../../context";
 
 const Skeleton = () => {
-
-    const { theme } = useContext(Context);
+  const { theme } = useContext(Context);
 
   const loading = useSelector((state) => state.allProducts.status) === "loading";
-  console.log('Loading state in Skeleton:',loading)
 
   if (loading) {
     return (

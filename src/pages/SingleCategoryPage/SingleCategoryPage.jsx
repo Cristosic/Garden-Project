@@ -13,12 +13,7 @@ export default function SingleCategoryPage() {
   const { theme } = useContext(Context);
   const { categoryId } = useParams();
   const dispatch = useDispatch();
-  const oneCategoryState = useSelector(
-    (state) => state.oneCategory.filterProductsData
-  );
-
-  console.log(oneCategoryState);
-
+  const oneCategoryState = useSelector((state) => state.oneCategory.filterProductsData);
   const status = useSelector((state) => state.oneCategory.status);
   const category = useSelector((state) => state.oneCategory.oneCategoriesData);
 
